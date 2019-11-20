@@ -1,0 +1,88 @@
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/20/2019 15:30:07 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE LONG_SERIAL_IN
+OBJECT MODULE PLACED IN .\Long_Serial_In.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Long_Serial_In.c DEBUG OBJECTEXTEND PRINT(.\Long_Serial_In.lst) O
+                    -BJECT(.\Long_Serial_In.obj) 
+
+stmt level    source
+
+   1          #include <stdio.h>
+   2          #include "main.h"
+   3          #include "Long_Serial_In.h"
+   4          #include "UART.h"
+   5          #include <stdlib.h>
+   6          
+   7          
+   8          /***********************************************************************
+   9          DESC:    Waits for user input of a long integer as ASCII characters
+  10                  
+  11          INPUT: Nothing
+  12          RETURNS: unsigned long
+  13          CAUTION: UART must be initialized first
+  14          ************************************************************************/
+  15          
+  16          uint32_t long_serial_input(void)
+  17          {
+  18   1         uint8_t index,input,input_values[11];   
+  19   1         uint32_t output_value;
+  20   1            for(index=0;index<11;index++)
+  21   1            {
+  22   2              input_values[index]=0;
+  23   2            }
+  24   1            output_value=0xffffffff;
+  25   1            index=0;
+  26   1            do
+  27   1            {
+  28   2               input=UART_Receive();
+  29   2               if((input>=0x30)&&(input<=0x39))
+  30   2               {
+  31   3                 input_values[index]=input;
+  32   3                 index++;
+  33   3                 putchar(input);
+  34   3               }
+  35   2               else if ((input==BS)||(input==DEL))  // Putty uses DEL (127) or BS (0x08) for backspace
+  36   2               {
+  37   3                 index--;
+  38   3                 input_values[index]=0;
+  39   3                 UART_Transmit(BS);
+  40   3                 UART_Transmit(space);
+  41   3                 UART_Transmit(BS);
+  42   3               }
+  43   2               else if ((input==CR)||(input==LF))
+  44   2               {
+  45   3                  output_value=atol(input_values);
+  46   3                  UART_Transmit(CR);
+  47   3                  UART_Transmit(LF);
+  48   3               }
+  49   2               else
+  50   2               {
+  51   3                  input=0;
+  52   3               }
+  53   2               if(index==10)
+  54   2               {
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/20/2019 15:30:07 PAGE 2   
+
+  55   3                  output_value=atol(input_values);
+  56   3                  UART_Transmit(CR);
+  57   3                  UART_Transmit(LF);
+  58   3               }
+  59   2            }while(output_value==0xffffffff);
+  60   1      
+  61   1      return output_value;
+  62   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    209    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      17
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

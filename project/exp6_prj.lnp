@@ -1,0 +1,20 @@
+".\Directory_Functions_struct.obj",
+".\exp_4_main.obj",
+".\file_system.obj",
+".\LCD_hardware_functions.obj",
+".\LCD_routines.obj",
+".\LED_Control.obj",
+".\Long_Serial_In.obj",
+".\Outputs.obj",
+".\print_bytes.obj",
+".\SDCard.obj",
+".\sector_reader.obj",
+".\SPI.obj",
+".\Timer0_hardware_delay_1ms.obj",
+".\UART.obj",
+".\player.obj",
+".\I2C.obj",
+".\STA013_config.obj",
+".\config.obj" 
+TO "exp6_prj" 
+RAMSIZE(256) 

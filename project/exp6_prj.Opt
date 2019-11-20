@@ -1,0 +1,49 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<..\source\Directory_Functions_struct.c><Directory_Functions_struct.c> 
+OPTFFF 1,2,1,0,0,0,0,0,<..\source\exp_4_main.c><exp_4_main.c> 
+OPTFFF 1,3,1,0,0,0,0,0,<..\source\file_system.c><file_system.c> 
+OPTFFF 1,4,1,0,0,0,0,0,<..\source\LCD_hardware_functions.c><LCD_hardware_functions.c> 
+OPTFFF 1,5,1,0,0,0,0,0,<..\source\LCD_routines.c><LCD_routines.c> 
+OPTFFF 1,6,1,0,0,0,0,0,<..\source\LED_Control.c><LED_Control.c> 
+OPTFFF 1,7,1,0,0,0,0,0,<..\source\Long_Serial_In.c><Long_Serial_In.c> 
+OPTFFF 1,8,1,0,0,0,0,0,<..\source\Outputs.c><Outputs.c> 
+OPTFFF 1,9,1,0,0,0,0,0,<..\source\print_bytes.c><print_bytes.c> 
+OPTFFF 1,10,1,0,0,0,0,0,<..\source\SDCard.c><SDCard.c> 
+OPTFFF 1,11,1,0,0,0,0,0,<..\source\sector_reader.c><sector_reader.c> 
+OPTFFF 1,12,1,0,0,0,0,0,<..\source\SPI.c><SPI.c> 
+OPTFFF 1,13,1,0,0,0,0,0,<..\source\Timer0_hardware_delay_1ms.c><Timer0_hardware_delay_1ms.c> 
+OPTFFF 1,14,1,0,0,0,0,0,<..\source\UART.c><UART.c> 
+OPTFFF 1,15,1,0,0,0,0,0,<..\source\player.c><player.c> 
+
+
+TARGOPT 1, (Target 1)
+ CLK51=24000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTBL 0,(Data Sheet)<DATASHTS\ATMEL\DOC0313.PDF>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(Instruction Set Manual)<DATASHTS\ATMEL\DOC0509.PDF>
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p52)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDBG 509,0,()()()()()()()()()() ()()()()
+  OPTDF 0x0
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

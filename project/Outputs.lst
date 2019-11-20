@@ -1,0 +1,115 @@
+C51 COMPILER V6.02  OUTPUTS                                                                11/20/2019 15:30:07 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE OUTPUTS
+OBJECT MODULE PLACED IN .\Outputs.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Outputs.c DEBUG OBJECTEXTEND PRINT(.\Outputs.lst) OBJECT(.\Output
+                    -s.obj) 
+
+stmt level    source
+
+   1          #include "main.h"
+   2          #include "PORT.H"
+   3          
+   4          /*********************************************************************
+   5          *    Port Output Functions
+   6          ********************************************************************/
+   7          
+   8          /***********************************************************************
+   9          DESC:  Writes the value passed as a parameter to the specified port
+  10          INPUT: uint8_t value to be written to a port
+  11          RETURNS: Nothing
+  12          CAUTION: Only uncomment the functions that are to be used
+  13          ************************************************************************/
+  14          void P0_output_bits(uint8_t Port_Data)
+  15          {
+  16   1        P0=Port_Data;
+  17   1      }
+  18          
+  19          /* void P1_output_bits(uint8_t Port_Data)
+  20          {
+  21            P1=Port_Data;
+  22          }  */
+  23          
+  24          /* void P2_output_bits(uint8_t Port_Data)
+  25          {
+  26            P2=Port_Data;
+  27          }  */
+  28          
+  29          /* void P3_output_bits(uint8_t Port_Data)
+  30          {
+  31            P3=Port_Data;
+  32          } */
+  33          
+  34          /*********************************************************************
+  35          *    Bit Output Functions
+  36          ********************************************************************/
+  37          
+  38          
+  39          /***********************************************************************
+  40          DESC:  Clears the specified bits on a specified port
+  41          INPUT: 8-bit pattern with '1' bits for the bits to be cleared
+  42          RETURNS: Nothing
+  43          CAUTION: Only uncomment the functions that are to be used
+  44          ************************************************************************/
+  45          /* void P0_clear_bit(uint8_t Bit_Data)
+  46          {
+  47            P0&=(~Bit_Data);
+  48          } */
+  49          
+  50          void P1_clear_bit(uint8_t Bit_Data)
+  51          {
+  52   1        P1&=(~Bit_Data);
+  53   1      }
+  54          
+C51 COMPILER V6.02  OUTPUTS                                                                11/20/2019 15:30:07 PAGE 2   
+
+  55          /* void P2_clear_bit(uint8_t Bit_Data)
+  56          {
+  57            P2&=(~Bit_Data);
+  58          } */
+  59          
+  60          void P3_clear_bit(uint8_t Bit_Data)
+  61          {
+  62   1        P3&=(~Bit_Data);
+  63   1      }
+  64          
+  65          /***********************************************************************
+  66          DESC:  Set the specified bits on a specified port
+  67          INPUT: 8-bit pattern with '1' bits for the bits to be set
+  68          RETURNS: Nothing
+  69          CAUTION: Only uncomment the functions that are to be used
+  70          ************************************************************************/
+  71          /* void P0_set_bit(uint8_t Bit_Data)
+  72          {
+  73            P0|=Bit_Data;
+  74          } */
+  75          
+  76          void P1_set_bit(uint8_t Bit_Data)
+  77          {
+  78   1        P1|=Bit_Data;
+  79   1      }
+  80          
+  81           void P2_set_bit(uint8_t Bit_Data)
+  82          {
+  83   1        P2|=Bit_Data;
+  84   1      }
+  85          
+  86          void P3_set_bit(uint8_t Bit_Data)
+  87          {
+  88   1        P3|=Bit_Data;
+  89   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

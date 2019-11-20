@@ -1,0 +1,168 @@
+C51 COMPILER V6.02  PLAYER                                                                 11/20/2019 15:30:07 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE PLAYER
+OBJECT MODULE PLACED IN .\player.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\player.c DEBUG OBJECTEXTEND PRINT(.\player.lst) OBJECT(.\player.o
+                    -bj) 
+
+stmt level    source
+
+   1          #include "main.h"
+   2          #include "SDCard.h"
+   3          #include "PORT.h"
+   4          #include "player.h"
+   5          #include "Outputs.h"
+   6          #include "file_system.h"
+   7          #include "Directory_Functions_struct.h"
+   8          #include "sector_reader.h"
+   9          #include "SPI.h"
+  10          #include "LED_Control.h"
+  11          
+  12          void player_state_machine_runner(void);
+  13          
+  14          
+  15          typedef enum {find_cluster_1, data_idle_1, load_buffer_1, data_send_1,
+  16                        find_cluster_2, data_idle_2, load_buffer_2, data_send_2} player_state_t;
+  17          player_state_t player_state;
+  18          
+  19          #define BUF_SIZE (512)
+  20          extern uint8_t xdata buf1[512];
+  21          extern uint8_t xdata buf2[512];
+  22          
+  23          
+  24          // might be active low
+  25          #define DATA_REQ_ACTIVE   (DATA_REQ == 0)
+  26          #define DATA_REQ_INACTIVE (DATA_REQ != 0)
+  27          
+  28          uint8_t buffer1_full;
+  29          uint8_t buffer2_full;
+  30          
+  31          
+  32          uint32_t base_sector;
+  33          uint32_t sector_offset;
+  34          uint32_t current_cluster;
+  35          static FS_values_t *drive_values;
+  36          
+  37          // assuming buf1 is filled first before calling this
+  38          void init_player(uint32_t start_cluster)
+  39          {
+  40   1        player_state    = data_send_1;
+  41   1        buffer1_full    = 1;
+  42   1        buffer2_full    = 0;
+  43   1        drive_values    = Export_Drive_values();
+  44   1        base_sector     = first_sector(start_cluster);
+  45   1        sector_offset   = 0;
+  46   1        current_cluster = start_cluster;
+  47   1        while(1) player_state_machine_runner();
+  48   1      }
+  49          
+  50          void load_sector(uint8_t *buf)
+  51          {
+  52   1        // check if we need to find the first sector of the cluster
+  53   1        if(sector_offset == 0) base_sector = first_sector(current_cluster);
+  54   1        // read the sector in
+C51 COMPILER V6.02  PLAYER                                                                 11/20/2019 15:30:07 PAGE 2   
+
+  55   1        Read_Sector((base_sector+sector_offset), drive_values->BytesPerSec, buf);
+  56   1        sector_offset++; // go forward one sector
+  57   1      }
+  58          
+  59          void send_buffer(uint8_t *buf)
+  60          {
+  61   1        uint8_t temp8;
+  62   1        uint16_t i;
+  63   1        LEDS_ON(Green_LED);
+  64   1        P1_set_bit(STA_SPI_BIT_EN_bit);
+  65   1        for(i=0; i<BUF_SIZE; i++) SPI_Transfer(buf[i], &temp8);
+  66   1        P1_clear_bit(STA_SPI_BIT_EN_bit);
+  67   1        LEDS_OFF(Green_LED);
+  68   1      }
+  69          
+  70          void player_state_machine_runner(void)
+  71          {
+  72   1      
+  73   1        switch(player_state)
+  74   1        {
+  75   2          case find_cluster_1:
+  76   2            current_cluster = find_next_clus(current_cluster, buf1);
+  77   2            sector_offset = 0;
+  78   2            if(DATA_REQ_INACTIVE) player_state = data_idle_2;
+  79   2            break;
+  80   2          case data_idle_1:
+  81   2            if(DATA_REQ_ACTIVE) player_state = data_send_1;
+  82   2            break;
+  83   2          case load_buffer_1:
+  84   2            if(!buffer1_full)
+  85   2            {
+  86   3              load_sector(buf1);
+  87   3              buffer1_full = 1;
+  88   3            }
+  89   2            break;
+  90   2          case data_send_1:
+  91   2            if(buffer1_full)
+  92   2            {
+  93   3              send_buffer(buf1);
+  94   3              buffer1_full = 0;
+  95   3            }
+  96   2            // check if we hit the end of this cluster
+  97   2            if(sector_offset == drive_values->SecPerClus)
+  98   2            {
+  99   3              player_state = find_cluster_2;
+ 100   3            }
+ 101   2            else
+ 102   2            {
+ 103   3              if((DATA_REQ_INACTIVE && !buffer2_full) || (!buffer1_full && !buffer2_full)) player_state = load_b
+             -uffer_2;
+ 104   3            }
+ 105   2            break;
+ 106   2          case find_cluster_2:
+ 107   2            current_cluster = find_next_clus(current_cluster, buf2);
+ 108   2            sector_offset = 0;
+ 109   2            if(DATA_REQ_INACTIVE) player_state = data_idle_1;
+ 110   2            break;
+ 111   2          case data_idle_2:
+ 112   2            if(DATA_REQ_ACTIVE) player_state = data_send_2;
+ 113   2            break;
+ 114   2          case load_buffer_2:
+ 115   2            if(!buffer2_full)
+C51 COMPILER V6.02  PLAYER                                                                 11/20/2019 15:30:07 PAGE 3   
+
+ 116   2            {
+ 117   3              load_sector(buf2);
+ 118   3              buffer2_full = 1;
+ 119   3            }
+ 120   2            break;
+ 121   2          case data_send_2:
+ 122   2            if(buffer2_full)
+ 123   2            {
+ 124   3              send_buffer(buf2);
+ 125   3              buffer2_full = 0;
+ 126   3            }
+ 127   2            // check if we hit the end of this cluster
+ 128   2            if(sector_offset == drive_values->SecPerClus)
+ 129   2            {
+ 130   3              player_state = find_cluster_2;
+ 131   3            }
+ 132   2            else
+ 133   2            {
+ 134   3              if((DATA_REQ_INACTIVE && !buffer1_full) || (!buffer1_full && !buffer2_full)) player_state = load_b
+             -uffer_1;
+ 135   3            }
+ 136   2            break;
+ 137   2        }
+ 138   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    577    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

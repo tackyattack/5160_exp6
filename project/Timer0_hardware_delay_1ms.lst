@@ -1,0 +1,58 @@
+C51 COMPILER V6.02  TIMER0_HARDWARE_DELAY_1MS                                              11/20/2019 15:30:07 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE TIMER0_HARDWARE_DELAY_1MS
+OBJECT MODULE PLACED IN .\Timer0_hardware_delay_1ms.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Timer0_hardware_delay_1ms.c DEBUG OBJECTEXTEND PRINT(.\Timer0_har
+                    -dware_delay_1ms.lst) OBJECT(.\Timer0_hardware_delay_1ms.obj) 
+
+stmt level    source
+
+   1          #include "main.h"
+   2          #include "PORT.h"
+   3          #include "Timer0_hardware_delay_1ms.h"
+   4          
+   5          
+   6          // ***** Caution: Uses Timer0 *******//
+   7          void Timer0_DELAY_1ms(uint16_t duration)
+   8          {
+   9   1         // Configure Timer 0 as a 16-bit timer 
+  10   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+  11   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+  12   1      
+  13   1      	  
+  14   1         ET0 = 0;  // No interupts
+  15   1            
+  16   1         do
+  17   1         {
+  18   2           // Values for 1 ms delay
+  19   2            TH0 = Timer_Reload_1ms_THx;  // Timer 0 initial value (High Byte)
+  20   2            TL0 = Timer_Reload_1ms_TLx;  // Timer 0 initial value (Low Byte)
+  21   2      
+  22   2            TF0 = 0;          // Clear overflow flag
+  23   2            TR0 = 1;          // Start timer 0
+  24   2      
+  25   2            while (TF0 == 0); // Loop until Timer 0 overflows (TF0 == 1)
+  26   2      
+  27   2            TR0 = 0;          // Stop Timer 0
+  28   2      	  duration--;
+  29   2      	}while(duration>0);
+  30   1      }
+  31          
+  32          
+  33          
+  34          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     38    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
