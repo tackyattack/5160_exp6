@@ -16,6 +16,10 @@
 #define directory_bit  (0x10000000)  // lsb of first nibble (bit28)
 
 
+#define TASK_WAIT       (0)
+#define TASK_COMPLETE   (1)
+#define TASK_RUNNING    (2)
+
 //----------------- Typedefs ----------------------------------------
 typedef struct
 {
@@ -37,6 +41,11 @@ uint16_t Print_Directory(uint32_t Sector_num, uint8_t xdata * array_in);
 uint32_t Read_Dir_Entry(uint32_t Sector_num, uint16_t Entry, uint8_t xdata * array_in);
 
 FS_values_t * Export_Drive_values(void);
+
+uint8_t print_directory_task(uint16_t *entries_in);
+void print_directory_init(uint32_t sector_number);
+uint16_t get_directory_print_buffer_pos(void);
+void set_directory_print_buffer_pos(uint16_t pos);
 
 // ------ Function prototypes needed (These can be defined in a seperate file) -------------
 

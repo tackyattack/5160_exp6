@@ -9,20 +9,13 @@
 #include "SPI.h"
 #include "LED_Control.h"
 
-
-extern uint8_t xdata buf1[512];
-extern uint8_t xdata buf2[512];
-
-void player_state_machine_runner(void);
-
+#define BUF_SIZE (512)
+extern uint8_t xdata buf1[BUF_SIZE];
+extern uint8_t xdata buf2[BUF_SIZE];
 
 typedef enum {find_cluster_1, data_idle_1, load_buffer_1, data_send_1,
-              find_cluster_2, data_idle_2, load_buffer_2, data_send_2} player_state_t;
+              find_cluster_2, data_idle_2, load_buffer_2, data_send_2, song_end} player_state_t;
 player_state_t player_state;
-
-#define BUF_SIZE (512)
-extern uint8_t xdata buf1[512];
-extern uint8_t xdata buf2[512];
 
 
 // might be active low
@@ -59,7 +52,7 @@ void init_player(uint32_t start_cluster, uint8_t xdata *buf)
   base_sector     = first_sector(start_cluster);
   sector_offset   = 0;
   current_cluster = start_cluster;
-  while(1) player_state_machine_runner();
+  while(player_state_machine_runner() == PLAYER_RUNNING);
 }
 
 void load_sector(uint8_t *buf)
@@ -102,16 +95,23 @@ void LED_number(uint8_t num)
   if((num&(1<<3)) != 0) LEDS_ON(Red_LED);
 }
 
-void player_state_machine_runner(void)
+uint8_t player_state_machine_runner(void)
 {
   switch(player_state)
   {
     case find_cluster_1:
       LED_number(1);
       current_cluster = find_next_clus(current_cluster, buf1);
-      buffer1_flag = BUFFER_FULL;
-      sector_offset = 0;
-      player_state = data_idle_2;
+      if(current_cluster != FAT_END_OF_FILE_MARKER)
+      {
+        buffer1_flag = BUFFER_FULL;
+        sector_offset = 0;
+        player_state = data_idle_2;
+      }
+      else
+      {
+        player_state = song_end;
+      }
       break;
     case data_idle_1:
       LED_number(2);
@@ -136,7 +136,7 @@ void player_state_machine_runner(void)
         //check if we hit the end of this cluster
         player_state = find_cluster_1;
       }
-      if((DATA_REQ_INACTIVE && (buffer2_flag==BUFFER_EMPTY))
+      else if((DATA_REQ_INACTIVE && (buffer2_flag==BUFFER_EMPTY))
           || ((buffer1_flag==BUFFER_EMPTY) && (buffer2_flag==BUFFER_EMPTY)))
       {
         // if we're inactive and buffer2 is empty, go fill it
@@ -157,9 +157,16 @@ void player_state_machine_runner(void)
     case find_cluster_2:
       LED_number(5);
       current_cluster = find_next_clus(current_cluster, buf2);
-      buffer2_flag = BUFFER_FULL;
-      sector_offset = 0;
-      player_state = data_idle_1;
+      if(current_cluster != FAT_END_OF_FILE_MARKER)
+      {
+        buffer2_flag = BUFFER_FULL;
+        sector_offset = 0;
+        player_state = data_idle_1;
+      }
+      else
+      {
+        player_state = song_end;
+      }
       break;
     case data_idle_2:
       LED_number(6);
@@ -183,7 +190,7 @@ void player_state_machine_runner(void)
           //check if we hit the end of this cluster
           player_state = find_cluster_2;
         }
-        if((DATA_REQ_INACTIVE && (buffer1_flag==BUFFER_EMPTY))
+        else if((DATA_REQ_INACTIVE && (buffer1_flag==BUFFER_EMPTY))
             || ((buffer1_flag==BUFFER_EMPTY) && (buffer1_flag==BUFFER_EMPTY)))
         {
           // if we're inactive and buffer1 is empty, go fill it
@@ -200,7 +207,13 @@ void player_state_machine_runner(void)
           // if nothing else needs to be taken care of above, just go back to idle
           player_state = data_idle_2;
         }
-
+      break;
+    case song_end:
+      // do nothing -- outside functions could watch for this and do something while we stay here
+      LED_number(9);
       break;
   }
+
+  if(player_state == song_end) return PLAYER_COMPLETE;
+  return PLAYER_RUNNING;
 }

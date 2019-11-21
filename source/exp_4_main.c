@@ -23,6 +23,7 @@ uint8_t code LCD_str_start[]="Starting...";
 main()
 {
    uint8_t error_flag;
+   uint16_t temp16;
    uint32_t entry_num, cwd_entries;
    uint32_t cwd, clus;
 
@@ -87,8 +88,20 @@ main()
      while(1);
    }
 
+   //sEOS_init(12);
+
    printf("Root directory:\n\n");
    cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
+
+   print_directory_init(cwd);
+
+   while(1)
+   {
+     print_directory_task(&temp16);
+     clus = get_directory_print_buffer_pos();
+     for(temp16=0; temp16<clus; temp16++) putchar(buf2[temp16]);
+     set_directory_print_buffer_pos(0);
+   }
 
    while(1)
    {

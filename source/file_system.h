@@ -7,6 +7,8 @@
 #define MOUNT_SUCCESS (0)
 #define MOUNT_FAIL (1)
 
+#define FAT_END_OF_FILE_MARKER (0x0FFFFFFF)
+
 
 // ------ Public function prototypes -------------------------------
 uint8_t mount_drive(uint8_t xdata *xram_data_array);
