@@ -38,8 +38,5 @@
 void uart_init(uint16_t BAUD_RATE);
 uint8_t UART_Transmit(uint8_t send_value);
 uint8_t UART_Receive(void);
-uint8_t UART_Receive_Non_Blocking(void);
-
-
 
 #endif

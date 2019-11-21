@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 1   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE DIRECTORY_FUNCTIONS_STRUCT
@@ -24,510 +24,225 @@ stmt level    source
   14          
   15          FS_values_t idata Drive_values;
   16          
-  17          // use one of the buffers to store our sectors
-  18          extern uint8_t xdata buf1[512];
-  19          // use the other as a print buffer
-  20          extern uint8_t xdata buf2[512];
-  21          // how many bytes are in our print buffer
-  22          uint16_t idata print_buffer_pos = 0;
+  17          /***********************************************************************
+  18          DESC: Returns a pointer to the global structure Drive_values to export to other files
+  19          INPUT: void
+  20          RETURNS: Pointer to the structure Drive_values
+  21          CAUTION:
+  22          ************************************************************************/
   23          
-  24          
-  25          // --------- data pool ---------
-  26          // Note: since we're using a pool, only one task can be running at a time
-  27          uint32_t idata pool32[4];
-  28          uint16_t idata pool16[3];
-  29          uint8_t  idata pool8[4];
-  30          
-  31          typedef struct
-  32          {
-  33            uint32_t *Sector;
-  34            uint32_t *Sector_num;
-  35            uint32_t *max_sectors;
-  36            uint16_t *i;
-  37            uint16_t *entries;
-  38            uint8_t *j;
-  39            uint8_t *attr;
-  40            uint8_t *out_val;
-  41            uint8_t *error_flag;
-  42          } print_directory_task_context_t;
-  43          
-  44          typedef struct
-  45          {
-  46            uint32_t *Sector;
-  47            uint32_t *return_clus;
-  48            uint32_t *Sector_num;
-  49            uint32_t *max_sectors;
-  50            uint16_t *i;
-  51            uint16_t *entries;
-  52            uint16_t *entry;
-  53            uint8_t *j;
-  54            uint8_t *attr;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 2   
+  24          FS_values_t * Export_Drive_values(void)
+  25          {
+  26   1         return &Drive_values;
+  27   1      }
+  28          
+  29          
+  30          /***********************************************************************
+  31          DESC: Prints all short file name entries for a given directory
+  32          INPUT: Starting Sector of the directory and the pointer to a
+  33          block of memory in xdata that can be used to read blocks from the SD card
+  34          RETURNS: uint16_t number of entries found in the directory
+  35          CAUTION: Supports FAT16, SD_shift must be set before using this function
+  36          ************************************************************************/
+  37          
+  38          
+  39          
+  40          uint16_t  Print_Directory(uint32_t Sector_num, uint8_t xdata * array_in)
+  41          {
+  42   1         uint32_t Sector, max_sectors;
+  43   1         uint16_t i, entries;
+  44   1         uint8_t temp8, j, attr, out_val, error_flag;
+  45   1         uint8_t * values;
+  46   1      
+  47   1      
+  48   1         values=array_in;
+  49   1         entries=0;
+  50   1         i=0;
+  51   1         if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
+  52   1         {
+  53   2            max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
+  54   2         }
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 2   
 
-  55            uint8_t *out_val;
-  56            uint8_t *error_flag;
-  57          } read_dir_entry_task_context_t;
-  58          // -----------------------------
-  59          
-  60          void get_print_directory_task_context(print_directory_task_context_t *context)
-  61          {
-  62   1        context->Sector      = pool32 + 0;
-  63   1        context->Sector_num  = pool32 + 1;
-  64   1        context->max_sectors = pool32 + 2;
-  65   1      
-  66   1        context->i           = pool16 + 0;
-  67   1        context->entries     = pool16 + 1;
-  68   1      
-  69   1        context->j           = pool8 + 0;
-  70   1        context->attr        = pool8 + 1;
-  71   1        context->out_val     = pool8 + 2;
-  72   1        context->error_flag  = pool8 + 3;
-  73   1      }
-  74          
-  75          void get_read_dir_entry_task_context(read_dir_entry_task_context_t *context)
-  76          {
-  77   1        context->Sector      = pool32 + 0;
-  78   1        context->return_clus = pool32 + 1;
-  79   1        context->max_sectors = pool32 + 2;
-  80   1        context->Sector_num  = pool32 + 3;
-  81   1      
-  82   1        context->i           = pool16 + 0;
-  83   1        context->entries     = pool16 + 1;
-  84   1        context->entry       = pool16 + 2;
-  85   1      
-  86   1        context->j           = pool8 + 0;
-  87   1        context->attr        = pool8 + 1;
-  88   1        context->out_val     = pool8 + 2;
-  89   1        context->error_flag  = pool8 + 3;
-  90   1      }
-  91          
-  92          uint16_t get_directory_print_buffer_pos(void)
-  93          {
-  94   1        return print_buffer_pos;
-  95   1      }
-  96          
-  97          void set_directory_print_buffer_pos(uint16_t pos)
-  98          {
-  99   1        print_buffer_pos = pos;
- 100   1      }
- 101          
- 102          uint8_t *get_directory_print_buffer(void)
- 103          {
- 104   1        return buf2;
- 105   1      }
- 106          
- 107          void print_directory_init(uint32_t sector_number_in)
- 108          {
- 109   1        print_directory_task_context_t context;
- 110   1        get_print_directory_task_context(&context);
- 111   1      
- 112   1        *context.entries=0;
- 113   1        *context.i=0;
- 114   1        if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
- 115   1        {
- 116   2          *context.max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 3   
+  55   1         else
+  56   1         {
+  57   2            max_sectors=Drive_values.SecPerClus;
+  58   2         }
+  59   1         Sector=Sector_num;
+  60   1         error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
+  61   1         if(error_flag==no_errors)
+  62   1         {
+  63   2           do
+  64   2           {
+  65   3              temp8=read8(0+i,values);  // read first byte to see if empty
+  66   3              if((temp8!=0xE5)&&(temp8!=0x00))
+  67   3      	    {
+  68   4      	       attr=read8(0x0b+i,values);
+  69   4      		   if((attr&0x0E)==0)   // if hidden, system or Vol_ID bit is set do not print
+  70   4      		   {
+  71   5      		      entries++;
+  72   5      			  printf("%5d. ",entries);  // print entry number with a fixed width specifier
+  73   5      		      for(j=0;j<8;j++)
+  74   5      			  {
+  75   6      			     out_val=read8(i+j,values);   // print the 8 byte name
+  76   6      			     putchar(out_val);
+  77   6      			  }
+  78   5                    if((attr&0x10)==0x10)  // indicates directory
+  79   5      			  {
+  80   6      			     for(j=8;j<11;j++)
+  81   6      			     {
+  82   7      			        out_val=read8(i+j,values);
+  83   7      			        putchar(out_val);
+  84   7      			     }
+  85   6      			     printf("[DIR]\n");
+  86   6      			  }
+  87   5      			  else       // print a period and the three byte extension for a file
+  88   5      			  {
+  89   6      			     putchar(0x2E);
+  90   6      			     for(j=8;j<11;j++)
+  91   6      			     {
+  92   7      			        out_val=read8(i+j,values);
+  93   7      			        putchar(out_val);
+  94   7      			     }
+  95   6      			     putchar(0x0d);
+  96   6                       putchar(0x0a);
+  97   6      			  }
+  98   5      		    }
+  99   4      		}
+ 100   3      		    i=i+32;  // next entry
+ 101   3      		    if(i>510)
+ 102   3      		    {
+ 103   4      			  Sector++;
+ 104   4                    if((Sector-Sector_num)<max_sectors)
+ 105   4      			  {
+ 106   5                       error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
+ 107   5      			     if(error_flag!=no_errors)
+ 108   5      			     {
+ 109   6      			        entries=0;   // no entries found indicates disk read error
+ 110   6      				    temp8=0;     // forces a function exit
+ 111   6      			     }
+ 112   5                       i=0;
+ 113   5      			  }
+ 114   4      			  else
+ 115   4      			  {
+ 116   5      			     entries=entries|more_entries;  // set msb to indicate more entries in another cluster
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 3   
 
- 117   2        }
- 118   1        else
- 119   1        {
- 120   2           *context.max_sectors=Drive_values.SecPerClus;
- 121   2        }
- 122   1        *context.Sector=sector_number_in;
- 123   1        *context.Sector_num=sector_number_in;
- 124   1        *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
- 125   1      }
- 126          
- 127          void read_dir_entry_init(uint16_t entry_in, uint32_t sector_number_in)
- 128          {
- 129   1        read_dir_entry_task_context_t context;
- 130   1        get_read_dir_entry_task_context(&context);
- 131   1      
- 132   1        *context.entries=0;
- 133   1        *context.i=0;
- 134   1        *context.return_clus=0;
- 135   1        if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
- 136   1        {
- 137   2           *context.max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
- 138   2        }
- 139   1        else
- 140   1        {
- 141   2           *context.max_sectors=Drive_values.SecPerClus;
- 142   2        }
- 143   1        *context.Sector=sector_number_in;
- 144   1        *context.Sector_num=sector_number_in;
- 145   1        *context.entry=entry_in;
- 146   1        *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
- 147   1      }
- 148          
- 149          
- 150          uint8_t print_directory_task(uint16_t *entries_in)
- 151          {
- 152   1        uint8_t temp8;
- 153   1        print_directory_task_context_t context;
- 154   1        uint8_t *values = buf1;
- 155   1        get_print_directory_task_context(&context);
- 156   1      
- 157   1        temp8=read8(0 + (*context.i),values);  // read first byte to see if empty
- 158   1        if((temp8!=0xE5)&&(temp8!=0x00))
- 159   1        {
- 160   2          *context.attr=read8(0x0b+ (*context.i),values);
- 161   2          if(((*context.attr) & 0x0E)==0)   // if hidden, system or Vol_ID bit is set do not print
- 162   2          {
- 163   3            (*context.entries)++;
- 164   3            print_buffer_pos += sprintf(buf2+print_buffer_pos, "%5d. ", *context.entries);  // print entry numbe
-             -r with a fixed width specifier
- 165   3            for(*context.j=0;*context.j<8;(*context.j)++)
- 166   3            {
- 167   4              *context.out_val=read8((*context.i)+(*context.j),values);   // print the 8 byte name
- 168   4              print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
- 169   4            }
- 170   3            if(((*context.attr)&0x10)==0x10)  // indicates directory
- 171   3            {
- 172   4              for(*context.j=8;*context.j<11;(*context.j)++)
- 173   4              {
- 174   5                *context.out_val=read8((*context.i)+(*context.j),values);
- 175   5                print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
- 176   5              }
- 177   4              print_buffer_pos += sprintf(buf2+print_buffer_pos, "[DIR]\n");
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 4   
+ 117   5      			     temp8=0;                       // forces a function exit
+ 118   5      			  }
+ 119   4      		    }
+ 120   3      
+ 121   3      	  }while(temp8!=0);
+ 122   2      	}
+ 123   1      	else
+ 124   1      	{
+ 125   2      	   entries=0;    // no entries found indicates disk read error
+ 126   2      	}
+ 127   1         return entries;
+ 128   1       }
+ 129          
+ 130          
+ 131          /***********************************************************************
+ 132          DESC: Uses the same method as Print_Directory to locate short file names,
+ 133                but locates a specified entry and returns and cluster
+ 134          INPUT: Starting Sector of the directory, an entry number and a pointer to a
+ 135          block of memory in xdata that can be used to read blocks from the SD card
+ 136          RETURNS: uint32_t with cluster in lower 28 bits.  Bit 28 set if this is
+ 137                   a directory entry, clear for a file.  Bit 31 set for error.
+ 138          CAUTION:
+ 139          ************************************************************************/
+ 140          
+ 141          uint32_t Read_Dir_Entry(uint32_t Sector_num, uint16_t Entry, uint8_t xdata * array_in)
+ 142          {
+ 143   1         uint32_t Sector, max_sectors, return_clus;
+ 144   1         uint16_t i, entries;
+ 145   1         uint8_t temp8, attr, error_flag;
+ 146   1         uint8_t * values;
+ 147   1      
+ 148   1         values=array_in;
+ 149   1         entries=0;
+ 150   1         i=0;
+ 151   1         return_clus=0;
+ 152   1         if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
+ 153   1         {
+ 154   2            max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
+ 155   2         }
+ 156   1         else
+ 157   1         {
+ 158   2            max_sectors=Drive_values.SecPerClus;
+ 159   2         }
+ 160   1         Sector=Sector_num;
+ 161   1         error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
+ 162   1         if(error_flag==no_errors)
+ 163   1         {
+ 164   2           do
+ 165   2           {
+ 166   3              temp8=read8(0+i,values);  // read first byte to see if empty
+ 167   3              if((temp8!=0xE5)&&(temp8!=0x00))
+ 168   3      	    {
+ 169   4      	       attr=read8(0x0b+i,values);
+ 170   4      		   if((attr&0x0E)==0)    // if hidden do not print
+ 171   4      		   {
+ 172   5      		      entries++;
+ 173   5                    if(entries==Entry)
+ 174   5                    {
+ 175   6      			    if(Drive_values.FATtype==FAT32)
+ 176   6                      {
+ 177   7                         return_clus=read8(21+i,values);
+ 178   7      				   return_clus=return_clus<<8;
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 4   
 
- 178   4            }
- 179   3            else       // print a period and the three byte extension for a file
- 180   3            {
- 181   4              print_buffer_pos += sprintf(buf2+print_buffer_pos, ".", *context.out_val);
- 182   4              for(*context.j=8;*context.j<11;(*context.j)++)
- 183   4              {
- 184   5                *context.out_val=read8((*context.i) + (*context.j),values);
- 185   5                print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
- 186   5              }
- 187   4              print_buffer_pos += sprintf(buf2+print_buffer_pos, "\r\n", *context.out_val);
- 188   4            }
- 189   3          }
- 190   2        }
- 191   1        *context.i=(*context.i)+32;  // next entry
- 192   1        if(*context.i>510)
- 193   1        {
- 194   2          (*context.Sector)++;
- 195   2          if(((*context.Sector)-(*context.Sector_num))<*context.max_sectors)
- 196   2          {
- 197   3            *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
- 198   3            if(*context.error_flag!=no_errors)
- 199   3            {
- 200   4              *context.entries=0;   // no entries found indicates disk read error
- 201   4              temp8=0;     // forces a function exit
- 202   4            }
- 203   3            *context.i=0;
- 204   3          }
- 205   2          else
- 206   2          {
- 207   3            *context.entries=(*context.entries)|more_entries;  // set msb to indicate more entries in another cl
-             -uster
- 208   3            temp8=0;                       // forces a function exit
- 209   3          }
- 210   2        }
- 211   1        if(temp8==0)
- 212   1        {
- 213   2          *entries_in = *context.entries;
- 214   2          return TASK_COMPLETE;
- 215   2        }
- 216   1        return TASK_RUNNING;
- 217   1      }
- 218          
- 219          uint8_t read_dir_entry_task(uint32_t *cluster)
- 220          {
- 221   1        read_dir_entry_task_context_t context;
- 222   1        uint8_t temp8;
- 223   1        uint8_t *values = buf1;
- 224   1        get_read_dir_entry_task_context(&context);
- 225   1      
- 226   1        temp8=read8(0 + (*context.i),values);  // read first byte to see if empty
- 227   1        if((temp8!=0xE5)&&(temp8!=0x00))
- 228   1        {
- 229   2          *context.attr=read8(0x0b + (*context.i), values);
- 230   2          if(((*context.attr)&0x0E)==0)    // if hidden do not print
- 231   2          {
- 232   3            (*context.entries)++;
- 233   3            if(*context.entries==*context.entry)
- 234   3            {
- 235   4              if(Drive_values.FATtype==FAT32)
- 236   4              {
- 237   5                *context.return_clus=read8(21 + (*context.i),values);
- 238   5                *context.return_clus=(*context.return_clus)<<8;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 5   
-
- 239   5                *context.return_clus|=read8(20 + (*context.i),values);
- 240   5                *context.return_clus=(*context.return_clus)<<8;
- 241   5              }
- 242   4              *context.return_clus|=read8(27+ (*context.i),values);
- 243   4              *context.return_clus=(*context.return_clus)<<8;
- 244   4              *context.return_clus|=read8(26 + (*context.i),values);
- 245   4              *context.attr=read8(0x0b + (*context.i),values);
- 246   4              if((*context.attr)&0x10) (*context.return_clus)= (*context.return_clus) | directory_bit;
- 247   4              temp8=0;    // forces a function exit
- 248   4            }
- 249   3      
- 250   3          }
- 251   2        }
- 252   1        *context.i= (*context.i)+32;  // next entry
- 253   1        if((*context.i)>510)
- 254   1        {
- 255   2          (*context.Sector)++;
- 256   2          if(((*context.Sector)-(*context.Sector_num))<(*context.max_sectors))
- 257   2          {
- 258   3            *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,values);
- 259   3            if(*context.error_flag!=no_errors)
- 260   3            {
- 261   4              *context.return_clus=no_entry_found;
- 262   4              temp8=0;
- 263   4            }
- 264   3            *context.i=0;
- 265   3          }
- 266   2          else
- 267   2          {
- 268   3            temp8=0;                       // forces a function exit
- 269   3          }
- 270   2        }
- 271   1      
- 272   1        if(temp8 != 0)
- 273   1        {
- 274   2          return TASK_RUNNING;
- 275   2        }
- 276   1      
- 277   1        if(*context.return_clus==0)
- 278   1        {
- 279   2          *cluster=no_entry_found;
- 280   2        }
- 281   1        else
- 282   1        {
- 283   2          *cluster=*context.return_clus;
- 284   2        }
- 285   1      
- 286   1        return TASK_COMPLETE;
- 287   1       }
- 288          
- 289          
- 290          /***********************************************************************
- 291          DESC: Returns a pointer to the global structure Drive_values to export to other files
- 292          INPUT: void
- 293          RETURNS: Pointer to the structure Drive_values
- 294          CAUTION:
- 295          ************************************************************************/
- 296          
- 297          FS_values_t * Export_Drive_values(void)
- 298          {
- 299   1         return &Drive_values;
- 300   1      }
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 6   
-
- 301          
- 302          
- 303          /***********************************************************************
- 304          DESC: Prints all short file name entries for a given directory
- 305          INPUT: Starting Sector of the directory and the pointer to a
- 306          block of memory in xdata that can be used to read blocks from the SD card
- 307          RETURNS: uint16_t number of entries found in the directory
- 308          CAUTION: Supports FAT16, SD_shift must be set before using this function
- 309          ************************************************************************/
- 310          
- 311          
- 312          
- 313          // uint16_t  Print_Directory(uint32_t Sector_num, uint8_t xdata * array_in)
- 314          // {
- 315          //    uint32_t Sector, max_sectors;
- 316          //    uint16_t i, entries;
- 317          //    uint8_t temp8, j, attr, out_val, error_flag;
- 318          //    uint8_t * values;
- 319          //
- 320          //
- 321          //    values=array_in;
- 322          //    entries=0;
- 323          //    i=0;
- 324          //    if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
- 325          //    {
- 326          //       max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
- 327          //    }
- 328          //    else
- 329          //    {
- 330          //       max_sectors=Drive_values.SecPerClus;
- 331          //    }
- 332          //    Sector=Sector_num;
- 333          //    error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
- 334          //    if(error_flag==no_errors)
- 335          //    {
- 336          //      do
- 337          //      {
- 338          //         temp8=read8(0+i,values);  // read first byte to see if empty
- 339          //         if((temp8!=0xE5)&&(temp8!=0x00))
- 340          // 	    {
- 341          // 	       attr=read8(0x0b+i,values);
- 342          // 		   if((attr&0x0E)==0)   // if hidden, system or Vol_ID bit is set do not print
- 343          // 		   {
- 344          // 		      entries++;
- 345          // 			  printf("%5d. ",entries);  // print entry number with a fixed width specifier
- 346          // 		      for(j=0;j<8;j++)
- 347          // 			  {
- 348          // 			     out_val=read8(i+j,values);   // print the 8 byte name
- 349          // 			     putchar(out_val);
- 350          // 			  }
- 351          //               if((attr&0x10)==0x10)  // indicates directory
- 352          // 			  {
- 353          // 			     for(j=8;j<11;j++)
- 354          // 			     {
- 355          // 			        out_val=read8(i+j,values);
- 356          // 			        putchar(out_val);
- 357          // 			     }
- 358          // 			     printf("[DIR]\n");
- 359          // 			  }
- 360          // 			  else       // print a period and the three byte extension for a file
- 361          // 			  {
- 362          // 			     putchar(0x2E);
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 7   
-
- 363          // 			     for(j=8;j<11;j++)
- 364          // 			     {
- 365          // 			        out_val=read8(i+j,values);
- 366          // 			        putchar(out_val);
- 367          // 			     }
- 368          // 			     putchar(0x0d);
- 369          //                  putchar(0x0a);
- 370          // 			  }
- 371          // 		    }
- 372          // 		}
- 373          // 		    i=i+32;  // next entry
- 374          // 		    if(i>510)
- 375          // 		    {
- 376          // 			  Sector++;
- 377          //               if((Sector-Sector_num)<max_sectors)
- 378          // 			  {
- 379          //                  error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
- 380          // 			     if(error_flag!=no_errors)
- 381          // 			     {
- 382          // 			        entries=0;   // no entries found indicates disk read error
- 383          // 				    temp8=0;     // forces a function exit
- 384          // 			     }
- 385          //                  i=0;
- 386          // 			  }
- 387          // 			  else
- 388          // 			  {
- 389          // 			     entries=entries|more_entries;  // set msb to indicate more entries in another cluster
- 390          // 			     temp8=0;                       // forces a function exit
- 391          // 			  }
- 392          // 		    }
- 393          //
- 394          // 	  }while(temp8!=0);
- 395          // 	}
- 396          // 	else
- 397          // 	{
- 398          // 	   entries=0;    // no entries found indicates disk read error
- 399          // 	}
- 400          //    return entries;
- 401          //  }
- 402          //
- 403          //
- 404          // /***********************************************************************
- 405          // DESC: Uses the same method as Print_Directory to locate short file names,
- 406          //       but locates a specified entry and returns and cluster
- 407          // INPUT: Starting Sector of the directory, an entry number and a pointer to a
- 408          // block of memory in xdata that can be used to read blocks from the SD card
- 409          // RETURNS: uint32_t with cluster in lower 28 bits.  Bit 28 set if this is
- 410          //          a directory entry, clear for a file.  Bit 31 set for error.
- 411          // CAUTION:
- 412          // ************************************************************************/
- 413          //
- 414          // uint32_t Read_Dir_Entry(uint32_t Sector_num, uint16_t Entry, uint8_t xdata * array_in)
- 415          // {
- 416          //    uint32_t Sector, max_sectors, return_clus;
- 417          //    uint16_t i, entries;
- 418          //    uint8_t temp8, attr, error_flag;
- 419          //    uint8_t * values;
- 420          //
- 421          //    values=array_in;
- 422          //    entries=0;
- 423          //    i=0;
- 424          //    return_clus=0;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 8   
-
- 425          //    if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
- 426          //    {
- 427          //       max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
- 428          //    }
- 429          //    else
- 430          //    {
- 431          //       max_sectors=Drive_values.SecPerClus;
- 432          //    }
- 433          //    Sector=Sector_num;
- 434          //    error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
- 435          //    if(error_flag==no_errors)
- 436          //    {
- 437          //      do
- 438          //      {
- 439          //         temp8=read8(0+i,values);  // read first byte to see if empty
- 440          //         if((temp8!=0xE5)&&(temp8!=0x00))
- 441          // 	    {
- 442          // 	       attr=read8(0x0b+i,values);
- 443          // 		   if((attr&0x0E)==0)    // if hidden do not print
- 444          // 		   {
- 445          // 		      entries++;
- 446          //               if(entries==Entry)
- 447          //               {
- 448          // 			    if(Drive_values.FATtype==FAT32)
- 449          //                 {
- 450          //                    return_clus=read8(21+i,values);
- 451          // 				   return_clus=return_clus<<8;
- 452          //                    return_clus|=read8(20+i,values);
- 453          //                    return_clus=return_clus<<8;
- 454          //                 }
- 455          //                 return_clus|=read8(27+i,values);
- 456          // 			    return_clus=return_clus<<8;
- 457          //                 return_clus|=read8(26+i,values);
- 458          // 			    attr=read8(0x0b+i,values);
- 459          // 			    if(attr&0x10) return_clus|=directory_bit;
- 460          //                 temp8=0;    // forces a function exit
- 461          //               }
- 462          //
- 463          // 		    }
- 464          // 		}
- 465          // 		    i=i+32;  // next entry
- 466          // 		    if(i>510)
- 467          // 		    {
- 468          // 			  Sector++;
- 469          // 			  if((Sector-Sector_num)<max_sectors)
- 470          // 			  {
- 471          //                  error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
- 472          // 			     if(error_flag!=no_errors)
- 473          // 			     {
- 474          // 			         return_clus=no_entry_found;
- 475          //                      temp8=0;
- 476          // 			     }
- 477          // 			     i=0;
- 478          // 			  }
- 479          // 			  else
- 480          // 			  {
- 481          // 			     temp8=0;                       // forces a function exit
- 482          // 			  }
- 483          // 		    }
- 484          //
- 485          // 	  }while(temp8!=0);
- 486          // 	}
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 9   
-
- 487          // 	else
- 488          // 	{
- 489          // 	   return_clus=no_entry_found;
- 490          // 	}
- 491          // 	if(return_clus==0) return_clus=no_entry_found;
- 492          //    return return_clus;
- 493          //  }
+ 179   7                         return_clus|=read8(20+i,values);
+ 180   7                         return_clus=return_clus<<8;
+ 181   7                      }
+ 182   6                      return_clus|=read8(27+i,values);
+ 183   6      			    return_clus=return_clus<<8;
+ 184   6                      return_clus|=read8(26+i,values);
+ 185   6      			    attr=read8(0x0b+i,values);
+ 186   6      			    if(attr&0x10) return_clus|=directory_bit;
+ 187   6                      temp8=0;    // forces a function exit
+ 188   6                    }
+ 189   5      
+ 190   5      		    }
+ 191   4      		}
+ 192   3      		    i=i+32;  // next entry
+ 193   3      		    if(i>510)
+ 194   3      		    {
+ 195   4      			  Sector++;
+ 196   4      			  if((Sector-Sector_num)<max_sectors)
+ 197   4      			  {
+ 198   5                       error_flag=Read_Sector(Sector,Drive_values.BytesPerSec,values);
+ 199   5      			     if(error_flag!=no_errors)
+ 200   5      			     {
+ 201   6      			         return_clus=no_entry_found;
+ 202   6                           temp8=0;
+ 203   6      			     }
+ 204   5      			     i=0;
+ 205   5      			  }
+ 206   4      			  else
+ 207   4      			  {
+ 208   5      			     temp8=0;                       // forces a function exit
+ 209   5      			  }
+ 210   4      		    }
+ 211   3      
+ 212   3      	  }while(temp8!=0);
+ 213   2      	}
+ 214   1      	else
+ 215   1      	{
+ 216   2      	   return_clus=no_entry_found;
+ 217   2      	}
+ 218   1      	if(return_clus==0) return_clus=no_entry_found;
+ 219   1         return return_clus;
+ 220   1       }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   2676    ----
-   CONSTANT SIZE    =     21    ----
+   CODE SIZE        =   1130    ----
+   CONSTANT SIZE    =     13    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----     150
-   IDATA SIZE       =     50    ----
+   DATA SIZE        =   ----      56
+   IDATA SIZE       =     22    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

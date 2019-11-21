@@ -1,18 +1,18 @@
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 01:11:27 PAGE 1   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 13:27:16 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LONG_SERIAL_IN
 OBJECT MODULE PLACED IN .\Long_Serial_In.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Long_Serial_In.c DEBUG OBJECTEXTEND PRINT(.\Long_Serial_In.lst) O
-                    -BJECT(.\Long_Serial_In.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\..\..\Embedded Processor System Design 5160\Experiments\player_break\
+                    -Long_Serial_In.c DEBUG OBJECTEXTEND PRINT(.\Long_Serial_In.lst) OBJECT(.\Long_Serial_In.obj) 
 
 stmt level    source
 
    1          #include <stdio.h>
    2          #include "main.h"
    3          #include "Long_Serial_In.h"
-   4          #include "UART.h"
-   5          #include <stdlib.h>
+   4          #include <stdlib.h>
+   5          #include "UART.h"
    6          
    7          
    8          /***********************************************************************
@@ -40,7 +40,7 @@ stmt level    source
   30   2               {
   31   3                 input_values[index]=input;
   32   3                 index++;
-  33   3                 putchar(input);
+  33   3                 UART_Transmit(input);
   34   3               }
   35   2               else if ((input==BS)||(input==DEL))  // Putty uses DEL (127) or BS (0x08) for backspace
   36   2               {
@@ -54,19 +54,19 @@ stmt level    source
   44   2               {
   45   3                  output_value=atol(input_values);
   46   3                  UART_Transmit(CR);
-  47   3                  UART_Transmit(LF);
+  47   3      			UART_Transmit(LF);
   48   3               }
   49   2               else
   50   2               {
-  51   3                  input=0;
+  51   3                 input=0;
   52   3               }
   53   2               if(index==10)
   54   2               {
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 01:11:27 PAGE 2   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 13:27:16 PAGE 2   
 
   55   3                  output_value=atol(input_values);
   56   3                  UART_Transmit(CR);
-  57   3                  UART_Transmit(LF);
+  57   3      			UART_Transmit(LF);
   58   3               }
   59   2            }while(output_value==0xffffffff);
   60   1      

@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  UART                                                                   11/21/2019 06:07:41 PAGE 1   
+C51 COMPILER V6.02  UART                                                                   11/21/2019 13:27:16 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE UART
@@ -62,7 +62,7 @@ stmt level    source
   53   1         do
   54   1         {
   55   2           timeout++;
-C51 COMPILER V6.02  UART                                                                   11/21/2019 06:07:41 PAGE 2   
+C51 COMPILER V6.02  UART                                                                   11/21/2019 13:27:16 PAGE 2   
 
   56   2         }while((TI==0)&&(timeout!=0));
   57   1         if(timeout!=0)
@@ -79,41 +79,26 @@ stmt level    source
   68   1      }
   69          
   70          
-  71          
-  72          
-  73          
-  74          
-  75          /***********************************************************************
-  76          DESC:    Waits for a value to be received through the UART and returns
-  77                   the value.
-  78          INPUT: Nothing
-  79          RETURNS: Received value
-  80          CAUTION: Will stop program execution until a character is received
-  81          ************************************************************************/
-  82          
-  83          // uint8_t UART_Receive(void)
-  84          // {
-  85          //     uint8_t return_value;
-  86          //     while(RI==0);
-  87          //     return_value=SBUF;
-  88          //     RI=0;
-  89          //     return return_value;
-  90          // }
-  91          
-  92          
-  93          
-  94          uint8_t UART_Receive_Non_Blocking(void)
-  95          {
-  96   1        uint8_t ret_val;
-  97   1        if(RI==0) return 0;
-  98   1        ret_val = SBUF;
-  99   1        RI=0;
- 100   1        return ret_val;
- 101   1      }
+  71          /***********************************************************************
+  72          DESC:    Waits for a value to be received through the UART and returns
+  73                   the value.
+  74          INPUT: Nothing
+  75          RETURNS: Received value
+  76          CAUTION: Will stop program execution until a character is received
+  77          ************************************************************************/
+  78          
+  79          uint8_t UART_Receive(void)
+  80          {
+  81   1          uint8_t return_value;
+  82   1          while(RI==0);
+  83   1          return_value=SBUF;
+  84   1          RI=0;
+  85   1          return return_value;
+  86   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     96    ----
+   CODE SIZE        =     93    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -68,10 +68,6 @@ uint8_t UART_Transmit(uint8_t send_value)
 }
 
 
-
-
-
-
 /***********************************************************************
 DESC:    Waits for a value to be received through the UART and returns
          the value.
@@ -80,22 +76,11 @@ RETURNS: Received value
 CAUTION: Will stop program execution until a character is received
 ************************************************************************/
 
-// uint8_t UART_Receive(void)
-// {
-//     uint8_t return_value;
-//     while(RI==0);
-//     return_value=SBUF;
-//     RI=0;
-//     return return_value;
-// }
-
-
-
-uint8_t UART_Receive_Non_Blocking(void)
+uint8_t UART_Receive(void)
 {
-  uint8_t ret_val;
-  if(RI==0) return 0;
-  ret_val = SBUF;
-  RI=0;
-  return ret_val;
+    uint8_t return_value;
+    while(RI==0);
+    return_value=SBUF;
+    RI=0;
+    return return_value;
 }

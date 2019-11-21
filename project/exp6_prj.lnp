@@ -15,6 +15,6 @@
 ".\I2C.obj",
 ".\STA013_config.obj",
 ".\config.obj",
-".\sEOS.obj" 
+".\Long_Serial_In.obj" 
 TO "exp6_prj" 
 RAMSIZE(256) 

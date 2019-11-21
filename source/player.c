@@ -59,7 +59,6 @@ void init_player(uint32_t start_cluster)
   sector_offset   = 0;
   current_cluster = start_cluster;
   load_sector(buf1);
-  //while(player_state_machine_runner() == PLAYER_RUNNING);
 }
 
 // flush out as much as the decoder will take
