@@ -4,7 +4,7 @@
 #include "main.h"
 
 //------- Public Constant definitions --------------------------------
-void init_player(uint32_t start_cluster);
+void init_player(uint32_t start_cluster, uint8_t xdata *buf);
 
 // ------ Public function prototypes -------------------------------
 

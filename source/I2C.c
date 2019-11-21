@@ -8,8 +8,10 @@
 Private Function Declarations
 
 *********************************************************************/
-#define I2C_FREQ (25000)
-#define I2C_RELOAD (65536-((OSC_FREQ)/(OSC_PER_INST*I2C_FREQ*2UL)))
+// #define I2C_FREQ (25000)
+// #define I2C_RELOAD (65536-((OSC_FREQ)/(OSC_PER_INST*I2C_FREQ*2UL)))
+#define I2C_FREQ (25000UL)
+#define I2C_RELOAD ((uint16_t)(65536-((OSC_FREQ)/(OSC_PER_INST*I2C_FREQ*2UL))))
 #define I2C_RELOAD_H (I2C_RELOAD/256)
 #define I2C_RELOAD_L (I2C_RELOAD%256)
 
@@ -24,8 +26,8 @@ void I2C_clock_delay(uint8_t control);
 DESC:    Creates the signals required for transmitting bytes using
          the I2C bus.
 RETURNS: Error Flag
-CAUTION: 
-          
+CAUTION:
+
 ************************************************************************/
 
 uint8_t I2C_Write(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uint8_t num_bytes,uint8_t * send_array)
@@ -97,7 +99,7 @@ uint8_t I2C_Write(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, ui
        }
   }
   else
-  { 
+  {
      return_val=bus_busy_error;
   }
   return return_val;
@@ -107,8 +109,8 @@ uint8_t I2C_Write(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, ui
 DESC:    Creates the signals required for receiving bytes using
          the I2C bus.
 RETURNS: Error Flag
-CAUTION: 
-          
+CAUTION:
+
 ************************************************************************/
 
 
@@ -116,7 +118,7 @@ uint8_t I2C_Read(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uin
 {
   uint8_t send_val, return_val, num_bits, send_bit, sent_bit,rcv_val;
 
-  return_val=no_errors; 
+  return_val=no_errors;
   /*** If there is an internal address, use I2C_Write to send that address first with no data bytes written ****/
   if(int_addr_sz!=0)
   {
@@ -207,7 +209,7 @@ uint8_t I2C_Read(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uin
        }
   }
   else
-  { 
+  {
      return_val=bus_busy_error;
   }
   }
@@ -215,11 +217,11 @@ uint8_t I2C_Read(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uin
 }
 
 /***********************************************************************
-DESC:    Initializes and starts Timer0 for a hardware delay for 
+DESC:    Initializes and starts Timer0 for a hardware delay for
          creating a consistant I2C frequency
 RETURNS: nothing
-CAUTION: 
-          
+CAUTION:
+
 ************************************************************************/
 
 void I2C_clock_start(void)
@@ -239,18 +241,18 @@ void I2C_clock_start(void)
 
 
 /***********************************************************************
-DESC:    Waits for the overflow to be set and restarts Timer0 for a  
+DESC:    Waits for the overflow to be set and restarts Timer0 for a
          hardware delay for creating a consistant I2C frequency
 		 Timer is stopped if stop is sent.
 RETURNS: nothing
-CAUTION: 
-          
+CAUTION:
+
 ************************************************************************/
 
 void I2C_clock_delay(uint8_t control)
 {
    if(TR0==1)
-   { 
+   {
      while(TF0==0);
    }
 
@@ -264,5 +266,3 @@ void I2C_clock_delay(uint8_t control)
       TR0=1;   // Start Timer Running
    }
 }
-
-

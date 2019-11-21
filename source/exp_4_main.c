@@ -108,8 +108,7 @@ main()
        }
        else
        {
-         //print_file(clus, buf1);
-         init_player(clus);
+         init_player(clus, buf1);
        }
      }
      else
