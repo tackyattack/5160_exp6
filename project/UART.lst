@@ -1,9 +1,9 @@
-C51 COMPILER V6.02  UART                                                                   11/21/2019 13:27:16 PAGE 1   
+C51 COMPILER V6.02  UART                                                                   11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE UART
 OBJECT MODULE PLACED IN .\UART.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\UART.c DEBUG OBJECTEXTEND PRINT(.\UART.lst) OBJECT(.\UART.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\UART.c PRINT(.\UART.lst) OBJECT(.\UART.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   53   1         do
   54   1         {
   55   2           timeout++;
-C51 COMPILER V6.02  UART                                                                   11/21/2019 13:27:16 PAGE 2   
+C51 COMPILER V6.02  UART                                                                   11/21/2019 16:18:46 PAGE 2   
 
   56   2         }while((TI==0)&&(timeout!=0));
   57   1         if(timeout!=0)

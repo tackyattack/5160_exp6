@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 1   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE DIRECTORY_FUNCTIONS_STRUCT
 OBJECT MODULE PLACED IN .\Directory_Functions_struct.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Directory_Functions_struct.c DEBUG OBJECTEXTEND PRINT(.\Directory
-                    -_Functions_struct.lst) OBJECT(.\Directory_Functions_struct.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Directory_Functions_struct.c PRINT(.\Directory_Functions_struct.l
+                    -st) OBJECT(.\Directory_Functions_struct.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   52   1         {
   53   2            max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
   54   2         }
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 2   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 16:18:46 PAGE 2   
 
   55   1         else
   56   1         {
@@ -126,7 +126,7 @@ stmt level    source
  114   4      			  else
  115   4      			  {
  116   5      			     entries=entries|more_entries;  // set msb to indicate more entries in another cluster
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 3   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 16:18:46 PAGE 3   
 
  117   5      			     temp8=0;                       // forces a function exit
  118   5      			  }
@@ -190,7 +190,7 @@ stmt level    source
  176   6                      {
  177   7                         return_clus=read8(21+i,values);
  178   7      				   return_clus=return_clus<<8;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 13:27:15 PAGE 4   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 16:18:46 PAGE 4   
 
  179   7                         return_clus|=read8(20+i,values);
  180   7                         return_clus=return_clus<<8;

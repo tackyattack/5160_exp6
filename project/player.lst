@@ -1,10 +1,9 @@
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 13:27:16 PAGE 1   
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE PLAYER
 OBJECT MODULE PLACED IN .\player.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\player.c DEBUG OBJECTEXTEND PRINT(.\player.lst) OBJECT(.\player.o
-                    -bj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\player.c PRINT(.\player.lst) OBJECT(.\player.obj) 
 
 stmt level    source
 
@@ -33,209 +32,208 @@ stmt level    source
   23          #define DATA_REQ_ACTIVE   (DATA_REQ == 0)
   24          #define DATA_REQ_INACTIVE (DATA_REQ != 0)
   25          
-  26          uint8_t buffer1_flag;
-  27          uint8_t buffer2_flag;
+  26          uint8_t idata buffer1_flag;
+  27          uint8_t idata buffer2_flag;
   28          
   29          #define BUFFER_EMPTY (1)
   30          #define BUFFER_FULL  (0)
   31          
-  32          uint16_t index1;
-  33          uint16_t index2;
+  32          uint16_t idata index1;
+  33          uint16_t idata index2;
   34          
-  35          
-  36          uint32_t base_sector;
-  37          uint32_t sector_offset;
-  38          uint32_t current_cluster;
-  39          static FS_values_t *drive_values;
-  40          
-  41          void load_sector(uint8_t *buf)
-  42          {
-  43   1        // check if we need to find the first sector of the cluster
-  44   1        if(sector_offset == 0) base_sector = first_sector(current_cluster);
-  45   1        // read the sector in
-  46   1        Read_Sector((base_sector+sector_offset), drive_values->BytesPerSec, buf);
-  47   1        sector_offset++; // go forward one sector
-  48   1      }
-  49          
-  50          void init_player(uint32_t start_cluster)
-  51          {
-  52   1        player_state    = data_send_1;
-  53   1        buffer1_flag    = BUFFER_FULL;
-  54   1        buffer2_flag    = BUFFER_EMPTY;
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 13:27:16 PAGE 2   
+  35          uint32_t idata base_sector;
+  36          uint32_t idata sector_offset;
+  37          uint32_t idata current_cluster;
+  38          
+  39          
+  40          void load_sector(uint8_t *buf)
+  41          {
+  42   1        // check if we need to find the first sector of the cluster
+  43   1        if(sector_offset == 0) base_sector = first_sector(current_cluster);
+  44   1        // read the sector in
+  45   1        Read_Sector((base_sector+sector_offset), Export_Drive_values()->BytesPerSec, buf);
+  46   1        sector_offset++; // go forward one sector
+  47   1      }
+  48          
+  49          void init_player(uint32_t start_cluster)
+  50          {
+  51   1        player_state    = data_send_1;
+  52   1        buffer1_flag    = BUFFER_FULL;
+  53   1        buffer2_flag    = BUFFER_EMPTY;
+  54   1        index1          = 0;
+  55   1        index2          = 0;
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:18:46 PAGE 2   
 
-  55   1        index1          = 0;
-  56   1        index2          = 0;
-  57   1        drive_values    = Export_Drive_values();
-  58   1        base_sector     = first_sector(start_cluster);
-  59   1        sector_offset   = 0;
-  60   1        current_cluster = start_cluster;
-  61   1        load_sector(buf1);
-  62   1      }
-  63          
-  64          // flush out as much as the decoder will take
-  65          uint8_t send_buffer(uint8_t *buf, uint16_t *index, uint8_t *buffer_flag)
-  66          {
-  67   1        uint8_t temp8;
-  68   1        P1_set_bit(STA_SPI_BIT_EN_bit);
-  69   1        for(;((*index)<BUF_SIZE)&&(DATA_REQ_ACTIVE); (*index)++) SPI_Transfer(buf[(*index)], &temp8);
-  70   1        P1_clear_bit(STA_SPI_BIT_EN_bit);
-  71   1        // check if we flushed the entire buffer
-  72   1        // if there's still more to go, then the state machine will know since the buffer didn't
-  73   1        // get set empty and it can continue sending when it's ready again
-  74   1        if((*index) == BUF_SIZE)
-  75   1        {
-  76   2          (*index)=0;
-  77   2          (*buffer_flag)=BUFFER_EMPTY;
-  78   2          return 1;
-  79   2        }
-  80   1        return 0;
-  81   1      }
-  82          
-  83          uint8_t player_state_machine_runner(void)
-  84          {
-  85   1        switch(player_state)
-  86   1        {
-  87   2          case find_cluster_1:
-  88   2            LED_number(1);
-  89   2            current_cluster = find_next_clus(current_cluster, buf1);
-  90   2            if(current_cluster != FAT_END_OF_FILE_MARKER)
-  91   2            {
-  92   3              sector_offset = 0;
-  93   3              player_state = data_idle_2;
-  94   3            }
-  95   2            else
-  96   2            {
-  97   3              player_state = song_end;
-  98   3            }
-  99   2            break;
- 100   2          case data_idle_1:
- 101   2            LED_number(2);
- 102   2            if(DATA_REQ_ACTIVE) player_state = data_send_1;
- 103   2            break;
- 104   2          case load_buffer_1:
- 105   2            LED_number(3);
- 106   2            // check if we hit the end of this cluster
- 107   2            // if so, load the FAT sector into the open buffer, but don't indicate that it's
- 108   2            // filled since it isn't data
- 109   2            if(sector_offset == drive_values->SecPerClus)
- 110   2            {
- 111   3              player_state = find_cluster_1;
- 112   3            }
- 113   2            else
- 114   2            {
- 115   3              load_sector(buf1);
- 116   3              buffer1_flag = BUFFER_FULL;
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 13:27:16 PAGE 3   
+  56   1        //drive_values    = Export_Drive_values();
+  57   1        base_sector     = first_sector(start_cluster);
+  58   1        sector_offset   = 0;
+  59   1        current_cluster = start_cluster;
+  60   1        load_sector(buf1);
+  61   1      }
+  62          
+  63          // flush out as much as the decoder will take
+  64          uint8_t send_buffer(uint8_t *buf, uint16_t *index, uint8_t *buffer_flag)
+  65          {
+  66   1        uint8_t temp8;
+  67   1        P1_set_bit(STA_SPI_BIT_EN_bit);
+  68   1        for(;((*index)<BUF_SIZE)&&(DATA_REQ_ACTIVE); (*index)++) SPI_Transfer(buf[(*index)], &temp8);
+  69   1        P1_clear_bit(STA_SPI_BIT_EN_bit);
+  70   1        // check if we flushed the entire buffer
+  71   1        // if there's still more to go, then the state machine will know since the buffer didn't
+  72   1        // get set empty and it can continue sending when it's ready again
+  73   1        if((*index) == BUF_SIZE)
+  74   1        {
+  75   2          (*index)=0;
+  76   2          (*buffer_flag)=BUFFER_EMPTY;
+  77   2          return 1;
+  78   2        }
+  79   1        return 0;
+  80   1      }
+  81          
+  82          uint8_t player_state_machine_runner(void)
+  83          {
+  84   1        switch(player_state)
+  85   1        {
+  86   2          case find_cluster_1:
+  87   2            LED_number(1);
+  88   2            current_cluster = find_next_clus(current_cluster, buf1);
+  89   2            if(current_cluster != FAT_END_OF_FILE_MARKER)
+  90   2            {
+  91   3              sector_offset = 0;
+  92   3              player_state = data_idle_2;
+  93   3            }
+  94   2            else
+  95   2            {
+  96   3              player_state = song_end;
+  97   3            }
+  98   2            break;
+  99   2          case data_idle_1:
+ 100   2            LED_number(2);
+ 101   2            if(DATA_REQ_ACTIVE) player_state = data_send_1;
+ 102   2            break;
+ 103   2          case load_buffer_1:
+ 104   2            LED_number(3);
+ 105   2            // check if we hit the end of this cluster
+ 106   2            // if so, load the FAT sector into the open buffer, but don't indicate that it's
+ 107   2            // filled since it isn't data
+ 108   2            if(sector_offset == Export_Drive_values()->SecPerClus)
+ 109   2            {
+ 110   3              player_state = find_cluster_1;
+ 111   3            }
+ 112   2            else
+ 113   2            {
+ 114   3              load_sector(buf1);
+ 115   3              buffer1_flag = BUFFER_FULL;
+ 116   3              player_state = data_idle_2;
+ 117   3            }
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:18:46 PAGE 3   
 
- 117   3              player_state = data_idle_2;
- 118   3            }
- 119   2            break;
- 120   2          case data_send_1:
- 121   2            LED_number(4);
- 122   2            if(DATA_REQ_ACTIVE)
- 123   2            {
- 124   3              if(buffer1_flag == BUFFER_FULL) send_buffer(buf1, &index1, &buffer1_flag);
- 125   3            }
- 126   2      
- 127   2            if((DATA_REQ_INACTIVE && (buffer2_flag==BUFFER_EMPTY))
- 128   2                || ((buffer1_flag==BUFFER_EMPTY) && (buffer2_flag==BUFFER_EMPTY)))
- 129   2            {
- 130   3              // if we're inactive and buffer2 is empty, go fill it
- 131   3              // OR, if both buffers are empty, go fill buffer2
- 132   3              player_state = load_buffer_2;
- 133   3            }
- 134   2            else if((buffer1_flag==BUFFER_EMPTY) && DATA_REQ_ACTIVE)
- 135   2            {
- 136   3              // decoder wants data, but buffer1 was empty, so go check buffer2
- 137   3              player_state = data_send_2;
- 138   3            }
- 139   2            else if(DATA_REQ_INACTIVE)
- 140   2            {
- 141   3              // if nothing else needs to be taken care of above, just go back to idle
- 142   3              player_state = data_idle_1;
- 143   3            }
- 144   2            break;
- 145   2          case find_cluster_2:
- 146   2            LED_number(5);
- 147   2            current_cluster = find_next_clus(current_cluster, buf2);
- 148   2            if(current_cluster != FAT_END_OF_FILE_MARKER)
- 149   2            {
- 150   3              sector_offset = 0;
- 151   3              player_state = data_idle_1;
- 152   3            }
- 153   2            else
- 154   2            {
- 155   3              player_state = song_end;
- 156   3            }
- 157   2            break;
- 158   2          case data_idle_2:
- 159   2            LED_number(6);
- 160   2            if(DATA_REQ_ACTIVE) player_state = data_send_2;
- 161   2            break;
- 162   2          case load_buffer_2:
- 163   2            LED_number(7);
- 164   2            // check if we hit the end of this cluster
- 165   2            // if so, load the FAT sector into the open buffer, but don't indicate that it's
- 166   2            // filled since it isn't data
- 167   2            if(sector_offset == drive_values->SecPerClus)
- 168   2            {
- 169   3              //check if we hit the end of this cluster
- 170   3              player_state = find_cluster_2;
- 171   3            }
- 172   2            else
- 173   2            {
- 174   3              load_sector(buf2);
- 175   3              buffer2_flag = BUFFER_FULL;
- 176   3              player_state = data_idle_1;
- 177   3            }
- 178   2            break;
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 13:27:16 PAGE 4   
+ 118   2            break;
+ 119   2          case data_send_1:
+ 120   2            LED_number(4);
+ 121   2            if(DATA_REQ_ACTIVE)
+ 122   2            {
+ 123   3              if(buffer1_flag == BUFFER_FULL) send_buffer(buf1, &index1, &buffer1_flag);
+ 124   3            }
+ 125   2      
+ 126   2            if((DATA_REQ_INACTIVE && (buffer2_flag==BUFFER_EMPTY))
+ 127   2                || ((buffer1_flag==BUFFER_EMPTY) && (buffer2_flag==BUFFER_EMPTY)))
+ 128   2            {
+ 129   3              // if we're inactive and buffer2 is empty, go fill it
+ 130   3              // OR, if both buffers are empty, go fill buffer2
+ 131   3              player_state = load_buffer_2;
+ 132   3            }
+ 133   2            else if((buffer1_flag==BUFFER_EMPTY) && DATA_REQ_ACTIVE)
+ 134   2            {
+ 135   3              // decoder wants data, but buffer1 was empty, so go check buffer2
+ 136   3              player_state = data_send_2;
+ 137   3            }
+ 138   2            else if(DATA_REQ_INACTIVE)
+ 139   2            {
+ 140   3              // if nothing else needs to be taken care of above, just go back to idle
+ 141   3              player_state = data_idle_1;
+ 142   3            }
+ 143   2            break;
+ 144   2          case find_cluster_2:
+ 145   2            LED_number(5);
+ 146   2            current_cluster = find_next_clus(current_cluster, buf2);
+ 147   2            if(current_cluster != FAT_END_OF_FILE_MARKER)
+ 148   2            {
+ 149   3              sector_offset = 0;
+ 150   3              player_state = data_idle_1;
+ 151   3            }
+ 152   2            else
+ 153   2            {
+ 154   3              player_state = song_end;
+ 155   3            }
+ 156   2            break;
+ 157   2          case data_idle_2:
+ 158   2            LED_number(6);
+ 159   2            if(DATA_REQ_ACTIVE) player_state = data_send_2;
+ 160   2            break;
+ 161   2          case load_buffer_2:
+ 162   2            LED_number(7);
+ 163   2            // check if we hit the end of this cluster
+ 164   2            // if so, load the FAT sector into the open buffer, but don't indicate that it's
+ 165   2            // filled since it isn't data
+ 166   2            if(sector_offset == Export_Drive_values()->SecPerClus)
+ 167   2            {
+ 168   3              //check if we hit the end of this cluster
+ 169   3              player_state = find_cluster_2;
+ 170   3            }
+ 171   2            else
+ 172   2            {
+ 173   3              load_sector(buf2);
+ 174   3              buffer2_flag = BUFFER_FULL;
+ 175   3              player_state = data_idle_1;
+ 176   3            }
+ 177   2            break;
+ 178   2          case data_send_2:
+ 179   2            LED_number(8);
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:18:46 PAGE 4   
 
- 179   2          case data_send_2:
- 180   2            LED_number(8);
- 181   2            if(DATA_REQ_ACTIVE)
- 182   2            {
- 183   3              if(buffer2_flag == BUFFER_FULL) send_buffer(buf2, &index2, &buffer2_flag);
- 184   3            }
- 185   2      
- 186   2            // determine which state to go to next
- 187   2            if((DATA_REQ_INACTIVE && (buffer1_flag==BUFFER_EMPTY))
- 188   2              || ((buffer1_flag==BUFFER_EMPTY) && (buffer2_flag==BUFFER_EMPTY)))
- 189   2            {
- 190   3              // if we're inactive and buffer1 is empty, go fill it
- 191   3              // OR, if both buffers are empty, go fill buffer1
- 192   3              player_state = load_buffer_1;
- 193   3            }
- 194   2            else if((buffer2_flag==BUFFER_EMPTY) && DATA_REQ_ACTIVE)
- 195   2            {
- 196   3              // decoder wants data, but buffer2 was empty, so go check buffer1
- 197   3              player_state = data_send_1;
- 198   3            }
- 199   2            else if(DATA_REQ_INACTIVE)
- 200   2            {
- 201   3              // if nothing else needs to be taken care of above, just go back to idle
- 202   3              player_state = data_idle_2;
- 203   3            }
- 204   2            break;
- 205   2          case song_end:
- 206   2            // do nothing -- outside functions could watch for this and do something while we stay here
- 207   2            LED_number(9);
- 208   2            break;
- 209   2        }
- 210   1      
- 211   1        if(player_state == song_end) return PLAYER_COMPLETE;
- 212   1        return PLAYER_RUNNING;
- 213   1      }
+ 180   2            if(DATA_REQ_ACTIVE)
+ 181   2            {
+ 182   3              if(buffer2_flag == BUFFER_FULL) send_buffer(buf2, &index2, &buffer2_flag);
+ 183   3            }
+ 184   2      
+ 185   2            // determine which state to go to next
+ 186   2            if((DATA_REQ_INACTIVE && (buffer1_flag==BUFFER_EMPTY))
+ 187   2              || ((buffer1_flag==BUFFER_EMPTY) && (buffer2_flag==BUFFER_EMPTY)))
+ 188   2            {
+ 189   3              // if we're inactive and buffer1 is empty, go fill it
+ 190   3              // OR, if both buffers are empty, go fill buffer1
+ 191   3              player_state = load_buffer_1;
+ 192   3            }
+ 193   2            else if((buffer2_flag==BUFFER_EMPTY) && DATA_REQ_ACTIVE)
+ 194   2            {
+ 195   3              // decoder wants data, but buffer2 was empty, so go check buffer1
+ 196   3              player_state = data_send_1;
+ 197   3            }
+ 198   2            else if(DATA_REQ_INACTIVE)
+ 199   2            {
+ 200   3              // if nothing else needs to be taken care of above, just go back to idle
+ 201   3              player_state = data_idle_2;
+ 202   3            }
+ 203   2            break;
+ 204   2          case song_end:
+ 205   2            // do nothing -- outside functions could watch for this and do something while we stay here
+ 206   2            LED_number(9);
+ 207   2            break;
+ 208   2        }
+ 209   1      
+ 210   1        if(player_state == song_end) return PLAYER_COMPLETE;
+ 211   1        return PLAYER_RUNNING;
+ 212   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    825    ----
+   CODE SIZE        =    785    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     22      17
-   IDATA SIZE       =   ----    ----
+   DATA SIZE        =      1      17
+   IDATA SIZE       =     18    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

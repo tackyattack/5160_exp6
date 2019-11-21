@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  LCD_HARDWARE_FUNCTIONS                                                 11/21/2019 13:27:15 PAGE 1   
+C51 COMPILER V6.02  LCD_HARDWARE_FUNCTIONS                                                 11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LCD_HARDWARE_FUNCTIONS
 OBJECT MODULE PLACED IN .\LCD_hardware_functions.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_hardware_functions.c DEBUG OBJECTEXTEND PRINT(.\LCD_hardware_
-                    -functions.lst) OBJECT(.\LCD_hardware_functions.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_hardware_functions.c PRINT(.\LCD_hardware_functions.lst) OBJE
+                    -CT(.\LCD_hardware_functions.obj) 
 
 stmt level    source
 

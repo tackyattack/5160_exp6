@@ -1,10 +1,9 @@
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 1   
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE SDCARD
 OBJECT MODULE PLACED IN .\SDCard.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\SDCard.c DEBUG OBJECTEXTEND PRINT(.\SDCard.lst) OBJECT(.\SDCard.o
-                    -bj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\SDCard.c PRINT(.\SDCard.lst) OBJECT(.\SDCard.obj) 
 
 stmt level    source
 
@@ -62,9 +61,9 @@ stmt level    source
   52   3           SPI_send=argum>>8;   // BYTE1
   53   3           error_flag=SPI_Transfer(SPI_send,&SPI_return);
   54   3         }
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 2   
-
   55   2         else
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 2   
+
   56   2         {
   57   3           return_val=SPI_error;
   58   3         }
@@ -126,9 +125,9 @@ stmt level    source
  114   1         {
  115   2            return_val=sd_timeout_error;
  116   2         }
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 3   
-
  117   1         else
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 3   
+
  118   1         {
  119   2           *valout_p=SPI_return;
  120   2           if((SPI_return==0x00)||(SPI_return==0x01))
@@ -190,9 +189,9 @@ stmt level    source
  176   4                 index++;
  177   4              }while((SPI_return==0xFF)&&(index!=0)&&(error_flag==no_errors));          // wait for data token r
              -esponse
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 4   
-
  178   3              if(error_flag!=no_errors)
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 4   
+
  179   3              {
  180   4                 return_val=SPI_error;
  181   4              }
@@ -254,9 +253,9 @@ stmt level    source
  237   2         }
  238   1         else
  239   1         {
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 5   
-
  240   2      	 LEDS_ON(Red_LED); //REDLED=0;  // indicates error has occured.
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 5   
+
  241   2         }
  242   1         SPI_Select_Set(SD_Card_Select);  //nCS0=1;
  243   1         LEDS_OFF(Green_LED); //GREENLED=1;
@@ -318,9 +317,9 @@ stmt level    source
  299   1         if(error_status==no_errors)
  300   1         {
  301   2           LEDS_ON(Green_LED);  //GREENLED=0;
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 6   
-
  302   2           printf("CMD58 sent ... ");
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 6   
+
  303   2           SPI_Select_Clear(SD_Card_Select); //nCS0=0;  // SD card CS low
  304   2           error_flag=SEND_COMMAND(CMD58,0);
  305   2      	 if(error_flag==no_errors)
@@ -382,9 +381,9 @@ stmt level    source
  361   2      	 if(error_flag==no_errors)
  362   2           {
  363   3              LEDS_OFF(Yellow_LED); //GREENLED=1;
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 7   
-
  364   3      	    printf("Response = %2.2bX\n\r",valsout[0]);
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 7   
+
  365   3           }
  366   2           else
  367   2           {
@@ -446,9 +445,9 @@ stmt level    source
  423   5      			}
  424   4      		 }
  425   3           }
-C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 13:27:15 PAGE 8   
-
  426   2           else
+C51 COMPILER V6.02  SDCARD                                                                 11/21/2019 16:18:46 PAGE 8   
+
  427   2           {
  428   3              SPI_Select_Set(SD_Card_Select);  //nCS0=1;
  429   3              LEDS_OFF(Green_LED); //GREENLED=1;

@@ -1,11 +1,11 @@
-BL51 BANKED LINKER/LOCATER V4.02                                                        11/21/2019  13:27:16  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.02                                                        11/21/2019  16:18:47  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE .\Directory_Functions_struct.obj, .\exp_4_main.obj, .\file_system.obj, .\LCD_hardware_functions
->> .obj, .\LCD_routines.obj, .\LED_Control.obj, .\Outputs.obj, .\print_bytes.obj, .\SDCard.obj, .\sector_reader.obj, .\S
->> PI.obj, .\Timer0_hardware_delay_1ms.obj, .\UART.obj, .\player.obj, .\I2C.obj, .\STA013_config.obj, .\config.obj, .\Lo
->> ng_Serial_In.obj TO exp6_prj RAMSIZE (256)
+C:\KEIL\C51\BIN\BL51.EXE .\Directory_Functions_struct.obj, .\file_system.obj, .\LCD_hardware_functions.obj, .\LCD_routin
+>> es.obj, .\LED_Control.obj, .\Outputs.obj, .\print_bytes.obj, .\SDCard.obj, .\sector_reader.obj, .\SPI.obj, .\Timer0_h
+>> ardware_delay_1ms.obj, .\UART.obj, .\player.obj, .\I2C.obj, .\STA013_config.obj, .\config.obj, .\Long_Serial_In.obj, 
+>> .\exp_6_main.obj TO exp6_prj RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,7 +13,6 @@ MEMORY MODEL: SMALL
 
 INPUT MODULES INCLUDED:
   .\Directory_Functions_struct.obj (DIRECTORY_FUNCTIONS_STRUCT)
-  .\exp_4_main.obj (EXP_4_MAIN)
   .\file_system.obj (FILE_SYSTEM)
   .\LCD_hardware_functions.obj (LCD_HARDWARE_FUNCTIONS)
   .\LCD_routines.obj (LCD_ROUTINES)
@@ -30,6 +29,7 @@ INPUT MODULES INCLUDED:
   .\STA013_config.obj (STA013_CONFIG)
   .\config.obj (CONFIG)
   .\Long_Serial_In.obj (LONG_SERIAL_IN)
+  .\exp_6_main.obj (EXP_6_MAIN)
   C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
@@ -50,23 +50,24 @@ INPUT MODULES INCLUDED:
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDOPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LSTOPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDIDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LLDIDATA0)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDOPTR0)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LSTIDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LSTKIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
   C:\KEIL\C51\LIB\C51S.LIB (PRINTF)
   C:\KEIL\C51\LIB\C51S.LIB (ATOL)
   C:\KEIL\C51\LIB\C51S.LIB (?C?IILDX)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 2
+
+
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDXDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDPDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDCODE)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 2
-
-
-  C:\KEIL\C51\LIB\C51S.LIB (?C?LLDIDATA0)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDXDATA0)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDPDATA0)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDCODE0)
-  C:\KEIL\C51\LIB\C51S.LIB (?C?LSTIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LSTXDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LSTPDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIIDATA)
@@ -83,86 +84,88 @@ LINK MAP OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0016H     UNIT         ?DT?PLAYER
-            IDATA   001EH     0001H     UNIT         ?ID?SDCARD
-                    001FH     0001H                  *** GAP ***
-            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
-                    0021H.1   0000H.7                *** GAP ***
-            DATA    0022H     004EH     UNIT         _DATA_GROUP_
-            IDATA   0070H     0016H     UNIT         ?ID?DIRECTORY_FUNCTIONS_STRUCT
-            IDATA   0086H     0006H     UNIT         _IDATA_GROUP_
-            IDATA   008CH     0001H     UNIT         ?STACK
+            DATA    0008H     0001H     UNIT         ?DT?PLAYER
+            IDATA   0009H     0016H     UNIT         ?ID?DIRECTORY_FUNCTIONS_STRUCT
+            IDATA   001FH     0001H     UNIT         ?ID?SDCARD
+            BIT     0020H.0   0002H.2   UNIT         _BIT_GROUP_
+                    0022H.2   0000H.6                *** GAP ***
+            DATA    0023H     005CH     UNIT         _DATA_GROUP_
+            IDATA   007FH     0021H     UNIT         _IDATA_GROUP_
+            IDATA   00A0H     0012H     UNIT         ?ID?PLAYER
+            IDATA   00B2H     0001H     UNIT         ?STACK
 
             * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
-            XDATA   0000H     0400H     UNIT         ?XD?EXP_4_MAIN
+            XDATA   0000H     0400H     UNIT         ?XD?EXP_6_MAIN
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0FD0H     UNIT         STA013_CONFIG
-            CODE    0FD3H     04A9H     UNIT         ?C?LIB_CODE
-            CODE    147CH     03F6H     UNIT         ?PR?_MOUNT_DRIVE?FILE_SYSTEM
-            CODE    1872H     03F2H     UNIT         ?PR?SD_CARD_INIT?SDCARD
-            CODE    1C64H     035CH     UNIT         ?PR?PRINTF?PRINTF
-            CODE    1FC0H     02D9H     UNIT         ?PR?STA013_INIT?STA013_CONFIG
-            CODE    2299H     027DH     UNIT         ?PR?_READ_DIR_ENTRY?DIRECTORY_FUNCTIONS_STRUCT
-            CODE    2516H     020EH     UNIT         ?CO?SDCARD
-            CODE    2724H     0201H     UNIT         ?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER
-            CODE    2925H     01E6H     UNIT         ?PR?_PRINT_DIRECTORY?DIRECTORY_FUNCTIONS_STRUCT
-            CODE    2B0BH     01C0H     UNIT         ?PR?MAIN?EXP_4_MAIN
-            CODE    2CCBH     0168H     UNIT         ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
-            CODE    2E33H     0144H     UNIT         ?PR?_I2C_READ?I2C
-            CODE    2F77H     0137H     UNIT         ?CO?STA013_CONFIG
-            CODE    30AEH     010BH     UNIT         ?PR?_SEND_COMMAND?SDCARD
-            CODE    31B9H     00FFH     UNIT         ?PR?_READ_BLOCK?SDCARD
-            CODE    32B8H     00F0H     UNIT         ?PR?_I2C_WRITE?I2C
-            CODE    33A8H     00DEH     UNIT         ?PR?_ATOL?ATOL
-            CODE    3486H     00D1H     UNIT         ?PR?LONG_SERIAL_INPUT?LONG_SERIAL_IN
-            CODE    3557H     00B5H     UNIT         ?CO?FILE_SYSTEM
-            CODE    360CH     00B2H     UNIT         ?CO?EXP_4_MAIN
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 3
+            CODE    0003H     0008H     UNIT         ?PR?UART_RECEIVE?UART
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     0FD0H     UNIT         STA013_CONFIG
+            CODE    0FDEH     04C2H     UNIT         ?C?LIB_CODE
+            CODE    14A0H     03F6H     UNIT         ?PR?_MOUNT_DRIVE?FILE_SYSTEM
+            CODE    1896H     03F2H     UNIT         ?PR?SD_CARD_INIT?SDCARD
+            CODE    1C88H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    1FE4H     02D9H     UNIT         ?PR?STA013_INIT?STA013_CONFIG
+            CODE    22BDH     027DH     UNIT         ?PR?_READ_DIR_ENTRY?DIRECTORY_FUNCTIONS_STRUCT
+            CODE    253AH     020EH     UNIT         ?CO?SDCARD
+            CODE    2748H     01ECH     UNIT         ?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER
+            CODE    2934H     01E6H     UNIT         ?PR?_PRINT_DIRECTORY?DIRECTORY_FUNCTIONS_STRUCT
+            CODE    2B1AH     01B7H     UNIT         ?PR?MAIN?EXP_6_MAIN
+            CODE    2CD1H     0172H     UNIT         ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
+            CODE    2E43H     0144H     UNIT         ?PR?_I2C_READ?I2C
+            CODE    2F87H     0137H     UNIT         ?CO?STA013_CONFIG
+            CODE    30BEH     010BH     UNIT         ?PR?_SEND_COMMAND?SDCARD
+            CODE    31C9H     00FFH     UNIT         ?PR?_READ_BLOCK?SDCARD
+            CODE    32C8H     00F0H     UNIT         ?PR?_I2C_WRITE?I2C
+            CODE    33B8H     00DEH     UNIT         ?PR?_ATOL?ATOL
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 3
 
 
-            CODE    36BEH     0099H     UNIT         ?PR?_RESPONSE?SDCARD
-            CODE    3757H     008CH     UNIT         ?PR?_SPI_MASTER_INIT?SPI
-            CODE    37E3H     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
-            CODE    3868H     007CH     UNIT         ?PR?_FIRST_SECTOR?FILE_SYSTEM
-            CODE    38E4H     0079H     UNIT         ?PR?_LOAD_SECTOR?PLAYER
-            CODE    395DH     0072H     UNIT         ?PR?_SEND_BUFFER?PLAYER
-            CODE    39CFH     006EH     UNIT         ?PR?_PRINT_ERROR?SDCARD
-            CODE    3A3DH     0064H     UNIT         ?PR?_READ32?SECTOR_READER
-            CODE    3AA1H     0050H     UNIT         ?PR?_READ_SECTOR?SECTOR_READER
-            CODE    3AF1H     004DH     UNIT         ?PR?_INIT_PLAYER?PLAYER
-            CODE    3B3EH     003BH     UNIT         ?PR?_LED_NUMBER?LED_CONTROL
-            CODE    3B79H     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
-            CODE    3BB1H     0035H     UNIT         ?PR?_UART_INIT?UART
-            CODE    3BE6H     0033H     UNIT         ?PR?_READ16?SECTOR_READER
-            CODE    3C19H     0033H     UNIT         ?PR?_SPI_TRANSFER?SPI
-            CODE    3C4CH     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-            CODE    3C76H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
-            CODE    3C9DH     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-            CODE    3CC3H     0020H     UNIT         ?PR?_UART_TRANSMIT?UART
-            CODE    3CE3H     001CH     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
-            CODE    3CFFH     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
-            CODE    3D12H     0013H     UNIT         ?PR?_ISSPACE?ISSPACE
-            CODE    3D25H     000FH     UNIT         ?PR?_ISDIGIT?ISDIGIT
-            CODE    3D34H     000DH     UNIT         ?CO?DIRECTORY_FUNCTIONS_STRUCT
-            CODE    3D41H     000CH     UNIT         ?PR?_READ8?SECTOR_READER
-            CODE    3D4DH     000CH     UNIT         ?C_C51STARTUP
-            CODE    3D59H     0008H     UNIT         ?PR?UART_RECEIVE?UART
-            CODE    3D61H     0007H     UNIT         ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
-            CODE    3D68H     0005H     UNIT         ?PR?_LEDS_ON?LED_CONTROL
-            CODE    3D6DH     0005H     UNIT         ?PR?_P1_CLEAR_BIT?OUTPUTS
-            CODE    3D72H     0005H     UNIT         ?PR?_P3_CLEAR_BIT?OUTPUTS
-            CODE    3D77H     0005H     UNIT         ?PR?RETURN_SD_CARD_TYPE?SDCARD
-            CODE    3D7CH     0005H     UNIT         ?PR?_SPI_SELECT_CLEAR?SPI
-            CODE    3D81H     0005H     UNIT         ?PR?_CLEAR_P3_BIT?STA013_CONFIG
-            CODE    3D86H     0004H     UNIT         ?PR?_LEDS_OFF?LED_CONTROL
-            CODE    3D8AH     0004H     UNIT         ?PR?_P1_SET_BIT?OUTPUTS
-            CODE    3D8EH     0004H     UNIT         ?PR?_P2_SET_BIT?OUTPUTS
-            CODE    3D92H     0004H     UNIT         ?PR?_P3_SET_BIT?OUTPUTS
-            CODE    3D96H     0004H     UNIT         ?PR?_SPI_SELECT_SET?SPI
-            CODE    3D9AH     0004H     UNIT         ?PR?_SET_P3_BIT?STA013_CONFIG
-            CODE    3D9EH     0003H     UNIT         ?PR?_P0_OUTPUT_BITS?OUTPUTS
+            CODE    3496H     00D1H     UNIT         ?PR?LONG_SERIAL_INPUT?LONG_SERIAL_IN
+            CODE    3567H     00B5H     UNIT         ?CO?FILE_SYSTEM
+            CODE    361CH     00B2H     UNIT         ?CO?EXP_6_MAIN
+            CODE    36CEH     0099H     UNIT         ?PR?_RESPONSE?SDCARD
+            CODE    3767H     008CH     UNIT         ?PR?_SPI_MASTER_INIT?SPI
+            CODE    37F3H     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
+            CODE    3878H     007CH     UNIT         ?PR?_FIRST_SECTOR?FILE_SYSTEM
+            CODE    38F4H     0072H     UNIT         ?PR?_SEND_BUFFER?PLAYER
+            CODE    3966H     0070H     UNIT         ?PR?_LOAD_SECTOR?PLAYER
+            CODE    39D6H     006EH     UNIT         ?PR?_PRINT_ERROR?SDCARD
+            CODE    3A44H     0064H     UNIT         ?PR?_READ32?SECTOR_READER
+            CODE    3AA8H     0050H     UNIT         ?PR?_READ_SECTOR?SECTOR_READER
+            CODE    3AF8H     0043H     UNIT         ?PR?_INIT_PLAYER?PLAYER
+            CODE    3B3BH     003BH     UNIT         ?PR?_LED_NUMBER?LED_CONTROL
+            CODE    3B76H     003BH     UNIT         ?PR?TIMER0_ISR?EXP_6_MAIN
+            CODE    3BB1H     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
+            CODE    3BE9H     0035H     UNIT         ?PR?_UART_INIT?UART
+            CODE    3C1EH     0033H     UNIT         ?PR?_READ16?SECTOR_READER
+            CODE    3C51H     0033H     UNIT         ?PR?_SPI_TRANSFER?SPI
+            CODE    3C84H     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
+            CODE    3CAEH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    3CD5H     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+            CODE    3CFBH     0020H     UNIT         ?PR?_UART_TRANSMIT?UART
+            CODE    3D1BH     001CH     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
+            CODE    3D37H     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
+            CODE    3D4AH     0013H     UNIT         ?PR?_ISSPACE?ISSPACE
+            CODE    3D5DH     000FH     UNIT         ?PR?_ISDIGIT?ISDIGIT
+            CODE    3D6CH     000DH     UNIT         ?CO?DIRECTORY_FUNCTIONS_STRUCT
+            CODE    3D79H     000CH     UNIT         ?PR?_READ8?SECTOR_READER
+            CODE    3D85H     000CH     UNIT         ?C_C51STARTUP
+            CODE    3D91H     0007H     UNIT         ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+            CODE    3D98H     0005H     UNIT         ?PR?_LEDS_ON?LED_CONTROL
+            CODE    3D9DH     0005H     UNIT         ?PR?_P1_CLEAR_BIT?OUTPUTS
+            CODE    3DA2H     0005H     UNIT         ?PR?_P3_CLEAR_BIT?OUTPUTS
+            CODE    3DA7H     0005H     UNIT         ?PR?RETURN_SD_CARD_TYPE?SDCARD
+            CODE    3DACH     0005H     UNIT         ?PR?_SPI_SELECT_CLEAR?SPI
+            CODE    3DB1H     0005H     UNIT         ?PR?_CLEAR_P3_BIT?STA013_CONFIG
+            CODE    3DB6H     0004H     UNIT         ?PR?_LEDS_OFF?LED_CONTROL
+            CODE    3DBAH     0004H     UNIT         ?PR?_P1_SET_BIT?OUTPUTS
+            CODE    3DBEH     0004H     UNIT         ?PR?_P2_SET_BIT?OUTPUTS
+            CODE    3DC2H     0004H     UNIT         ?PR?_P3_SET_BIT?OUTPUTS
+            CODE    3DC6H     0004H     UNIT         ?PR?_SPI_SELECT_SET?SPI
+            CODE    3DCAH     0004H     UNIT         ?PR?_SET_P3_BIT?STA013_CONFIG
+            CODE    3DCEH     0003H     UNIT         ?PR?_P0_OUTPUT_BITS?OUTPUTS
 
 
 
@@ -172,20 +175,80 @@ OVERLAY MAP OF MODULE:   exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
 SEGMENT                                                       BIT_GROUP          DATA_GROUP          IDATA_GROUP
   +--> CALLED SEGMENT                                      START    LENGTH     START    LENGTH     START    LENGTH
 ------------------------------------------------------------------------------------------------------------------
-?C_C51STARTUP                                              -----    -----      -----    -----      -----    -----
-  +--> ?PR?MAIN?EXP_4_MAIN
+?PR?TIMER0_ISR?EXP_6_MAIN                                  -----    -----      -----    -----      -----    -----
+  +--> ?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER
 
-?PR?MAIN?EXP_4_MAIN                                        -----    -----      0022H    0011H      -----    -----
+?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER                     -----    -----      -----    -----      -----    -----
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 4
+
+
+  +--> ?PR?_LED_NUMBER?LED_CONTROL
+  +--> ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
+  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+  +--> ?PR?_LOAD_SECTOR?PLAYER
+  +--> ?PR?_SEND_BUFFER?PLAYER
+
+?PR?_LED_NUMBER?LED_CONTROL                                -----    -----      -----    -----      -----    -----
+  +--> ?PR?_LEDS_OFF?LED_CONTROL
+  +--> ?PR?_LEDS_ON?LED_CONTROL
+
+?PR?_FIND_NEXT_CLUS?FILE_SYSTEM                            -----    -----      0023H    000AH      007FH    000AH
+  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+  +--> ?PR?_READ_SECTOR?SECTOR_READER
+  +--> ?PR?_READ32?SECTOR_READER
+  +--> ?PR?_READ16?SECTOR_READER
+  +--> ?CO?FILE_SYSTEM
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?_READ_SECTOR?SECTOR_READER                             -----    -----      006AH    000BH      -----    -----
+  +--> ?PR?RETURN_SD_CARD_TYPE?SDCARD
+  +--> ?PR?_SPI_SELECT_CLEAR?SPI
+  +--> ?PR?_SEND_COMMAND?SDCARD
+  +--> ?PR?_READ_BLOCK?SDCARD
+  +--> ?PR?_SPI_SELECT_SET?SPI
+
+?PR?_SEND_COMMAND?SDCARD                                   -----    -----      0075H    0009H      -----    -----
+  +--> ?PR?_SPI_TRANSFER?SPI
+
+?PR?_READ_BLOCK?SDCARD                                     -----    -----      0075H    000AH      -----    -----
+  +--> ?PR?_SPI_TRANSFER?SPI
+
+?PR?_READ32?SECTOR_READER                                  -----    -----      006AH    0008H      -----    -----
+
+?PR?_READ16?SECTOR_READER                                  -----    -----      006AH    0005H      -----    -----
+
+?PR?PRINTF?PRINTF                                          0021H.1  0001H.1    006AH    0014H      -----    -----
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+?PR?_LOAD_SECTOR?PLAYER                                    -----    -----      0046H    0003H      -----    -----
+  +--> ?PR?_FIRST_SECTOR?FILE_SYSTEM
+  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+  +--> ?PR?_READ_SECTOR?SECTOR_READER
+
+?PR?_FIRST_SECTOR?FILE_SYSTEM                              -----    -----      0049H    0007H      -----    -----
+  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+
+?PR?_SEND_BUFFER?PLAYER                                    -----    -----      0023H    000AH      -----    -----
+  +--> ?PR?_P1_SET_BIT?OUTPUTS
+  +--> ?PR?_SPI_TRANSFER?SPI
+  +--> ?PR?_P1_CLEAR_BIT?OUTPUTS
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                                              -----    -----      -----    -----      -----    -----
+  +--> ?PR?MAIN?EXP_6_MAIN
+
+?PR?MAIN?EXP_6_MAIN                                        -----    -----      -----    -----      0089H    0011H
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 5
+
+
   +--> ?PR?_LEDS_ON?LED_CONTROL
   +--> ?PR?_P2_SET_BIT?OUTPUTS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 4
-
-
   +--> ?PR?_UART_INIT?UART
   +--> ?PR?STA013_INIT?STA013_CONFIG
   +--> ?PR?LCD_INIT?LCD_ROUTINES
-  +--> ?CO?EXP_4_MAIN
+  +--> ?CO?EXP_6_MAIN
   +--> ?PR?_LCD_PRINT?LCD_ROUTINES
   +--> ?PR?PRINTF?PRINTF
   +--> ?PR?_SPI_MASTER_INIT?SPI
@@ -199,9 +262,8 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?_READ_DIR_ENTRY?DIRECTORY_FUNCTIONS_STRUCT
   +--> ?PR?_FIRST_SECTOR?FILE_SYSTEM
   +--> ?PR?_INIT_PLAYER?PLAYER
-  +--> ?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER
 
-?PR?STA013_INIT?STA013_CONFIG                              -----    -----      0033H    0008H      0086H    0006H
+?PR?STA013_INIT?STA013_CONFIG                              -----    -----      0042H    0008H      009AH    0006H
   +--> ?PR?_CLEAR_P3_BIT?STA013_CONFIG
   +--> ?PR?_SET_P3_BIT?STA013_CONFIG
   +--> ?PR?_I2C_READ?I2C
@@ -209,40 +271,37 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?PRINTF?PRINTF
   +--> ?PR?_I2C_WRITE?I2C
 
-?PR?_I2C_READ?I2C                                          -----    -----      003BH    0010H      -----    -----
+?PR?_I2C_READ?I2C                                          -----    -----      004AH    0010H      -----    -----
   +--> ?PR?_I2C_WRITE?I2C
   +--> ?PR?I2C_CLOCK_START?I2C
   +--> ?PR?_I2C_CLOCK_DELAY?I2C
 
-?PR?_I2C_WRITE?I2C                                         -----    -----      004BH    000FH      -----    -----
+?PR?_I2C_WRITE?I2C                                         -----    -----      005AH    000FH      -----    -----
   +--> ?PR?I2C_CLOCK_START?I2C
   +--> ?PR?_I2C_CLOCK_DELAY?I2C
-
-?PR?PRINTF?PRINTF                                          0020H.0  0001H.1    005BH    0014H      -----    -----
-  +--> ?PR?PUTCHAR?PUTCHAR
 
 ?PR?LCD_INIT?LCD_ROUTINES                                  -----    -----      -----    -----      -----    -----
   +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
 
-?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS                      -----    -----      0039H    0001H      -----    -----
+?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS                      -----    -----      0048H    0001H      -----    -----
   +--> ?PR?_P3_CLEAR_BIT?OUTPUTS
   +--> ?PR?_P3_SET_BIT?OUTPUTS
   +--> ?PR?_P0_OUTPUT_BITS?OUTPUTS
 
-?PR?_LCD_PRINT?LCD_ROUTINES                                -----    -----      0033H    0006H      -----    -----
+?PR?_LCD_PRINT?LCD_ROUTINES                                -----    -----      0042H    0006H      -----    -----
   +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
 
-?PR?_SPI_MASTER_INIT?SPI                                   -----    -----      0033H    0001H      -----    -----
+?PR?_SPI_MASTER_INIT?SPI                                   -----    -----      0042H    0001H      -----    -----
 
-?PR?SD_CARD_INIT?SDCARD                                    -----    -----      0033H    0014H      -----    -----
+?PR?SD_CARD_INIT?SDCARD                                    -----    -----      0042H    0014H      -----    -----
   +--> ?PR?_SPI_SELECT_SET?SPI
   +--> ?CO?SDCARD
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 5
-
-
   +--> ?PR?PRINTF?PRINTF
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 6
+
+
   +--> ?PR?_SPI_TRANSFER?SPI
   +--> ?PR?_LEDS_ON?LED_CONTROL
   +--> ?PR?_SPI_SELECT_CLEAR?SPI
@@ -252,17 +311,14 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?PUTCHAR?PUTCHAR
   +--> ?PR?_PRINT_ERROR?SDCARD
 
-?PR?_SEND_COMMAND?SDCARD                                   -----    -----      0066H    0009H      -----    -----
+?PR?_RESPONSE?SDCARD                                       -----    -----      0056H    0008H      -----    -----
   +--> ?PR?_SPI_TRANSFER?SPI
 
-?PR?_RESPONSE?SDCARD                                       -----    -----      0047H    0008H      -----    -----
-  +--> ?PR?_SPI_TRANSFER?SPI
-
-?PR?_PRINT_ERROR?SDCARD                                    -----    -----      0047H    0001H      -----    -----
+?PR?_PRINT_ERROR?SDCARD                                    -----    -----      0056H    0001H      -----    -----
   +--> ?CO?SDCARD
   +--> ?PR?PRINTF?PRINTF
 
-?PR?_MOUNT_DRIVE?FILE_SYSTEM                               -----    -----      0033H    0028H      -----    -----
+?PR?_MOUNT_DRIVE?FILE_SYSTEM                               -----    -----      0042H    0028H      -----    -----
   +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
   +--> ?CO?FILE_SYSTEM
   +--> ?PR?PRINTF?PRINTF
@@ -271,77 +327,29 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?_READ32?SECTOR_READER
   +--> ?PR?_READ16?SECTOR_READER
 
-?PR?_READ_SECTOR?SECTOR_READER                             -----    -----      005BH    000BH      -----    -----
-  +--> ?PR?RETURN_SD_CARD_TYPE?SDCARD
-  +--> ?PR?_SPI_SELECT_CLEAR?SPI
-  +--> ?PR?_SEND_COMMAND?SDCARD
-  +--> ?PR?_READ_BLOCK?SDCARD
-  +--> ?PR?_SPI_SELECT_SET?SPI
-
-?PR?_READ_BLOCK?SDCARD                                     -----    -----      0066H    000AH      -----    -----
-  +--> ?PR?_SPI_TRANSFER?SPI
-
-?PR?_READ32?SECTOR_READER                                  -----    -----      005BH    0008H      -----    -----
-
-?PR?_READ16?SECTOR_READER                                  -----    -----      005BH    0005H      -----    -----
-
-?PR?_PRINT_DIRECTORY?DIRECTORY_FUNCTIONS_STRUCT            -----    -----      0033H    001AH      -----    -----
+?PR?_PRINT_DIRECTORY?DIRECTORY_FUNCTIONS_STRUCT            -----    -----      0042H    001AH      -----    -----
   +--> ?PR?_READ_SECTOR?SECTOR_READER
   +--> ?PR?_READ8?SECTOR_READER
   +--> ?CO?DIRECTORY_FUNCTIONS_STRUCT
   +--> ?PR?PRINTF?PRINTF
   +--> ?PR?PUTCHAR?PUTCHAR
 
-?PR?LONG_SERIAL_INPUT?LONG_SERIAL_IN                       -----    -----      0033H    0011H      -----    -----
+?PR?LONG_SERIAL_INPUT?LONG_SERIAL_IN                       -----    -----      0042H    0011H      -----    -----
   +--> ?PR?UART_RECEIVE?UART
   +--> ?PR?_UART_TRANSMIT?UART
   +--> ?PR?_ATOL?ATOL
 
-?PR?_ATOL?ATOL                                             0020H.0  0000H.1    0044H    0007H      -----    -----
+?PR?_ATOL?ATOL                                             0021H.1  0000H.1    0053H    0007H      -----    -----
   +--> ?PR?_ISSPACE?ISSPACE
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 6
-
-
   +--> ?PR?_ISDIGIT?ISDIGIT
 
-?PR?_READ_DIR_ENTRY?DIRECTORY_FUNCTIONS_STRUCT             -----    -----      0033H    001EH      -----    -----
+?PR?_READ_DIR_ENTRY?DIRECTORY_FUNCTIONS_STRUCT             -----    -----      0042H    001EH      -----    -----
   +--> ?PR?_READ_SECTOR?SECTOR_READER
   +--> ?PR?_READ8?SECTOR_READER
 
-?PR?_FIRST_SECTOR?FILE_SYSTEM                              -----    -----      003AH    0007H      -----    -----
-  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
-
-?PR?_INIT_PLAYER?PLAYER                                    -----    -----      0033H    0004H      -----    -----
-  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+?PR?_INIT_PLAYER?PLAYER                                    -----    -----      0042H    0004H      -----    -----
   +--> ?PR?_FIRST_SECTOR?FILE_SYSTEM
   +--> ?PR?_LOAD_SECTOR?PLAYER
-
-?PR?_LOAD_SECTOR?PLAYER                                    -----    -----      0037H    0003H      -----    -----
-  +--> ?PR?_FIRST_SECTOR?FILE_SYSTEM
-  +--> ?PR?_READ_SECTOR?SECTOR_READER
-
-?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER                     -----    -----      -----    -----      -----    -----
-  +--> ?PR?_LED_NUMBER?LED_CONTROL
-  +--> ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
-  +--> ?PR?_LOAD_SECTOR?PLAYER
-  +--> ?PR?_SEND_BUFFER?PLAYER
-
-?PR?_LED_NUMBER?LED_CONTROL                                -----    -----      -----    -----      -----    -----
-  +--> ?PR?_LEDS_OFF?LED_CONTROL
-  +--> ?PR?_LEDS_ON?LED_CONTROL
-
-?PR?_FIND_NEXT_CLUS?FILE_SYSTEM                            -----    -----      0033H    0012H      -----    -----
-  +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
-  +--> ?PR?_READ_SECTOR?SECTOR_READER
-  +--> ?PR?_READ32?SECTOR_READER
-  +--> ?PR?_READ16?SECTOR_READER
-  +--> ?CO?FILE_SYSTEM
-  +--> ?PR?PRINTF?PRINTF
-
-?PR?_SEND_BUFFER?PLAYER                                    -----    -----      0033H    000AH      -----    -----
-  +--> ?PR?_P1_SET_BIT?OUTPUTS
-  +--> ?PR?_SPI_TRANSFER?SPI
-  +--> ?PR?_P1_CLEAR_BIT?OUTPUTS
 
 
 
@@ -350,4246 +358,223 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   VALUE           TYPE          NAME
   ----------------------------------
 
-  -------         MODULE        DIRECTORY_FUNCTIONS_STRUCT
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 7
-
-
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  C:2925H         PUBLIC        _Print_Directory
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 8
-
-
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  C:2299H         PUBLIC        _Read_Dir_Entry
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  C:3D61H         PUBLIC        Export_Drive_values
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 9
-
-
-  I:0070H         PUBLIC        Drive_values
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          EXPORT_DRIVE_VALUES
-  C:3D61H         LINE#         24
-  C:3D61H         LINE#         25
-  C:3D61H         LINE#         26
-  C:3D67H         LINE#         27
-  -------         ENDPROC       EXPORT_DRIVE_VALUES
-  -------         PROC          _PRINT_DIRECTORY
-  D:0033H         SYMBOL        Sector_num
-  D:0037H         SYMBOL        array_in
-  -------         DO            array_in
-  D:0039H         SYMBOL        Sector
-  D:003DH         SYMBOL        max_sectors
-  D:0041H         SYMBOL        i
-  D:0043H         SYMBOL        entries
-  D:0045H         SYMBOL        temp8
-  D:0046H         SYMBOL        j
-  D:0047H         SYMBOL        attr
-  D:0048H         SYMBOL        out_val
-  D:0049H         SYMBOL        error_flag
-  D:004AH         SYMBOL        values
-  -------         ENDDO         values
-  C:2925H         LINE#         40
-  C:292DH         LINE#         41
-  C:292DH         LINE#         48
-  C:2936H         LINE#         49
-  C:293BH         LINE#         50
-  C:293FH         LINE#         51
-  C:2945H         LINE#         52
-  C:2945H         LINE#         53
-  C:2952H         LINE#         54
-  C:2954H         LINE#         56
-  C:2954H         LINE#         57
-  C:2961H         LINE#         58
-  C:2961H         LINE#         59
-  C:296DH         LINE#         60
-  C:298CH         LINE#         61
-  C:2993H         LINE#         62
-  C:2993H         LINE#         64
-  C:2993H         LINE#         65
-  C:29A2H         LINE#         66
-  C:29B2H         LINE#         67
-  C:29B2H         LINE#         68
-  C:29C6H         LINE#         69
-  C:29CFH         LINE#         70
-  C:29CFH         LINE#         71
-  C:29D7H         LINE#         72
-  C:29E5H         LINE#         73
-  C:29E8H         LINE#         74
-  C:29E8H         LINE#         75
-  C:29FEH         LINE#         76
-  C:2A01H         LINE#         77
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 10
-
-
-  C:2A0AH         LINE#         78
-  C:2A0FH         LINE#         79
-  C:2A0FH         LINE#         80
-  C:2A12H         LINE#         81
-  C:2A12H         LINE#         82
-  C:2A28H         LINE#         83
-  C:2A2BH         LINE#         84
-  C:2A34H         LINE#         85
-  C:2A3DH         LINE#         86
-  C:2A3FH         LINE#         88
-  C:2A3FH         LINE#         89
-  C:2A44H         LINE#         90
-  C:2A47H         LINE#         91
-  C:2A47H         LINE#         92
-  C:2A5DH         LINE#         93
-  C:2A60H         LINE#         94
-  C:2A69H         LINE#         95
-  C:2A6EH         LINE#         96
-  C:2A73H         LINE#         97
-  C:2A73H         LINE#         98
-  C:2A73H         LINE#         99
-  C:2A73H         LINE#         100
-  C:2A7EH         LINE#         101
-  C:2A89H         LINE#         102
-  C:2A89H         LINE#         103
-  C:2A9EH         LINE#         104
-  C:2AC1H         LINE#         105
-  C:2AC1H         LINE#         106
-  C:2AE0H         LINE#         107
-  C:2AE4H         LINE#         108
-  C:2AE4H         LINE#         109
-  C:2AE9H         LINE#         110
-  C:2AEBH         LINE#         111
-  C:2AEBH         LINE#         112
-  C:2AF0H         LINE#         113
-  C:2AF2H         LINE#         115
-  C:2AF2H         LINE#         116
-  C:2AF5H         LINE#         117
-  C:2AF8H         LINE#         118
-  C:2AF8H         LINE#         119
-  C:2AF8H         LINE#         121
-  C:2AFFH         LINE#         122
-  C:2B01H         LINE#         124
-  C:2B01H         LINE#         125
-  C:2B06H         LINE#         126
-  C:2B06H         LINE#         127
-  C:2B0AH         LINE#         128
-  -------         ENDPROC       _PRINT_DIRECTORY
-  -------         PROC          _READ_DIR_ENTRY
-  D:0033H         SYMBOL        Sector_num
-  D:0037H         SYMBOL        Entry
-  D:0039H         SYMBOL        array_in
-  -------         DO            array_in
-  D:003BH         SYMBOL        Sector
-  D:003FH         SYMBOL        max_sectors
-  D:0043H         SYMBOL        return_clus
-  D:0047H         SYMBOL        i
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 11
-
-
-  D:0049H         SYMBOL        entries
-  D:004BH         SYMBOL        temp8
-  D:004CH         SYMBOL        attr
-  D:004DH         SYMBOL        error_flag
-  D:004EH         SYMBOL        values
-  -------         ENDDO         values
-  C:2299H         LINE#         141
-  C:22A1H         LINE#         142
-  C:22A1H         LINE#         148
-  C:22AAH         LINE#         149
-  C:22AFH         LINE#         150
-  C:22B3H         LINE#         151
-  C:22BBH         LINE#         152
-  C:22C1H         LINE#         153
-  C:22C1H         LINE#         154
-  C:22CEH         LINE#         155
-  C:22D0H         LINE#         157
-  C:22D0H         LINE#         158
-  C:22DDH         LINE#         159
-  C:22DDH         LINE#         160
-  C:22E9H         LINE#         161
-  C:2308H         LINE#         162
-  C:230FH         LINE#         163
-  C:230FH         LINE#         165
-  C:230FH         LINE#         166
-  C:231EH         LINE#         167
-  C:232EH         LINE#         168
-  C:232EH         LINE#         169
-  C:2342H         LINE#         170
-  C:234BH         LINE#         171
-  C:234BH         LINE#         172
-  C:2353H         LINE#         173
-  C:2360H         LINE#         174
-  C:2360H         LINE#         175
-  C:2367H         LINE#         176
-  C:2367H         LINE#         177
-  C:2382H         LINE#         178
-  C:2395H         LINE#         179
-  C:23B9H         LINE#         180
-  C:23CDH         LINE#         181
-  C:23CDH         LINE#         182
-  C:23F1H         LINE#         183
-  C:2405H         LINE#         184
-  C:2429H         LINE#         185
-  C:243DH         LINE#         186
-  C:2454H         LINE#         187
-  C:2457H         LINE#         188
-  C:2457H         LINE#         190
-  C:2457H         LINE#         191
-  C:2457H         LINE#         192
-  C:2462H         LINE#         193
-  C:246DH         LINE#         194
-  C:246DH         LINE#         195
-  C:2482H         LINE#         196
-  C:24A5H         LINE#         197
-  C:24A5H         LINE#         198
-  C:24C4H         LINE#         199
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 12
-
-
-  C:24C8H         LINE#         200
-  C:24C8H         LINE#         201
-  C:24D2H         LINE#         202
-  C:24D4H         LINE#         203
-  C:24D4H         LINE#         204
-  C:24D9H         LINE#         205
-  C:24DBH         LINE#         207
-  C:24DBH         LINE#         208
-  C:24DEH         LINE#         209
-  C:24DEH         LINE#         210
-  C:24DEH         LINE#         212
-  C:24E5H         LINE#         213
-  C:24E7H         LINE#         215
-  C:24E7H         LINE#         216
-  C:24F1H         LINE#         217
-  C:24F1H         LINE#         218
-  C:250DH         LINE#         219
-  C:2515H         LINE#         220
-  -------         ENDPROC       _READ_DIR_ENTRY
-  -------         ENDMOD        DIRECTORY_FUNCTIONS_STRUCT
-
-  -------         MODULE        EXP_4_MAIN
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 13
-
-
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  D:008FH         PUBLIC        CKCON0
-  C:36B2H         PUBLIC        LCD_str_start
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  C:2B0BH         PUBLIC        main
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  D:008EH         PUBLIC        AUXR
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 14
-
-
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  X:0000H         PUBLIC        buf1
-  B:00B8H.4       PUBLIC        PLS
-  X:0200H         PUBLIC        buf2
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          MAIN
-  -------         DO            MAIN
-  D:0022H         SYMBOL        error_flag
-  D:0023H         SYMBOL        entry_num
-  D:0027H         SYMBOL        cwd_entries
-  D:002BH         SYMBOL        cwd
-  D:002FH         SYMBOL        clus
-  -------         ENDDO         clus
-  C:2B0BH         LINE#         23
-  C:2B0BH         LINE#         24
-  C:2B0BH         LINE#         29
-  C:2B0EH         LINE#         30
-  C:2B0EH         LINE#         31
-  C:2B0EH         LINE#         32
-  C:2B11H         LINE#         33
-  C:2B11H         LINE#         34
-  C:2B11H         LINE#         35
-  C:2B11H         LINE#         36
-  C:2B11H         LINE#         37
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 15
-
-
-  C:2B11H         LINE#         39
-  C:2B16H         LINE#         40
-  C:2B1BH         LINE#         42
-  C:2B22H         LINE#         43
-  C:2B29H         LINE#         45
-  C:2B31H         LINE#         47
-  C:2B34H         LINE#         48
-  C:2B41H         LINE#         49
-  C:2B4AH         LINE#         52
-  C:2B57H         LINE#         53
-  C:2B5BH         LINE#         54
-  C:2B5BH         LINE#         55
-  C:2B60H         LINE#         56
-  C:2B65H         LINE#         57
-  C:2B67H         LINE#         58
-  C:2B67H         LINE#         59
-  C:2B6CH         LINE#         61
-  C:2B71H         LINE#         62
-  C:2B75H         LINE#         63
-  C:2B75H         LINE#         64
-  C:2B7AH         LINE#         65
-  C:2B7FH         LINE#         66
-  C:2B81H         LINE#         67
-  C:2B81H         LINE#         68
-  C:2B86H         LINE#         69
-  C:2B93H         LINE#         70
-  C:2B97H         LINE#         71
-  C:2B97H         LINE#         72
-  C:2B9CH         LINE#         73
-  C:2BA1H         LINE#         74
-  C:2BA3H         LINE#         75
-  C:2BA3H         LINE#         77
-  C:2BACH         LINE#         78
-  C:2BB6H         LINE#         79
-  C:2BB6H         LINE#         80
-  C:2BBFH         LINE#         81
-  C:2BC4H         LINE#         82
-  C:2BC9H         LINE#         83
-  C:2BCBH         LINE#         85
-  C:2BCBH         LINE#         86
-  C:2BD4H         LINE#         87
-  C:2BD6H         LINE#         88
-  C:2BD6H         LINE#         90
-  C:2BDFH         LINE#         91
-  C:2BF0H         LINE#         93
-  C:2BF0H         LINE#         94
-  C:2BF0H         LINE#         95
-  C:2C0AH         LINE#         96
-  C:2C13H         LINE#         97
-  C:2C1EH         LINE#         98
-  C:2C2FH         LINE#         99
-  C:2C44H         LINE#         101
-  C:2C5AH         LINE#         102
-  C:2C5AH         LINE#         103
-  C:2C77H         LINE#         104
-  C:2C82H         LINE#         105
-  C:2C82H         LINE#         106
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 16
-
-
-  C:2C94H         LINE#         107
-  C:2CA6H         LINE#         108
-  C:2CA9H         LINE#         110
-  C:2CA9H         LINE#         111
-  C:2CB4H         LINE#         112
-  C:2CBFH         LINE#         113
-  C:2CBFH         LINE#         114
-  C:2CBFH         LINE#         116
-  C:2CBFH         LINE#         117
-  C:2CC8H         LINE#         118
-  C:2CC8H         LINE#         119
-  -------         ENDPROC       MAIN
-  -------         ENDMOD        EXP_4_MAIN
-
-  -------         MODULE        FILE_SYSTEM
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  C:3868H         PUBLIC        _first_sector
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  C:147CH         PUBLIC        _mount_drive
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 17
-
-
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0098H         PUBLIC        SCON
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  C:2CCBH         PUBLIC        _find_next_clus
-  B:0088H.3       PUBLIC        IE1
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-  B:00C8H.2       PUBLIC        TR2
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 18
-
-
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _MOUNT_DRIVE
-  D:0006H         SYMBOL        xram_data_array
-  -------         DO            xram_data_array
-  D:0033H         SYMBOL        temp8
-  D:0034H         SYMBOL        NumFAT
-  D:0004H         SYMBOL        temp16
-  D:0035H         SYMBOL        RootEntCnt
-  D:0037H         SYMBOL        RsvdSecCnt
-  D:0039H         SYMBOL        FATSz16
-  D:003BH         SYMBOL        TotSec16
-  D:003DH         SYMBOL        ClusterCount
-  D:0041H         SYMBOL        FATSz
-  D:0045H         SYMBOL        TotSec
-  D:0049H         SYMBOL        DataSec
-  D:004DH         SYMBOL        MBR_RelSec
-  D:0051H         SYMBOL        RootClus
-  D:0055H         SYMBOL        data_array
-  D:0058H         SYMBOL        drive_values
-  -------         ENDDO         drive_values
-  C:147CH         LINE#         24
-  C:147CH         LINE#         25
-  C:147CH         LINE#         31
-  C:1487H         LINE#         33
-  C:1490H         LINE#         37
-  C:1499H         LINE#         38
-  C:14B3H         LINE#         39
-  C:14C1H         LINE#         40
-  C:14CAH         LINE#         41
-  C:14D6H         LINE#         42
-  C:14D6H         LINE#         45
-  C:14EBH         LINE#         47
-  C:14FDH         LINE#         48
-  C:150BH         LINE#         49
-  C:150BH         LINE#         52
-  C:1517H         LINE#         53
-  C:1517H         LINE#         54
-  C:1520H         LINE#         55
-  C:1523H         LINE#         56
-  C:1523H         LINE#         60
-  C:153FH         LINE#         63
-  C:1546H         LINE#         65
-  C:154FH         LINE#         67
-  C:1555H         LINE#         68
-  C:1555H         LINE#         69
-  C:1563H         LINE#         70
-  C:156AH         LINE#         71
-  C:156CH         LINE#         73
-  C:1583H         LINE#         75
-  C:1594H         LINE#         76
-  C:15A3H         LINE#         77
-  C:15B4H         LINE#         78
-  C:15C5H         LINE#         79
-  C:15D6H         LINE#         80
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 19
-
-
-  C:15EBH         LINE#         83
-  C:15F1H         LINE#         84
-  C:15F1H         LINE#         85
-  C:1607H         LINE#         86
-  C:1609H         LINE#         88
-  C:1609H         LINE#         89
-  C:161EH         LINE#         90
-  C:161EH         LINE#         92
-  C:1624H         LINE#         93
-  C:1624H         LINE#         94
-  C:162FH         LINE#         95
-  C:1631H         LINE#         97
-  C:1631H         LINE#         98
-  C:1646H         LINE#         99
-  C:1646H         LINE#         102
-  C:1680H         LINE#         105
-  C:16D7H         LINE#         108
-  C:16F6H         LINE#         111
-  C:174DH         LINE#         114
-  C:176DH         LINE#         115
-  C:1782H         LINE#         116
-  C:1782H         LINE#         118
-  C:178BH         LINE#         119
-  C:178EH         LINE#         120
-  C:178EH         LINE#         121
-  C:17A3H         LINE#         122
-  C:17A3H         LINE#         124
-  C:17B1H         LINE#         125
-  C:17BAH         LINE#         126
-  C:17FFH         LINE#         127
-  C:1801H         LINE#         129
-  C:1801H         LINE#         131
-  C:180FH         LINE#         132
-  C:1818H         LINE#         133
-  C:186FH         LINE#         134
-  C:186FH         LINE#         136
-  C:1871H         LINE#         137
-  -------         ENDPROC       _MOUNT_DRIVE
-  -------         PROC          _FIRST_SECTOR
-  D:003AH         SYMBOL        cluster_num
-  -------         DO            cluster_num
-  D:003EH         SYMBOL        drive_values
-  -------         ENDDO         drive_values
-  C:3868H         LINE#         139
-  C:3870H         LINE#         140
-  C:3870H         LINE#         141
-  C:3879H         LINE#         144
-  C:388CH         LINE#         145
-  C:388CH         LINE#         146
-  C:3898H         LINE#         147
-  C:3898H         LINE#         149
-  C:3898H         LINE#         150
-  C:38E3H         LINE#         151
-  C:38E3H         LINE#         152
-  -------         ENDPROC       _FIRST_SECTOR
-  -------         PROC          _FIND_NEXT_CLUS
-  D:0033H         SYMBOL        cluster_num
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 20
-
-
-  D:0037H         SYMBOL        xram_data_array
-  -------         DO            xram_data_array
-  D:0039H         SYMBOL        data_array
-  D:003CH         SYMBOL        FAToffset
-  D:0004H         SYMBOL        sector
-  D:003EH         SYMBOL        next_clus
-  D:0042H         SYMBOL        drive_values
-  -------         ENDDO         drive_values
-  C:2CCBH         LINE#         154
-  C:2CD3H         LINE#         155
-  C:2CD3H         LINE#         159
-  C:2CDCH         LINE#         161
-  C:2CE5H         LINE#         164
-  C:2D3EH         LINE#         165
-  C:2D5BH         LINE#         168
-  C:2DAAH         LINE#         171
-  C:2DB9H         LINE#         172
-  C:2DB9H         LINE#         173
-  C:2DCAH         LINE#         174
-  C:2DCAH         LINE#         175
-  C:2DDAH         LINE#         176
-  C:2DDAH         LINE#         177
-  C:2DF0H         LINE#         180
-  C:2E04H         LINE#         181
-  C:2E04H         LINE#         182
-  C:2E0CH         LINE#         183
-  C:2E0CH         LINE#         185
-  C:2E0CH         LINE#         186
-  C:2E15H         LINE#         187
-  C:2E15H         LINE#         188
-  C:2E15H         LINE#         190
-  C:2E15H         LINE#         191
-  C:2E1EH         LINE#         192
-  C:2E24H         LINE#         193
-  C:2E24H         LINE#         195
-  C:2E2DH         LINE#         196
-  C:2E32H         LINE#         197
-  -------         ENDPROC       _FIND_NEXT_CLUS
-  -------         ENDMOD        FILE_SYSTEM
-
-  -------         MODULE        LCD_HARDWARE_FUNCTIONS
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 21
-
-
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  C:3C4CH         PUBLIC        _LCD_Write
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 22
-
-
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _LCD_WRITE
-  D:0007H         SYMBOL        RegSelect
-  D:0039H         SYMBOL        LCD_Data
-  C:3C4CH         LINE#         14
-  C:3C4EH         LINE#         15
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 23
-
-
-  C:3C4EH         LINE#         16
-  C:3C51H         LINE#         17
-  C:3C51H         LINE#         18
-  C:3C56H         LINE#         19
-  C:3C58H         LINE#         21
-  C:3C58H         LINE#         22
-  C:3C5DH         LINE#         23
-  C:3C5DH         LINE#         24
-  C:3C62H         LINE#         25
-  C:3C67H         LINE#         26
-  C:3C6CH         LINE#         27
-  C:3C71H         LINE#         28
-  -------         ENDPROC       _LCD_WRITE
-  -------         ENDMOD        LCD_HARDWARE_FUNCTIONS
-
-  -------         MODULE        LCD_ROUTINES
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 24
-
-
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0098H         PUBLIC        SCON
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:0088H.3       PUBLIC        IE1
-  C:37E3H         PUBLIC        _LCD_print
-  B:00A8H.1       PUBLIC        ET0
-  C:3B79H         PUBLIC        LCD_Init
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-  B:00C8H.2       PUBLIC        TR2
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 25
-
-
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          LCD_INIT
-  C:3B79H         LINE#         14
-  C:3B79H         LINE#         15
-  C:3B79H         LINE#         16
-  C:3B80H         LINE#         17
-  C:3B87H         LINE#         18
-  C:3B8EH         LINE#         19
-  C:3B95H         LINE#         20
-  C:3B9CH         LINE#         21
-  C:3BA3H         LINE#         22
-  C:3BAAH         LINE#         23
-  -------         ENDPROC       LCD_INIT
-  -------         PROC          _LCD_PRINT
-  D:0007H         SYMBOL        address
-  D:0033H         SYMBOL        num_bytes
-  D:0034H         SYMBOL        array_name_p
-  -------         DO            array_name_p
-  D:0037H         SYMBOL        index
-  D:0038H         SYMBOL        character
-  -------         ENDDO         character
-  C:37E3H         LINE#         28
-  C:37EBH         LINE#         29
-  C:37EBH         LINE#         31
-  C:37EFH         LINE#         32
-  C:37EFH         LINE#         33
-  C:37F8H         LINE#         34
-  C:37FFH         LINE#         35
-  C:37FFH         LINE#         36
-  C:3803H         LINE#         37
-  C:3803H         LINE#         38
-  C:3805H         LINE#         39
-  C:3815H         LINE#         40
-  C:3819H         LINE#         41
-  C:3819H         LINE#         42
-  C:381FH         LINE#         43
-  C:3826H         LINE#         44
-  C:3828H         LINE#         45
-  C:3839H         LINE#         46
-  C:383BH         LINE#         47
-  C:383BH         LINE#         49
-  C:383BH         LINE#         50
-  C:3845H         LINE#         51
-  C:3845H         LINE#         52
-  C:3856H         LINE#         53
-  C:385CH         LINE#         54
-  C:3863H         LINE#         55
-  C:3867H         LINE#         56
-  C:3867H         LINE#         57
-  -------         ENDPROC       _LCD_PRINT
-  -------         ENDMOD        LCD_ROUTINES
-
-  -------         MODULE        LED_CONTROL
-  C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 26
-
-
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  C:3D68H         PUBLIC        _LEDS_ON
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  C:3B3EH         PUBLIC        _LED_number
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 27
-
-
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  C:3D86H         PUBLIC        _LEDS_OFF
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 28
-
-
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _LEDS_ON
-  D:0007H         SYMBOL        LED_mask
-  C:3D68H         LINE#         13
-  C:3D68H         LINE#         14
-  C:3D68H         LINE#         15
-  C:3D6CH         LINE#         16
-  -------         ENDPROC       _LEDS_ON
-  -------         PROC          _LEDS_OFF
-  D:0007H         SYMBOL        LED_mask
-  C:3D86H         LINE#         26
-  C:3D86H         LINE#         27
-  C:3D86H         LINE#         28
-  C:3D89H         LINE#         29
-  -------         ENDPROC       _LEDS_OFF
-  -------         PROC          _LED_NUMBER
-  D:0006H         SYMBOL        num
-  C:3B3EH         LINE#         31
-  C:3B40H         LINE#         32
-  C:3B40H         LINE#         33
-  C:3B45H         LINE#         34
-  C:3B4AH         LINE#         35
-  C:3B4FH         LINE#         36
-  C:3B54H         LINE#         37
-  C:3B5DH         LINE#         38
-  C:3B66H         LINE#         39
-  C:3B6FH         LINE#         40
-  C:3B78H         LINE#         41
-  -------         ENDPROC       _LED_NUMBER
-  -------         ENDMOD        LED_CONTROL
-
-  -------         MODULE        OUTPUTS
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 29
-
-
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  C:3D9EH         PUBLIC        _P0_output_bits
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  C:3D8AH         PUBLIC        _P1_set_bit
-  B:00B8H.6       PUBLIC        PPCL
-  C:3D8EH         PUBLIC        _P2_set_bit
-  C:3D92H         PUBLIC        _P3_set_bit
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 30
-
-
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  C:3D6DH         PUBLIC        _P1_clear_bit
-  C:3D72H         PUBLIC        _P3_clear_bit
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 31
-
-
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _P0_OUTPUT_BITS
-  D:0007H         SYMBOL        Port_Data
-  C:3D9EH         LINE#         14
-  C:3D9EH         LINE#         15
-  C:3D9EH         LINE#         16
-  C:3DA0H         LINE#         17
-  -------         ENDPROC       _P0_OUTPUT_BITS
-  -------         PROC          _P1_CLEAR_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D6DH         LINE#         50
-  C:3D6DH         LINE#         51
-  C:3D6DH         LINE#         52
-  C:3D71H         LINE#         53
-  -------         ENDPROC       _P1_CLEAR_BIT
-  -------         PROC          _P3_CLEAR_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D72H         LINE#         60
-  C:3D72H         LINE#         61
-  C:3D72H         LINE#         62
-  C:3D76H         LINE#         63
-  -------         ENDPROC       _P3_CLEAR_BIT
-  -------         PROC          _P1_SET_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D8AH         LINE#         76
-  C:3D8AH         LINE#         77
-  C:3D8AH         LINE#         78
-  C:3D8DH         LINE#         79
-  -------         ENDPROC       _P1_SET_BIT
-  -------         PROC          _P2_SET_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D8EH         LINE#         81
-  C:3D8EH         LINE#         82
-  C:3D8EH         LINE#         83
-  C:3D91H         LINE#         84
-  -------         ENDPROC       _P2_SET_BIT
-  -------         PROC          _P3_SET_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D92H         LINE#         86
-  C:3D92H         LINE#         87
-  C:3D92H         LINE#         88
-  C:3D95H         LINE#         89
-  -------         ENDPROC       _P3_SET_BIT
-  -------         ENDMOD        OUTPUTS
-
-  -------         MODULE        PRINT_BYTES
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 32
-
-
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0098H         PUBLIC        SCON
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:0088H.3       PUBLIC        IE1
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 33
-
-
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-  B:00C8H.2       PUBLIC        TR2
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         ENDMOD        PRINT_BYTES
-
-  -------         MODULE        SDCARD
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 34
-
-
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  C:39CFH         PUBLIC        _print_error
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  C:1872H         PUBLIC        SD_card_init
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 35
-
-
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  C:36C5H         PUBLIC        _response
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  C:3D77H         PUBLIC        Return_SD_Card_Type
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  C:31B9H         PUBLIC        _read_block
-  C:30B9H         PUBLIC        _SEND_COMMAND
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  I:001EH         SYMBOL        SD_Card_Type
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          L?0131
-  -------         ENDPROC       L?0131
-  -------         PROC          _SEND_COMMAND
-  D:0066H         SYMBOL        cmnd
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 36
-
-
-  D:0067H         SYMBOL        argum
-  -------         DO            argum
-  D:006BH         SYMBOL        SPI_send
-  D:006CH         SYMBOL        return_val
-  D:006DH         SYMBOL        SPI_return
-  D:006EH         SYMBOL        error_flag
-  -------         ENDDO         error_flag
-  C:30B9H         LINE#         21
-  C:30BBH         LINE#         22
-  C:30BBH         LINE#         25
-  C:30BEH         LINE#         26
-  C:30C8H         LINE#         27
-  C:30C8H         LINE#         28
-  C:30CEH         LINE#         29
-  C:30DAH         LINE#         30
-  C:30DEH         LINE#         31
-  C:30DEH         LINE#         32
-  C:30EDH         LINE#         33
-  C:30F8H         LINE#         34
-  C:30FAH         LINE#         36
-  C:30FAH         LINE#         37
-  C:30FDH         LINE#         38
-  C:30FDH         LINE#         39
-  C:3105H         LINE#         40
-  C:3105H         LINE#         41
-  C:3114H         LINE#         42
-  C:3123H         LINE#         43
-  C:312EH         LINE#         44
-  C:3130H         LINE#         46
-  C:3130H         LINE#         47
-  C:3133H         LINE#         48
-  C:3133H         LINE#         49
-  C:313BH         LINE#         50
-  C:313BH         LINE#         51
-  C:3148H         LINE#         52
-  C:3157H         LINE#         53
-  C:3162H         LINE#         54
-  C:3164H         LINE#         56
-  C:3164H         LINE#         57
-  C:3167H         LINE#         58
-  C:3167H         LINE#         59
-  C:316FH         LINE#         60
-  C:316FH         LINE#         61
-  C:3175H         LINE#         62
-  C:3181H         LINE#         63
-  C:3183H         LINE#         65
-  C:3183H         LINE#         66
-  C:3186H         LINE#         67
-  C:3186H         LINE#         68
-  C:318EH         LINE#         69
-  C:318EH         LINE#         70
-  C:3192H         LINE#         71
-  C:3192H         LINE#         72
-  C:3195H         LINE#         73
-  C:3197H         LINE#         74
-  C:319CH         LINE#         75
-  C:319CH         LINE#         76
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 37
-
-
-  C:319FH         LINE#         77
-  C:31A1H         LINE#         79
-  C:31A1H         LINE#         80
-  C:31A4H         LINE#         81
-  C:31A4H         LINE#         82
-  C:31B1H         LINE#         83
-  C:31B1H         LINE#         84
-  C:31B3H         LINE#         86
-  C:31B3H         LINE#         87
-  C:31B6H         LINE#         88
-  C:31B6H         LINE#         89
-  C:31B8H         LINE#         90
-  -------         ENDPROC       _SEND_COMMAND
-  -------         PROC          L?0130
-  -------         ENDPROC       L?0130
-  -------         PROC          _RESPONSE
-  D:0047H         SYMBOL        num_bytes
-  D:0048H         SYMBOL        valout_p
-  -------         DO            valout_p
-  D:004BH         SYMBOL        index
-  D:004CH         SYMBOL        return_val
-  D:004DH         SYMBOL        error_flag
-  D:004EH         SYMBOL        SPI_return
-  -------         ENDDO         SPI_return
-  C:36C5H         LINE#         99
-  C:36CDH         LINE#         100
-  C:36CDH         LINE#         103
-  C:36D0H         LINE#         105
-  C:36D0H         LINE#         106
-  C:36DDH         LINE#         107
-  C:36DFH         LINE#         108
-  C:36ECH         LINE#         109
-  C:36F0H         LINE#         110
-  C:36F0H         LINE#         111
-  C:36F3H         LINE#         112
-  C:36F5H         LINE#         113
-  C:36F9H         LINE#         114
-  C:36F9H         LINE#         115
-  C:36FCH         LINE#         116
-  C:36FEH         LINE#         118
-  C:36FEH         LINE#         119
-  C:3709H         LINE#         120
-  C:3711H         LINE#         121
-  C:3711H         LINE#         122
-  C:3718H         LINE#         123
-  C:3718H         LINE#         124
-  C:3722H         LINE#         125
-  C:3722H         LINE#         126
-  C:372FH         LINE#         127
-  C:3740H         LINE#         128
-  C:3744H         LINE#         129
-  C:3744H         LINE#         130
-  C:3744H         LINE#         132
-  C:3744H         LINE#         133
-  C:3747H         LINE#         134
-  C:3747H         LINE#         135
-  C:3747H         LINE#         136
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 38
-
-
-  C:3754H         LINE#         137
-  C:3756H         LINE#         138
-  -------         ENDPROC       _RESPONSE
-  -------         PROC          _READ_BLOCK
-  D:0066H         SYMBOL        num_bytes
-  D:0068H         SYMBOL        array_out_p
-  -------         DO            array_out_p
-  D:006BH         SYMBOL        error_flag
-  D:006CH         SYMBOL        return_val
-  D:006DH         SYMBOL        SPI_return
-  D:006EH         SYMBOL        index
-  -------         ENDDO         index
-  C:31B9H         LINE#         149
-  C:31C3H         LINE#         150
-  C:31C3H         LINE#         153
-  C:31C8H         LINE#         154
-  C:31CAH         LINE#         156
-  C:31CAH         LINE#         157
-  C:31D7H         LINE#         158
-  C:31DFH         LINE#         159
-  C:31EEH         LINE#         160
-  C:31F2H         LINE#         161
-  C:31F2H         LINE#         162
-  C:31F5H         LINE#         163
-  C:31F8H         LINE#         164
-  C:31FEH         LINE#         165
-  C:31FEH         LINE#         166
-  C:3201H         LINE#         167
-  C:3204H         LINE#         169
-  C:3204H         LINE#         170
-  C:320BH         LINE#         171
-  C:320BH         LINE#         172
-  C:320FH         LINE#         174
-  C:320FH         LINE#         175
-  C:321CH         LINE#         176
-  C:3224H         LINE#         177
-  C:3233H         LINE#         178
-  C:3237H         LINE#         179
-  C:3237H         LINE#         180
-  C:323AH         LINE#         181
-  C:323CH         LINE#         182
-  C:3242H         LINE#         183
-  C:3242H         LINE#         184
-  C:3245H         LINE#         185
-  C:3247H         LINE#         186
-  C:324DH         LINE#         187
-  C:324DH         LINE#         188
-  C:325CH         LINE#         189
-  C:325CH         LINE#         190
-  C:3269H         LINE#         191
-  C:327AH         LINE#         192
-  C:3284H         LINE#         193
-  C:3291H         LINE#         194
-  C:329EH         LINE#         195
-  C:32A0H         LINE#         197
-  C:32A0H         LINE#         198
-  C:32A3H         LINE#         199
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 39
-
-
-  C:32A3H         LINE#         200
-  C:32A5H         LINE#         202
-  C:32A5H         LINE#         203
-  C:32A8H         LINE#         204
-  C:32A8H         LINE#         205
-  C:32A8H         LINE#         206
-  C:32B5H         LINE#         207
-  C:32B7H         LINE#         208
-  -------         ENDPROC       _READ_BLOCK
-  -------         PROC          SD_CARD_INIT
-  -------         DO            SD_CARD_INIT
-  D:0033H         SYMBOL        i
-  D:0034H         SYMBOL        error_status
-  D:0035H         SYMBOL        error_flag
-  D:0036H         SYMBOL        valsout
-  D:003EH         SYMBOL        SPI_return
-  D:003FH         SYMBOL        argument
-  D:0043H         SYMBOL        timeout
-  -------         ENDDO         timeout
-  C:1872H         LINE#         216
-  C:1872H         LINE#         217
-  C:1872H         LINE#         221
-  C:1875H         LINE#         222
-  C:1879H         LINE#         223
-  C:187EH         LINE#         224
-  C:1887H         LINE#         225
-  C:188AH         LINE#         226
-  C:188AH         LINE#         227
-  C:1897H         LINE#         228
-  C:18A0H         LINE#         229
-  C:18A5H         LINE#         230
-  C:18AEH         LINE#         231
-  C:18B3H         LINE#         232
-  C:18C2H         LINE#         233
-  C:18C6H         LINE#         234
-  C:18C6H         LINE#         235
-  C:18CBH         LINE#         236
-  C:18D7H         LINE#         237
-  C:18D9H         LINE#         239
-  C:18D9H         LINE#         240
-  C:18DEH         LINE#         241
-  C:18DEH         LINE#         242
-  C:18E3H         LINE#         243
-  C:18E8H         LINE#         244
-  C:18ECH         LINE#         245
-  C:18ECH         LINE#         246
-  C:18EEH         LINE#         247
-  C:18EEH         LINE#         248
-  C:18F5H         LINE#         249
-  C:18F5H         LINE#         250
-  C:18FAH         LINE#         251
-  C:1903H         LINE#         252
-  C:1908H         LINE#         253
-  C:191AH         LINE#         254
-  C:1921H         LINE#         255
-  C:1921H         LINE#         256
-  C:192DH         LINE#         257
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 40
-
-
-  C:1932H         LINE#         258
-  C:1937H         LINE#         259
-  C:193BH         LINE#         260
-  C:193BH         LINE#         261
-  C:1944H         LINE#         262
-  C:1950H         LINE#         263
-  C:195AH         LINE#         264
-  C:195AH         LINE#         265
-  C:195DH         LINE#         266
-  C:1961H         LINE#         267
-  C:196AH         LINE#         268
-  C:1973H         LINE#         269
-  C:1975H         LINE#         271
-  C:1975H         LINE#         272
-  C:1978H         LINE#         273
-  C:1978H         LINE#         274
-  C:197AH         LINE#         276
-  C:197AH         LINE#         277
-  C:1983H         LINE#         278
-  C:1986H         LINE#         279
-  C:1986H         LINE#         280
-  C:1997H         LINE#         281
-  C:19A0H         LINE#         282
-  C:19A5H         LINE#         283
-  C:19AAH         LINE#         284
-  C:19B0H         LINE#         285
-  C:19B0H         LINE#         286
-  C:19B3H         LINE#         287
-  C:19B3H         LINE#         288
-  C:19B7H         LINE#         289
-  C:19C0H         LINE#         290
-  C:19C0H         LINE#         291
-  C:19C2H         LINE#         293
-  C:19C2H         LINE#         294
-  C:19C7H         LINE#         295
-  C:19CCH         LINE#         296
-  C:19D1H         LINE#         297
-  C:19D1H         LINE#         298
-  C:19D1H         LINE#         299
-  C:19D8H         LINE#         300
-  C:19D8H         LINE#         301
-  C:19DDH         LINE#         302
-  C:19E6H         LINE#         303
-  C:19EBH         LINE#         304
-  C:19F0H         LINE#         305
-  C:19F4H         LINE#         306
-  C:19F4H         LINE#         307
-  C:1A00H         LINE#         308
-  C:1A05H         LINE#         309
-  C:1A0AH         LINE#         310
-  C:1A13H         LINE#         311
-  C:1A16H         LINE#         312
-  C:1A16H         LINE#         313
-  C:1A27H         LINE#         314
-  C:1A30H         LINE#         315
-  C:1A35H         LINE#         316
-  C:1A3AH         LINE#         317
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 41
-
-
-  C:1A42H         LINE#         318
-  C:1A42H         LINE#         319
-  C:1A45H         LINE#         320
-  C:1A45H         LINE#         321
-  C:1A47H         LINE#         323
-  C:1A47H         LINE#         324
-  C:1A4CH         LINE#         325
-  C:1A51H         LINE#         326
-  C:1A56H         LINE#         327
-  C:1A56H         LINE#         328
-  C:1A5AH         LINE#         329
-  C:1A5AH         LINE#         330
-  C:1A5CH         LINE#         331
-  C:1A5CH         LINE#         332
-  C:1A5CH         LINE#         333
-  C:1A63H         LINE#         334
-  C:1A63H         LINE#         335
-  C:1A69H         LINE#         336
-  C:1A69H         LINE#         337
-  C:1A73H         LINE#         338
-  C:1A75H         LINE#         340
-  C:1A75H         LINE#         341
-  C:1A7EH         LINE#         342
-  C:1A7EH         LINE#         343
-  C:1A87H         LINE#         344
-  C:1A8CH         LINE#         345
-  C:1A95H         LINE#         348
-  C:1A95H         LINE#         349
-  C:1A9AH         LINE#         350
-  C:1AAAH         LINE#         351
-  C:1AB3H         LINE#         353
-  C:1ABDH         LINE#         354
-  C:1AD0H         LINE#         355
-  C:1AD7H         LINE#         356
-  C:1ADCH         LINE#         358
-  C:1AF1H         LINE#         359
-  C:1B07H         LINE#         360
-  C:1B10H         LINE#         361
-  C:1B14H         LINE#         362
-  C:1B14H         LINE#         363
-  C:1B19H         LINE#         364
-  C:1B25H         LINE#         365
-  C:1B27H         LINE#         367
-  C:1B27H         LINE#         368
-  C:1B2CH         LINE#         369
-  C:1B31H         LINE#         370
-  C:1B31H         LINE#         372
-  C:1B46H         LINE#         373
-  C:1B4AH         LINE#         374
-  C:1B4AH         LINE#         375
-  C:1B4CH         LINE#         376
-  C:1B4CH         LINE#         377
-  C:1B4CH         LINE#         378
-  C:1B5DH         LINE#         379
-  C:1B5DH         LINE#         380
-  C:1B62H         LINE#         381
-  C:1B6BH         LINE#         382
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 42
-
-
-  C:1B70H         LINE#         383
-  C:1B75H         LINE#         384
-  C:1B7CH         LINE#         385
-  C:1B7CH         LINE#         386
-  C:1B88H         LINE#         387
-  C:1B8DH         LINE#         388
-  C:1B92H         LINE#         389
-  C:1B9BH         LINE#         390
-  C:1B9EH         LINE#         391
-  C:1B9EH         LINE#         392
-  C:1BAFH         LINE#         393
-  C:1BB8H         LINE#         394
-  C:1BBDH         LINE#         395
-  C:1BC2H         LINE#         396
-  C:1BC7H         LINE#         397
-  C:1BC7H         LINE#         398
-  C:1BCAH         LINE#         399
-  C:1BCDH         LINE#         401
-  C:1BCDH         LINE#         402
-  C:1BD5H         LINE#         403
-  C:1BD5H         LINE#         404
-  C:1BD9H         LINE#         405
-  C:1BE2H         LINE#         406
-  C:1BE4H         LINE#         408
-  C:1BE4H         LINE#         409
-  C:1BE8H         LINE#         410
-  C:1BF1H         LINE#         411
-  C:1BF6H         LINE#         412
-  C:1BFFH         LINE#         413
-  C:1C04H         LINE#         414
-  C:1C15H         LINE#         415
-  C:1C19H         LINE#         416
-  C:1C19H         LINE#         417
-  C:1C1EH         LINE#         418
-  C:1C23H         LINE#         419
-  C:1C28H         LINE#         420
-  C:1C34H         LINE#         421
-  C:1C3DH         LINE#         422
-  C:1C3DH         LINE#         423
-  C:1C3DH         LINE#         424
-  C:1C3DH         LINE#         425
-  C:1C3FH         LINE#         427
-  C:1C3FH         LINE#         428
-  C:1C44H         LINE#         429
-  C:1C49H         LINE#         430
-  C:1C4EH         LINE#         431
-  C:1C4EH         LINE#         432
-  C:1C52H         LINE#         433
-  C:1C52H         LINE#         434
-  C:1C54H         LINE#         435
-  C:1C59H         LINE#         436
-  C:1C59H         LINE#         437
-  C:1C59H         LINE#         438
-  C:1C5DH         LINE#         439
-  C:1C5DH         LINE#         440
-  C:1C61H         LINE#         441
-  C:1C61H         LINE#         442
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 43
-
-
-  C:1C63H         LINE#         443
-  -------         ENDPROC       SD_CARD_INIT
-  -------         PROC          RETURN_SD_CARD_TYPE
-  C:3D77H         LINE#         451
-  C:3D77H         LINE#         452
-  C:3D77H         LINE#         453
-  C:3D7BH         LINE#         454
-  -------         ENDPROC       RETURN_SD_CARD_TYPE
-  -------         PROC          _PRINT_ERROR
-  D:0047H         SYMBOL        error
-  C:39CFH         LINE#         463
-  C:39D1H         LINE#         464
-  C:39D1H         LINE#         465
-  C:39DFH         LINE#         466
-  C:39EDH         LINE#         467
-  C:39FBH         LINE#         468
-  C:3A09H         LINE#         469
-  C:3A17H         LINE#         470
-  C:3A25H         LINE#         471
-  C:3A33H         LINE#         472
-  C:3A3CH         LINE#         473
-  -------         ENDPROC       _PRINT_ERROR
-  -------         ENDMOD        SDCARD
-
-  -------         MODULE        SECTOR_READER
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 44
-
-
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  C:3AA1H         PUBLIC        _Read_Sector
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  C:3D41H         PUBLIC        _read8
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 45
-
-
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  C:3A3DH         PUBLIC        _read32
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  C:3BE6H         PUBLIC        _read16
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _READ_SECTOR
-  D:005BH         SYMBOL        sector_number
-  D:005FH         SYMBOL        sector_size
-  D:0061H         SYMBOL        data_array
-  -------         DO            data_array
-  D:0064H         SYMBOL        SD_type
-  D:0065H         SYMBOL        error_flag
-  -------         ENDDO         error_flag
-  C:3AA1H         LINE#         7
-  C:3AA9H         LINE#         8
-  C:3AA9H         LINE#         10
-  C:3AAEH         LINE#         11
-  C:3AB3H         LINE#         12
-  C:3AD1H         LINE#         13
-  C:3AE2H         LINE#         14
-  C:3AE7H         LINE#         16
-  C:3AEEH         LINE#         17
-  C:3AF0H         LINE#         18
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 46
-
-
-  -------         ENDPROC       _READ_SECTOR
-  -------         PROC          _READ8
-  D:0006H         SYMBOL        offset
-  D:0001H         SYMBOL        data_array
-  C:3D41H         LINE#         21
-  C:3D41H         LINE#         22
-  C:3D41H         LINE#         23
-  C:3D44H         LINE#         24
-  C:3D4CH         LINE#         25
-  -------         ENDPROC       _READ8
-  -------         PROC          _READ16
-  D:005BH         SYMBOL        offset
-  D:005DH         SYMBOL        data_array
-  -------         DO            data_array
-  D:0004H         SYMBOL        ret_val
-  -------         ENDDO         ret_val
-  C:3BE6H         LINE#         28
-  C:3BF0H         LINE#         29
-  C:3BF0H         LINE#         31
-  C:3BF3H         LINE#         32
-  C:3BF6H         LINE#         33
-  C:3C06H         LINE#         34
-  C:3C09H         LINE#         35
-  C:3C16H         LINE#         36
-  C:3C18H         LINE#         37
-  -------         ENDPROC       _READ16
-  -------         PROC          _READ32
-  D:005BH         SYMBOL        offset
-  D:0001H         SYMBOL        data_array
-  -------         DO            data_array
-  D:005DH         SYMBOL        ret_val
-  D:0061H         SYMBOL        temp
-  D:0062H         SYMBOL        i
-  -------         ENDDO         i
-  C:3A3DH         LINE#         40
-  C:3A41H         LINE#         41
-  C:3A41H         LINE#         44
-  C:3A44H         LINE#         45
-  C:3A4DH         LINE#         46
-  C:3A4FH         LINE#         47
-  C:3A4FH         LINE#         48
-  C:3A69H         LINE#         49
-  C:3A7EH         LINE#         50
-  C:3A91H         LINE#         51
-  C:3A98H         LINE#         52
-  C:3AA0H         LINE#         53
-  -------         ENDPROC       _READ32
-  -------         ENDMOD        SECTOR_READER
-
-  -------         MODULE        SPI
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 47
-
-
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  D:00C3H         PUBLIC        SPCON
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00C4H         PUBLIC        SPSTA
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  C:3757H         PUBLIC        _SPI_Master_Init
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  C:3D96H         PUBLIC        _SPI_Select_Set
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 48
-
-
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  C:3D7CH         PUBLIC        _SPI_Select_Clear
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 49
-
-
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  C:3C19H         PUBLIC        _SPI_Transfer
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  D:00C5H         PUBLIC        SPDAT
-  -------         PROC          _SPI_MASTER_INIT
-  D:0004H         SYMBOL        clock_rate
-  -------         DO            clock_rate
-  D:0007H         SYMBOL        divider
-  D:0033H         SYMBOL        return_val
-  -------         ENDDO         return_val
-  C:3757H         LINE#         15
-  C:3757H         LINE#         16
-  C:3757H         LINE#         18
-  C:375AH         LINE#         19
-  C:376CH         LINE#         20
-  C:3772H         LINE#         21
-  C:3772H         LINE#         22
-  C:3775H         LINE#         23
-  C:3777H         LINE#         24
-  C:3783H         LINE#         25
-  C:3783H         LINE#         26
-  C:3786H         LINE#         27
-  C:3788H         LINE#         28
-  C:3794H         LINE#         29
-  C:3794H         LINE#         30
-  C:3797H         LINE#         31
-  C:3799H         LINE#         32
-  C:37A5H         LINE#         33
-  C:37A5H         LINE#         34
-  C:37A8H         LINE#         35
-  C:37AAH         LINE#         36
-  C:37B6H         LINE#         37
-  C:37B6H         LINE#         38
-  C:37B9H         LINE#         39
-  C:37BBH         LINE#         40
-  C:37C7H         LINE#         41
-  C:37C7H         LINE#         42
-  C:37CAH         LINE#         43
-  C:37CCH         LINE#         44
-  C:37D8H         LINE#         45
-  C:37D8H         LINE#         46
-  C:37DBH         LINE#         47
-  C:37DDH         LINE#         49
-  C:37DDH         LINE#         50
-  C:37E0H         LINE#         51
-  C:37E0H         LINE#         52
-  C:37E2H         LINE#         53
-  -------         ENDPROC       _SPI_MASTER_INIT
-  -------         PROC          _SPI_TRANSFER
-  D:0007H         SYMBOL        data_input
-  D:0001H         SYMBOL        data_output_p
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 50
-
-
-  -------         DO            data_output_p
-  D:0007H         SYMBOL        test
-  D:0006H         SYMBOL        timeout
-  -------         ENDDO         timeout
-  C:3C19H         LINE#         64
-  C:3C19H         LINE#         65
-  C:3C19H         LINE#         67
-  C:3C1BH         LINE#         68
-  C:3C1DH         LINE#         70
-  C:3C1DH         LINE#         71
-  C:3C1FH         LINE#         72
-  C:3C20H         LINE#         73
-  C:3C28H         LINE#         74
-  C:3C2BH         LINE#         75
-  C:3C2BH         LINE#         76
-  C:3C30H         LINE#         77
-  C:3C30H         LINE#         78
-  C:3C35H         LINE#         79
-  C:3C37H         LINE#         80
-  C:3C39H         LINE#         82
-  C:3C39H         LINE#         83
-  C:3C3EH         LINE#         84
-  C:3C40H         LINE#         85
-  C:3C40H         LINE#         86
-  C:3C42H         LINE#         88
-  C:3C42H         LINE#         89
-  C:3C47H         LINE#         90
-  C:3C49H         LINE#         91
-  C:3C49H         LINE#         92
-  C:3C4BH         LINE#         93
-  -------         ENDPROC       _SPI_TRANSFER
-  -------         PROC          _SPI_SELECT_SET
-  D:0007H         SYMBOL        Output_Pin
-  C:3D96H         LINE#         103
-  C:3D96H         LINE#         104
-  C:3D96H         LINE#         105
-  C:3D99H         LINE#         106
-  -------         ENDPROC       _SPI_SELECT_SET
-  -------         PROC          _SPI_SELECT_CLEAR
-  D:0007H         SYMBOL        Output_Pin
-  C:3D7CH         LINE#         109
-  C:3D7CH         LINE#         110
-  C:3D7CH         LINE#         111
-  C:3D80H         LINE#         112
-  -------         ENDPROC       _SPI_SELECT_CLEAR
-  -------         ENDMOD        SPI
-
-  -------         MODULE        TIMER0_HARDWARE_DELAY_1MS
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 51
-
-
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0089H         PUBLIC        TMOD
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 52
-
-
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  D:008CH         PUBLIC        TH0
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  D:008AH         PUBLIC        TL0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  C:3C9DH         PUBLIC        _Timer0_DELAY_1ms
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 53
-
-
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _TIMER0_DELAY_1MS
-  D:0006H         SYMBOL        duration
-  C:3C9DH         LINE#         7
-  C:3C9DH         LINE#         8
-  C:3C9DH         LINE#         10
-  C:3CA0H         LINE#         11
-  C:3CA3H         LINE#         14
-  C:3CA5H         LINE#         17
-  C:3CA5H         LINE#         19
-  C:3CA8H         LINE#         20
-  C:3CABH         LINE#         22
-  C:3CADH         LINE#         23
-  C:3CAFH         LINE#         25
-  C:3CB2H         LINE#         27
-  C:3CB4H         LINE#         28
-  C:3CB9H         LINE#         29
-  C:3CC2H         LINE#         30
-  -------         ENDPROC       _TIMER0_DELAY_1MS
-  -------         ENDMOD        TIMER0_HARDWARE_DELAY_1MS
-
-  -------         MODULE        UART
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 54
-
-
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0099H         PUBLIC        SBUF
-  D:0087H         PUBLIC        PCON
-  D:0098H         PUBLIC        SCON
-  C:3BB1H         PUBLIC        _uart_init
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  D:009BH         PUBLIC        BDRCON
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:0088H.3       PUBLIC        IE1
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  C:3CC3H         PUBLIC        _UART_Transmit
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 55
-
-
-  B:00C8H.2       PUBLIC        TR2
-  D:009AH         PUBLIC        BRL
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  C:3D59H         PUBLIC        UART_Receive
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _UART_INIT
-  D:0006H         SYMBOL        BAUD_RATE
-  C:3BB1H         LINE#         13
-  C:3BB1H         LINE#         14
-  C:3BB1H         LINE#         18
-  C:3BB4H         LINE#         19
-  C:3BB7H         LINE#         22
-  C:3BB9H         LINE#         24
-  C:3BBCH         LINE#         27
-  C:3BBFH         LINE#         29
-  C:3BE0H         LINE#         30
-  C:3BE3H         LINE#         35
-  C:3BE5H         LINE#         38
-  -------         ENDPROC       _UART_INIT
-  -------         PROC          _UART_TRANSMIT
-  D:0007H         SYMBOL        send_value
-  -------         DO            send_value
-  D:0006H         SYMBOL        return_value
-  D:0004H         SYMBOL        timeout
-  -------         ENDDO         timeout
-  C:3CC3H         LINE#         48
-  C:3CC3H         LINE#         49
-  C:3CC3H         LINE#         52
-  C:3CC6H         LINE#         54
-  C:3CC6H         LINE#         55
-  C:3CCBH         LINE#         56
-  C:3CD2H         LINE#         57
-  C:3CD6H         LINE#         58
-  C:3CD6H         LINE#         59
-  C:3CD8H         LINE#         60
-  C:3CDAH         LINE#         61
-  C:3CDCH         LINE#         62
-  C:3CDEH         LINE#         64
-  C:3CDEH         LINE#         65
-  C:3CE0H         LINE#         66
-  C:3CE0H         LINE#         67
-  C:3CE2H         LINE#         68
-  -------         ENDPROC       _UART_TRANSMIT
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 56
-
-
-  -------         PROC          UART_RECEIVE
-  -------         DO            UART_RECEIVE
-  D:0007H         SYMBOL        return_value
-  -------         ENDDO         return_value
-  C:3D59H         LINE#         79
-  C:3D59H         LINE#         80
-  C:3D59H         LINE#         82
-  C:3D5CH         LINE#         83
-  C:3D5EH         LINE#         84
-  C:3D60H         LINE#         85
-  C:3D60H         LINE#         86
-  -------         ENDPROC       UART_RECEIVE
-  -------         ENDMOD        UART
-
-  -------         MODULE        PLAYER
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  D:0008H         PUBLIC        sector_offset
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  C:3AF1H         PUBLIC        _init_player
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  D:000CH         SYMBOL        drive_values
-  D:000FH         PUBLIC        base_sector
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  D:0013H         PUBLIC        player_state
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 57
-
-
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  D:0014H         PUBLIC        buffer1_flag
-  D:0015H         PUBLIC        buffer2_flag
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  D:0016H         PUBLIC        index1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  D:0018H         PUBLIC        index2
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  C:2724H         PUBLIC        player_state_machine_runner
-  B:00D0H.0       PUBLIC        P
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 58
-
-
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  C:395DH         PUBLIC        _send_buffer
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  D:001AH         PUBLIC        current_cluster
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  C:38EAH         PUBLIC        _load_sector
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          L?0052
-  -------         ENDPROC       L?0052
-  -------         PROC          _LOAD_SECTOR
-  D:0037H         SYMBOL        buf
-  C:38EAH         LINE#         41
-  C:38F0H         LINE#         42
-  C:38F0H         LINE#         44
-  C:3916H         LINE#         46
-  C:3947H         LINE#         47
-  C:395CH         LINE#         48
-  -------         ENDPROC       _LOAD_SECTOR
-  -------         PROC          _INIT_PLAYER
-  D:0033H         SYMBOL        start_cluster
-  C:3AF1H         LINE#         50
-  C:3AF9H         LINE#         51
-  C:3AF9H         LINE#         52
-  C:3AFCH         LINE#         53
-  C:3AFFH         LINE#         54
-  C:3B02H         LINE#         55
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 59
-
-
-  C:3B06H         LINE#         56
-  C:3B0AH         LINE#         57
-  C:3B13H         LINE#         58
-  C:3B26H         LINE#         59
-  C:3B2FH         LINE#         60
-  C:3B3BH         LINE#         61
-  -------         ENDPROC       _INIT_PLAYER
-  -------         PROC          _SEND_BUFFER
-  D:0033H         SYMBOL        buf
-  D:0036H         SYMBOL        index
-  D:0039H         SYMBOL        buffer_flag
-  -------         DO            buffer_flag
-  D:003CH         SYMBOL        temp8
-  -------         ENDDO         temp8
-  C:395DH         LINE#         65
-  C:3963H         LINE#         66
-  C:3963H         LINE#         68
-  C:3968H         LINE#         69
-  C:39A3H         LINE#         70
-  C:39A8H         LINE#         74
-  C:39B9H         LINE#         75
-  C:39B9H         LINE#         76
-  C:39BFH         LINE#         77
-  C:39CAH         LINE#         78
-  C:39CCH         LINE#         79
-  C:39CCH         LINE#         80
-  C:39CEH         LINE#         81
-  -------         ENDPROC       _SEND_BUFFER
-  -------         PROC          PLAYER_STATE_MACHINE_RUNNER
-  C:2724H         LINE#         83
-  C:2724H         LINE#         84
-  C:2724H         LINE#         85
-  C:2750H         LINE#         86
-  C:2750H         LINE#         87
-  C:2750H         LINE#         88
-  C:2755H         LINE#         89
-  C:276EH         LINE#         90
-  C:2783H         LINE#         91
-  C:2783H         LINE#         92
-  C:278CH         LINE#         93
-  C:278FH         LINE#         94
-  C:2792H         LINE#         96
-  C:2792H         LINE#         97
-  C:2795H         LINE#         98
-  C:2795H         LINE#         99
-  C:2798H         LINE#         100
-  C:2798H         LINE#         101
-  C:279DH         LINE#         102
-  C:27A6H         LINE#         103
-  C:27A9H         LINE#         104
-  C:27A9H         LINE#         105
-  C:27AEH         LINE#         109
-  C:27CAH         LINE#         110
-  C:27CAH         LINE#         111
-  C:27CCH         LINE#         112
-  C:27CFH         LINE#         114
-  C:27CFH         LINE#         115
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 60
-
-
-  C:27D2H         LINE#         116
-  C:27D5H         LINE#         117
-  C:27D8H         LINE#         118
-  C:27D8H         LINE#         119
-  C:27DBH         LINE#         120
-  C:27DBH         LINE#         121
-  C:27E0H         LINE#         122
-  C:27E3H         LINE#         123
-  C:27E3H         LINE#         124
-  C:2800H         LINE#         125
-  C:2800H         LINE#         127
-  C:2813H         LINE#         129
-  C:2813H         LINE#         132
-  C:2816H         LINE#         133
-  C:2819H         LINE#         134
-  C:2821H         LINE#         135
-  C:2821H         LINE#         137
-  C:2824H         LINE#         138
-  C:2827H         LINE#         139
-  C:282DH         LINE#         140
-  C:282DH         LINE#         142
-  C:2830H         LINE#         143
-  C:2830H         LINE#         144
-  C:2833H         LINE#         145
-  C:2833H         LINE#         146
-  C:2838H         LINE#         147
-  C:2851H         LINE#         148
-  C:2866H         LINE#         149
-  C:2866H         LINE#         150
-  C:286FH         LINE#         151
-  C:2872H         LINE#         152
-  C:2875H         LINE#         154
-  C:2875H         LINE#         155
-  C:2878H         LINE#         156
-  C:2878H         LINE#         157
-  C:287BH         LINE#         158
-  C:287BH         LINE#         159
-  C:2880H         LINE#         160
-  C:2889H         LINE#         161
-  C:288CH         LINE#         162
-  C:288CH         LINE#         163
-  C:2891H         LINE#         167
-  C:28ADH         LINE#         168
-  C:28ADH         LINE#         170
-  C:28B0H         LINE#         171
-  C:28B2H         LINE#         173
-  C:28B2H         LINE#         174
-  C:28BBH         LINE#         175
-  C:28BEH         LINE#         176
-  C:28C1H         LINE#         177
-  C:28C1H         LINE#         178
-  C:28C3H         LINE#         179
-  C:28C3H         LINE#         180
-  C:28C8H         LINE#         181
-  C:28CBH         LINE#         182
-  C:28CBH         LINE#         183
-  C:28E8H         LINE#         184
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 61
-
-
-  C:28E8H         LINE#         187
-  C:28FBH         LINE#         189
-  C:28FBH         LINE#         192
-  C:28FEH         LINE#         193
-  C:2900H         LINE#         194
-  C:2908H         LINE#         195
-  C:2908H         LINE#         197
-  C:290BH         LINE#         198
-  C:290DH         LINE#         199
-  C:2910H         LINE#         200
-  C:2910H         LINE#         202
-  C:2913H         LINE#         203
-  C:2913H         LINE#         204
-  C:2915H         LINE#         205
-  C:2915H         LINE#         207
-  C:291AH         LINE#         208
-  C:291AH         LINE#         209
-  C:291AH         LINE#         211
-  C:2922H         LINE#         212
-  C:2924H         LINE#         213
-  -------         ENDPROC       PLAYER_STATE_MACHINE_RUNNER
-  -------         ENDMOD        PLAYER
-
-  -------         MODULE        I2C
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  C:3CE9H         PUBLIC        _I2C_clock_delay
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  C:32B8H         PUBLIC        _I2C_Write
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 62
-
-
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0089H         PUBLIC        TMOD
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  C:3CFFH         PUBLIC        I2C_clock_start
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  D:008CH         PUBLIC        TH0
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 63
-
-
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  D:008AH         PUBLIC        TL0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  C:2E33H         PUBLIC        _I2C_Read
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _I2C_WRITE
-  D:004BH         SYMBOL        device_addr
-  D:004CH         SYMBOL        int_addr
-  D:0050H         SYMBOL        int_addr_sz
-  D:0051H         SYMBOL        num_bytes
-  D:0052H         SYMBOL        send_array
-  -------         DO            send_array
-  D:0055H         SYMBOL        send_val
-  D:0056H         SYMBOL        return_val
-  D:0057H         SYMBOL        num_bits
-  D:0058H         SYMBOL        send_bit
-  D:0059H         SYMBOL        sent_bit
-  -------         ENDDO         sent_bit
-  C:32B8H         LINE#         33
-  C:32BAH         LINE#         34
-  C:32BAH         LINE#         37
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 64
-
-
-  C:32BCH         LINE#         38
-  C:32BEH         LINE#         39
-  C:32C1H         LINE#         40
-  C:32C9H         LINE#         41
-  C:32CBH         LINE#         42
-  C:32D7H         LINE#         43
-  C:32D7H         LINE#         44
-  C:32DAH         LINE#         45
-  C:32E0H         LINE#         46
-  C:32E3H         LINE#         48
-  C:32E5H         LINE#         50
-  C:32E5H         LINE#         51
-  C:32E8H         LINE#         53
-  C:32E8H         LINE#         54
-  C:32EDH         LINE#         55
-  C:32EFH         LINE#         56
-  C:32F1H         LINE#         57
-  C:3302H         LINE#         58
-  C:3302H         LINE#         59
-  C:3305H         LINE#         60
-  C:3307H         LINE#         61
-  C:330AH         LINE#         62
-  C:3310H         LINE#         63
-  C:3317H         LINE#         64
-  C:3322H         LINE#         65
-  C:3326H         LINE#         66
-  C:3326H         LINE#         67
-  C:332BH         LINE#         68
-  C:332DH         LINE#         69
-  C:332FH         LINE#         70
-  C:3333H         LINE#         71
-  C:3333H         LINE#         72
-  C:3337H         LINE#         73
-  C:3346H         LINE#         74
-  C:3348H         LINE#         76
-  C:3348H         LINE#         77
-  C:334AH         LINE#         78
-  C:3355H         LINE#         79
-  C:3360H         LINE#         80
-  C:3360H         LINE#         81
-  C:3365H         LINE#         82
-  C:3367H         LINE#         83
-  C:336AH         LINE#         84
-  C:3370H         LINE#         85
-  C:3375H         LINE#         86
-  C:3375H         LINE#         87
-  C:3380H         LINE#         89
-  C:3386H         LINE#         90
-  C:3386H         LINE#         91
-  C:338BH         LINE#         92
-  C:338DH         LINE#         93
-  C:338FH         LINE#         94
-  C:3394H         LINE#         95
-  C:3396H         LINE#         96
-  C:3399H         LINE#         97
-  C:339EH         LINE#         98
-  C:33A0H         LINE#         99
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 65
-
-
-  C:33A0H         LINE#         100
-  C:33A2H         LINE#         102
-  C:33A2H         LINE#         103
-  C:33A5H         LINE#         104
-  C:33A5H         LINE#         105
-  C:33A7H         LINE#         106
-  -------         ENDPROC       _I2C_WRITE
-  -------         PROC          _I2C_READ
-  D:003BH         SYMBOL        device_addr
-  D:003CH         SYMBOL        int_addr
-  D:0040H         SYMBOL        int_addr_sz
-  D:0041H         SYMBOL        num_bytes
-  D:0042H         SYMBOL        rec_array
-  -------         DO            rec_array
-  D:0045H         SYMBOL        send_val
-  D:0046H         SYMBOL        return_val
-  D:0047H         SYMBOL        num_bits
-  D:0048H         SYMBOL        send_bit
-  D:0049H         SYMBOL        sent_bit
-  D:004AH         SYMBOL        rcv_val
-  -------         ENDDO         rcv_val
-  C:2E33H         LINE#         117
-  C:2E35H         LINE#         118
-  C:2E35H         LINE#         121
-  C:2E38H         LINE#         123
-  C:2E3CH         LINE#         124
-  C:2E3CH         LINE#         125
-  C:2E5BH         LINE#         126
-  C:2E5BH         LINE#         127
-  C:2E62H         LINE#         128
-  C:2E62H         LINE#         129
-  C:2E64H         LINE#         130
-  C:2E66H         LINE#         131
-  C:2E72H         LINE#         132
-  C:2E72H         LINE#         133
-  C:2E75H         LINE#         134
-  C:2E7BH         LINE#         135
-  C:2E7EH         LINE#         137
-  C:2E80H         LINE#         139
-  C:2E83H         LINE#         141
-  C:2E83H         LINE#         142
-  C:2E88H         LINE#         143
-  C:2E8AH         LINE#         144
-  C:2E8CH         LINE#         145
-  C:2E9DH         LINE#         146
-  C:2E9DH         LINE#         147
-  C:2EA0H         LINE#         148
-  C:2EA2H         LINE#         149
-  C:2EA5H         LINE#         150
-  C:2EABH         LINE#         151
-  C:2EB2H         LINE#         152
-  C:2EBDH         LINE#         153
-  C:2EC1H         LINE#         154
-  C:2EC1H         LINE#         155
-  C:2EC6H         LINE#         156
-  C:2EC8H         LINE#         157
-  C:2ECAH         LINE#         158
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 66
-
-
-  C:2ECFH         LINE#         159
-  C:2ED1H         LINE#         160
-  C:2ED4H         LINE#         161
-  C:2EDAH         LINE#         162
-  C:2EDFH         LINE#         163
-  C:2EDFH         LINE#         164
-  C:2EEAH         LINE#         165
-  C:2EEAH         LINE#         166
-  C:2EEDH         LINE#         168
-  C:2EEDH         LINE#         169
-  C:2EF2H         LINE#         170
-  C:2EF4H         LINE#         171
-  C:2EF6H         LINE#         172
-  C:2EF8H         LINE#         173
-  C:2EFEH         LINE#         174
-  C:2F03H         LINE#         175
-  C:2F05H         LINE#         176
-  C:2F08H         LINE#         177
-  C:2F0EH         LINE#         178
-  C:2F10H         LINE#         179
-  C:2F17H         LINE#         180
-  C:2F22H         LINE#         181
-  C:2F2DH         LINE#         182
-  C:2F32H         LINE#         183
-  C:2F32H         LINE#         184
-  C:2F35H         LINE#         185
-  C:2F37H         LINE#         187
-  C:2F37H         LINE#         188
-  C:2F3AH         LINE#         189
-  C:2F3AH         LINE#         190
-  C:2F3FH         LINE#         191
-  C:2F41H         LINE#         192
-  C:2F43H         LINE#         193
-  C:2F46H         LINE#         194
-  C:2F48H         LINE#         195
-  C:2F4BH         LINE#         196
-  C:2F4DH         LINE#         197
-  C:2F4FH         LINE#         199
-  C:2F55H         LINE#         200
-  C:2F55H         LINE#         201
-  C:2F5AH         LINE#         202
-  C:2F5CH         LINE#         203
-  C:2F5EH         LINE#         204
-  C:2F63H         LINE#         205
-  C:2F65H         LINE#         206
-  C:2F68H         LINE#         207
-  C:2F6DH         LINE#         208
-  C:2F6FH         LINE#         209
-  C:2F6FH         LINE#         210
-  C:2F71H         LINE#         212
-  C:2F71H         LINE#         213
-  C:2F74H         LINE#         214
-  C:2F74H         LINE#         215
-  C:2F74H         LINE#         216
-  C:2F76H         LINE#         217
-  -------         ENDPROC       _I2C_READ
-  -------         PROC          I2C_CLOCK_START
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 67
-
-
-  C:3CFFH         LINE#         227
-  C:3CFFH         LINE#         228
-  C:3CFFH         LINE#         230
-  C:3D02H         LINE#         231
-  C:3D05H         LINE#         233
-  C:3D07H         LINE#         235
-  C:3D0AH         LINE#         236
-  C:3D0DH         LINE#         238
-  C:3D0FH         LINE#         239
-  C:3D11H         LINE#         240
-  -------         ENDPROC       I2C_CLOCK_START
-  -------         PROC          L?0064
-  -------         ENDPROC       L?0064
-  -------         PROC          _I2C_CLOCK_DELAY
-  D:0007H         SYMBOL        control
-  C:3CE9H         LINE#         252
-  C:3CE9H         LINE#         253
-  C:3CE9H         LINE#         254
-  C:3CECH         LINE#         255
-  C:3CECH         LINE#         256
-  C:3CEFH         LINE#         257
-  C:3CEFH         LINE#         259
-  C:3CF1H         LINE#         260
-  C:3CF4H         LINE#         261
-  C:3CF4H         LINE#         262
-  C:3CF7H         LINE#         263
-  C:3CFAH         LINE#         265
-  C:3CFCH         LINE#         266
-  C:3CFEH         LINE#         267
-  C:3CFEH         LINE#         268
-  -------         ENDPROC       _I2C_CLOCK_DELAY
-  -------         ENDMOD        I2C
-
-  -------         MODULE        STA013_CONFIG
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 68
-
-
-  C:3D9AH         PUBLIC        _Set_P3_bit
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:0090H.3       PUBLIC        P1_3
-  C:1FC0H         PUBLIC        STA013_init
-  B:00B0H.2       PUBLIC        P3_2
-  B:00D8H.6       PUBLIC        CR
-  B:00B0H.3       PUBLIC        P3_3
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.4       PUBLIC        P3_4
-  B:00B0H.5       PUBLIC        P3_5
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B0H.6       PUBLIC        RS
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  B:00A0H.4       PUBLIC        REDLED
-  D:0098H         PUBLIC        SCON
-  B:00A0H.6       PUBLIC        YELLOWLED
-  B:0090H.4       PUBLIC        nCS0
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00B0H.1       PUBLIC        per_RxD
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:00B0H.0       PUBLIC        per_TxD
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:00A0H.7       PUBLIC        AMBERLED
-  B:0088H.3       PUBLIC        IE1
-  B:00B0H.7       PUBLIC        E
-  B:00A0H.5       PUBLIC        GREENLED
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 69
-
-
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  C:3D81H         PUBLIC        _Clear_P3_bit
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0090H.6       PUBLIC        per_SCLK
-  B:0088H.6       PUBLIC        TR1
-  B:0090H.0       PUBLIC        SDA
-  B:00C8H.2       PUBLIC        TR2
-  B:00A0H.0       PUBLIC        SW1
-  B:00A0H.1       PUBLIC        SW2
-  B:00A0H.2       PUBLIC        SW3
-  B:00A0H.3       PUBLIC        SW4
-  B:0090H.6       PUBLIC        SCK
-  B:0090H.7       PUBLIC        per_MOSI
-  B:0090H.5       PUBLIC        per_MISO
-  B:0090H.1       PUBLIC        SCL
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0090H.2       PUBLIC        DATA_REQ
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _CLEAR_P3_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D81H         LINE#         14
-  C:3D81H         LINE#         15
-  C:3D81H         LINE#         16
-  C:3D85H         LINE#         17
-  -------         ENDPROC       _CLEAR_P3_BIT
-  -------         PROC          _SET_P3_BIT
-  D:0007H         SYMBOL        Bit_Data
-  C:3D9AH         LINE#         20
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 70
-
-
-  C:3D9AH         LINE#         21
-  C:3D9AH         LINE#         22
-  C:3D9DH         LINE#         23
-  -------         ENDPROC       _SET_P3_BIT
-  -------         PROC          STA013_INIT
-  -------         DO            STA013_INIT
-  D:0033H         SYMBOL        error_flag
-  D:0034H         SYMBOL        timeout
-  D:0035H         SYMBOL        reg_addr
-  I:0086H         SYMBOL        send
-  I:0089H         SYMBOL        rcv
-  D:0036H         SYMBOL        config_data_p
-  D:0039H         SYMBOL        j
-  C:308AH         SYMBOL        STA_cfg_addr
-  C:309CH         SYMBOL        STA_cfg_data
-  -------         ENDDO         STA_cfg_data
-  C:1FC0H         LINE#         38
-  C:1FC0H         LINE#         39
-  C:1FC0H         LINE#         53
-  C:1FC5H         LINE#         55
-  C:1FC9H         LINE#         56
-  C:1FCCH         LINE#         58
-  C:1FCFH         LINE#         61
-  C:1FCFH         LINE#         63
-  C:1FECH         LINE#         64
-  C:1FEEH         LINE#         66
-  C:1FF6H         LINE#         68
-  C:1FFAH         LINE#         69
-  C:1FFAH         LINE#         70
-  C:2008H         LINE#         71
-  C:2008H         LINE#         74
-  C:2008H         LINE#         76
-  C:2027H         LINE#         77
-  C:2029H         LINE#         79
-  C:2031H         LINE#         81
-  C:2035H         LINE#         82
-  C:2035H         LINE#         83
-  C:2043H         LINE#         84
-  C:2043H         LINE#         88
-  C:204DH         LINE#         89
-  C:204DH         LINE#         90
-  C:206BH         LINE#         91
-  C:2079H         LINE#         92
-  C:207EH         LINE#         93
-  C:2087H         LINE#         95
-  C:2087H         LINE#         97
-  C:2098H         LINE#         98
-  C:20A0H         LINE#         100
-  C:20ABH         LINE#         101
-  C:20B3H         LINE#         102
-  C:20C0H         LINE#         103
-  C:20C5H         LINE#         104
-  C:20C5H         LINE#         106
-  C:20C8H         LINE#         108
-  C:20C8H         LINE#         109
-  C:20E7H         LINE#         110
-  C:20EAH         LINE#         111
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 71
-
-
-  C:20ECH         LINE#         112
-  C:20F4H         LINE#         113
-  C:20F4H         LINE#         114
-  C:20FDH         LINE#         115
-  C:2106H         LINE#         116
-  C:211AH         LINE#         117
-  C:211FH         LINE#         118
-  C:2128H         LINE#         120
-  C:2128H         LINE#         121
-  C:2139H         LINE#         123
-  C:2141H         LINE#         124
-  C:214CH         LINE#         126
-  C:2154H         LINE#         127
-  C:2161H         LINE#         128
-  C:2166H         LINE#         129
-  C:2166H         LINE#         130
-  C:2169H         LINE#         132
-  C:2169H         LINE#         133
-  C:2188H         LINE#         134
-  C:218BH         LINE#         135
-  C:218DH         LINE#         136
-  C:2195H         LINE#         137
-  C:2195H         LINE#         138
-  C:219EH         LINE#         139
-  C:21A7H         LINE#         140
-  C:21BBH         LINE#         141
-  C:21DAH         LINE#         142
-  C:21E8H         LINE#         146
-  C:21EDH         LINE#         147
-  C:21EDH         LINE#         148
-  C:21F6H         LINE#         149
-  C:21FEH         LINE#         150
-  C:2201H         LINE#         152
-  C:2201H         LINE#         153
-  C:2220H         LINE#         154
-  C:2223H         LINE#         155
-  C:2225H         LINE#         156
-  C:222DH         LINE#         157
-  C:223EH         LINE#         158
-  C:2246H         LINE#         160
-  C:2265H         LINE#         161
-  C:2279H         LINE#         162
-  C:228DH         LINE#         163
-  C:2296H         LINE#         164
-  C:2296H         LINE#         165
-  C:2298H         LINE#         166
-  -------         ENDPROC       STA013_INIT
-  -------         ENDMOD        STA013_CONFIG
-
-  -------         MODULE        CONFIG
-  C:0003H         SEGMENT       STA013_CONFIG
-  C:0003H         PUBLIC        CONFIG
-  C:0FA1H         PUBLIC        CONFIG2
-  -------         ENDMOD        CONFIG
-
-  -------         MODULE        LONG_SERIAL_IN
-  C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 72
-
-
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  C:3486H         PUBLIC        long_serial_input
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0098H         PUBLIC        SCON
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 73
-
-
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:0088H.3       PUBLIC        IE1
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-  B:00C8H.2       PUBLIC        TR2
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          LONG_SERIAL_INPUT
-  -------         DO            LONG_SERIAL_INPUT
-  D:0033H         SYMBOL        index
-  D:0034H         SYMBOL        input
-  D:0035H         SYMBOL        input_values
-  D:0040H         SYMBOL        output_value
-  -------         ENDDO         output_value
-  C:3486H         LINE#         16
-  C:3486H         LINE#         17
-  C:3486H         LINE#         20
-  C:3489H         LINE#         21
-  C:3489H         LINE#         22
-  C:3490H         LINE#         23
-  C:3497H         LINE#         24
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 74
-
-
-  C:34A1H         LINE#         25
-  C:34A4H         LINE#         27
-  C:34A4H         LINE#         28
-  C:34A9H         LINE#         29
-  C:34B7H         LINE#         30
-  C:34B7H         LINE#         31
-  C:34BEH         LINE#         32
-  C:34C0H         LINE#         33
-  C:34C5H         LINE#         34
-  C:34C7H         LINE#         35
-  C:34D2H         LINE#         36
-  C:34D2H         LINE#         37
-  C:34D4H         LINE#         38
-  C:34DBH         LINE#         39
-  C:34E0H         LINE#         40
-  C:34E5H         LINE#         41
-  C:34EAH         LINE#         42
-  C:34ECH         LINE#         43
-  C:34F7H         LINE#         44
-  C:34F7H         LINE#         45
-  C:3508H         LINE#         46
-  C:350DH         LINE#         47
-  C:3512H         LINE#         48
-  C:3514H         LINE#         50
-  C:3514H         LINE#         51
-  C:3517H         LINE#         52
-  C:3517H         LINE#         53
-  C:351CH         LINE#         54
-  C:351CH         LINE#         55
-  C:352DH         LINE#         56
-  C:3532H         LINE#         57
-  C:3537H         LINE#         58
-  C:3537H         LINE#         59
-  C:354EH         LINE#         61
-  C:3556H         LINE#         62
-  -------         ENDPROC       LONG_SERIAL_INPUT
-  -------         ENDMOD        LONG_SERIAL_IN
-
   -------         MODULE        ?C?CLDPTR
-  C:0FD3H         PUBLIC        ?C?CLDPTR
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 7
+
+
+  C:0FDEH         PUBLIC        ?C?CLDPTR
   -------         ENDMOD        ?C?CLDPTR
 
   -------         MODULE        ?C?CLDOPTR
-  C:0FECH         PUBLIC        ?C?CLDOPTR
+  C:0FF7H         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
 
   -------         MODULE        ?C?CILDOPTR
-  C:1019H         PUBLIC        ?C?CILDOPTR
+  C:1024H         PUBLIC        ?C?CILDOPTR
   -------         ENDMOD        ?C?CILDOPTR
 
   -------         MODULE        ?C?CSTPTR
-  C:104CH         PUBLIC        ?C?CSTPTR
+  C:1057H         PUBLIC        ?C?CSTPTR
   -------         ENDMOD        ?C?CSTPTR
 
   -------         MODULE        ?C?CSTOPTR
-  C:105EH         PUBLIC        ?C?CSTOPTR
+  C:1069H         PUBLIC        ?C?CSTOPTR
   -------         ENDMOD        ?C?CSTOPTR
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 75
-
-
 
   -------         MODULE        ?C?UIDIV
-  C:1080H         PUBLIC        ?C?UIDIV
+  C:108BH         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
 
   -------         MODULE        ?C?ILDPTR
-  C:10D5H         PUBLIC        ?C?ILDPTR
+  C:10E0H         PUBLIC        ?C?ILDPTR
   -------         ENDMOD        ?C?ILDPTR
 
   -------         MODULE        ?C?ILDOPTR
-  C:1100H         PUBLIC        ?C?ILDOPTR
+  C:110BH         PUBLIC        ?C?ILDOPTR
   -------         ENDMOD        ?C?ILDOPTR
 
   -------         MODULE        ?C?IILDPTR
-  C:1138H         PUBLIC        ?C?IILDPTR
+  C:1143H         PUBLIC        ?C?IILDPTR
   -------         ENDMOD        ?C?IILDPTR
 
   -------         MODULE        ?C?ISTPTR
-  C:1170H         PUBLIC        ?C?ISTPTR
+  C:117BH         PUBLIC        ?C?ISTPTR
   -------         ENDMOD        ?C?ISTPTR
 
   -------         MODULE        ?C?ISTOPTR
-  C:118FH         PUBLIC        ?C?ISTOPTR
+  C:119AH         PUBLIC        ?C?ISTOPTR
   -------         ENDMOD        ?C?ISTOPTR
 
   -------         MODULE        ?C?LMUL
-  C:11BCH         PUBLIC        ?C?LMUL
+  C:11C7H         PUBLIC        ?C?LMUL
   -------         ENDMOD        ?C?LMUL
 
   -------         MODULE        ?C?ULDIV
-  C:1247H         PUBLIC        ?C?ULDIV
+  C:1252H         PUBLIC        ?C?ULDIV
   -------         ENDMOD        ?C?ULDIV
 
   -------         MODULE        ?C?ULCMP
-  C:12D9H         PUBLIC        ?C?ULCMP
+  C:12E4H         PUBLIC        ?C?ULCMP
   -------         ENDMOD        ?C?ULCMP
 
   -------         MODULE        ?C?ULSHR
-  C:12EAH         PUBLIC        ?C?ULSHR
+  C:12F5H         PUBLIC        ?C?ULSHR
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 8
+
+
   -------         ENDMOD        ?C?ULSHR
 
   -------         MODULE        ?C?LSHL
-  C:12FDH         PUBLIC        ?C?LSHL
+  C:1308H         PUBLIC        ?C?LSHL
   -------         ENDMOD        ?C?LSHL
 
   -------         MODULE        ?C?LLDOPTR
-  C:1310H         PUBLIC        ?C?LLDOPTR
+  C:131BH         PUBLIC        ?C?LLDOPTR
   -------         ENDMOD        ?C?LLDOPTR
 
   -------         MODULE        ?C?LSTOPTR
-  C:1340H         PUBLIC        ?C?LSTOPTR
+  C:134BH         PUBLIC        ?C?LSTOPTR
   -------         ENDMOD        ?C?LSTOPTR
 
   -------         MODULE        ?C?LLDIDATA
-  C:1364H         PUBLIC        ?C?LLDIDATA
+  C:136FH         PUBLIC        ?C?LLDIDATA
   -------         ENDMOD        ?C?LLDIDATA
 
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 76
-
+  -------         MODULE        ?C?LLDIDATA0
+  C:137BH         PUBLIC        ?C?LLDIDATA0
+  -------         ENDMOD        ?C?LLDIDATA0
 
   -------         MODULE        ?C?LLDOPTR0
-  C:1370H         PUBLIC        ?C?LLDOPTR0
+  C:1388H         PUBLIC        ?C?LLDOPTR0
   -------         ENDMOD        ?C?LLDOPTR0
 
+  -------         MODULE        ?C?LSTIDATA
+  C:13B8H         PUBLIC        ?C?LSTIDATA
+  -------         ENDMOD        ?C?LSTIDATA
+
+  -------         MODULE        ?C?LSTKIDATA
+  C:13C4H         PUBLIC        ?C?LSTKIDATA
+  -------         ENDMOD        ?C?LSTKIDATA
+
   -------         MODULE        PUTCHAR
-  C:3C76H         PUBLIC        _PUTCHAR
+  C:3CAEH         PUBLIC        _PUTCHAR
   -------         ENDMOD        PUTCHAR
 
   -------         MODULE        PRINTF
-  D:005BH         PUBLIC        ?_PRINTF517?BYTE
-  D:005BH         PUBLIC        ?_PRINTF?BYTE
-  D:005BH         PUBLIC        ?_SPRINTF517?BYTE
-  D:005BH         PUBLIC        ?_SPRINTF?BYTE
-  C:1CC6H         PUBLIC        _PRINTF
-  C:1CC6H         PUBLIC        _PRINTF517
-  C:1CC0H         PUBLIC        _SPRINTF
-  C:1CC0H         PUBLIC        _SPRINTF517
+  D:006AH         PUBLIC        ?_PRINTF517?BYTE
+  D:006AH         PUBLIC        ?_PRINTF?BYTE
+  D:006AH         PUBLIC        ?_SPRINTF517?BYTE
+  D:006AH         PUBLIC        ?_SPRINTF?BYTE
+  C:1CEAH         PUBLIC        _PRINTF
+  C:1CEAH         PUBLIC        _PRINTF517
+  C:1CE4H         PUBLIC        _SPRINTF
+  C:1CE4H         PUBLIC        _SPRINTF517
   -------         ENDMOD        PRINTF
 
   -------         MODULE        ATOL
-  C:33A8H         PUBLIC        _ATOL
+  C:33B8H         PUBLIC        _ATOL
   -------         ENDMOD        ATOL
 
   -------         MODULE        ?C?IILDX
-  C:13A0H         PUBLIC        ?C?IILDX
+  C:13DDH         PUBLIC        ?C?IILDX
   -------         ENDMOD        ?C?IILDX
 
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 9
+
+
   -------         MODULE        ?C?LNEG
-  C:13B6H         PUBLIC        ?C?LNEG
+  C:13F3H         PUBLIC        ?C?LNEG
   -------         ENDMOD        ?C?LNEG
 
   -------         MODULE        ?C?LLDXDATA
-  C:13C4H         PUBLIC        ?C?LLDXDATA
+  C:1401H         PUBLIC        ?C?LLDXDATA
   -------         ENDMOD        ?C?LLDXDATA
 
   -------         MODULE        ?C?LLDPDATA
-  C:13D0H         PUBLIC        ?C?LLDPDATA
+  C:140DH         PUBLIC        ?C?LLDPDATA
   -------         ENDMOD        ?C?LLDPDATA
 
   -------         MODULE        ?C?LLDCODE
-  C:13DCH         PUBLIC        ?C?LLDCODE
+  C:1419H         PUBLIC        ?C?LLDCODE
   -------         ENDMOD        ?C?LLDCODE
 
-  -------         MODULE        ?C?LLDIDATA0
-  C:13ECH         PUBLIC        ?C?LLDIDATA0
-  -------         ENDMOD        ?C?LLDIDATA0
-
   -------         MODULE        ?C?LLDXDATA0
-  C:13F9H         PUBLIC        ?C?LLDXDATA0
+  C:1429H         PUBLIC        ?C?LLDXDATA0
   -------         ENDMOD        ?C?LLDXDATA0
 
   -------         MODULE        ?C?LLDPDATA0
-  C:1405H         PUBLIC        ?C?LLDPDATA0
+  C:1435H         PUBLIC        ?C?LLDPDATA0
   -------         ENDMOD        ?C?LLDPDATA0
 
   -------         MODULE        ?C?LLDCODE0
-  C:1412H         PUBLIC        ?C?LLDCODE0
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  13:27:16  PAGE 77
-
-
+  C:1442H         PUBLIC        ?C?LLDCODE0
   -------         ENDMOD        ?C?LLDCODE0
 
-  -------         MODULE        ?C?LSTIDATA
-  C:1422H         PUBLIC        ?C?LSTIDATA
-  -------         ENDMOD        ?C?LSTIDATA
-
   -------         MODULE        ?C?LSTXDATA
-  C:142EH         PUBLIC        ?C?LSTXDATA
+  C:1452H         PUBLIC        ?C?LSTXDATA
   -------         ENDMOD        ?C?LSTXDATA
 
   -------         MODULE        ?C?LSTPDATA
-  C:143AH         PUBLIC        ?C?LSTPDATA
+  C:145EH         PUBLIC        ?C?LSTPDATA
   -------         ENDMOD        ?C?LSTPDATA
 
   -------         MODULE        ?C?PLDIIDATA
-  C:1446H         PUBLIC        ?C?PLDIIDATA
+  C:146AH         PUBLIC        ?C?PLDIIDATA
   -------         ENDMOD        ?C?PLDIIDATA
 
   -------         MODULE        ?C?CCASE
-  C:1456H         PUBLIC        ?C?CCASE
+  C:147AH         PUBLIC        ?C?CCASE
   -------         ENDMOD        ?C?CCASE
 
   -------         MODULE        ISDIGIT
-  C:3D25H         PUBLIC        _ISDIGIT
+  C:3D5DH         PUBLIC        _ISDIGIT
   -------         ENDMOD        ISDIGIT
 
   -------         MODULE        ISSPACE
-  C:3D12H         PUBLIC        _ISSPACE
+  C:3D4AH         PUBLIC        _ISSPACE
   -------         ENDMOD        ISSPACE
 
-LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?PRINTF?PRINTF
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/21/2019  16:18:47  PAGE 10
+
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_SEND_COMMAND?SDCARD
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_READ_SECTOR?SECTOR_READER
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_READ_BLOCK?SDCARD
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_READ32?SECTOR_READER
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_READ16?SECTOR_READER
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_FIRST_SECTOR?FILE_SYSTEM
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_LOAD_SECTOR?PLAYER
+    CALLER1: ?PR?TIMER0_ISR?EXP_6_MAIN
+    CALLER2: ?C_C51STARTUP
+
+LINK/LOCATE RUN COMPLETE.  8 WARNING(S),  0 ERROR(S)

@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 13:27:16 PAGE 1   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 16:18:47 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LONG_SERIAL_IN
 OBJECT MODULE PLACED IN .\Long_Serial_In.obj
 COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\..\..\Embedded Processor System Design 5160\Experiments\player_break\
-                    -Long_Serial_In.c DEBUG OBJECTEXTEND PRINT(.\Long_Serial_In.lst) OBJECT(.\Long_Serial_In.obj) 
+                    -Long_Serial_In.c PRINT(.\Long_Serial_In.lst) OBJECT(.\Long_Serial_In.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   52   3               }
   53   2               if(index==10)
   54   2               {
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 13:27:16 PAGE 2   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 16:18:47 PAGE 2   
 
   55   3                  output_value=atol(input_values);
   56   3                  UART_Transmit(CR);

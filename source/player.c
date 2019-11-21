@@ -23,27 +23,26 @@ player_state_t player_state;
 #define DATA_REQ_ACTIVE   (DATA_REQ == 0)
 #define DATA_REQ_INACTIVE (DATA_REQ != 0)
 
-uint8_t buffer1_flag;
-uint8_t buffer2_flag;
+uint8_t idata buffer1_flag;
+uint8_t idata buffer2_flag;
 
 #define BUFFER_EMPTY (1)
 #define BUFFER_FULL  (0)
 
-uint16_t index1;
-uint16_t index2;
+uint16_t idata index1;
+uint16_t idata index2;
 
+uint32_t idata base_sector;
+uint32_t idata sector_offset;
+uint32_t idata current_cluster;
 
-uint32_t base_sector;
-uint32_t sector_offset;
-uint32_t current_cluster;
-static FS_values_t *drive_values;
 
 void load_sector(uint8_t *buf)
 {
   // check if we need to find the first sector of the cluster
   if(sector_offset == 0) base_sector = first_sector(current_cluster);
   // read the sector in
-  Read_Sector((base_sector+sector_offset), drive_values->BytesPerSec, buf);
+  Read_Sector((base_sector+sector_offset), Export_Drive_values()->BytesPerSec, buf);
   sector_offset++; // go forward one sector
 }
 
@@ -54,7 +53,7 @@ void init_player(uint32_t start_cluster)
   buffer2_flag    = BUFFER_EMPTY;
   index1          = 0;
   index2          = 0;
-  drive_values    = Export_Drive_values();
+  //drive_values    = Export_Drive_values();
   base_sector     = first_sector(start_cluster);
   sector_offset   = 0;
   current_cluster = start_cluster;
@@ -106,7 +105,7 @@ uint8_t player_state_machine_runner(void)
       // check if we hit the end of this cluster
       // if so, load the FAT sector into the open buffer, but don't indicate that it's
       // filled since it isn't data
-      if(sector_offset == drive_values->SecPerClus)
+      if(sector_offset == Export_Drive_values()->SecPerClus)
       {
         player_state = find_cluster_1;
       }
@@ -164,7 +163,7 @@ uint8_t player_state_machine_runner(void)
       // check if we hit the end of this cluster
       // if so, load the FAT sector into the open buffer, but don't indicate that it's
       // filled since it isn't data
-      if(sector_offset == drive_values->SecPerClus)
+      if(sector_offset == Export_Drive_values()->SecPerClus)
       {
         //check if we hit the end of this cluster
         player_state = find_cluster_2;

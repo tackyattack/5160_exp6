@@ -1,5 +1,4 @@
 ".\Directory_Functions_struct.obj",
-".\exp_4_main.obj",
 ".\file_system.obj",
 ".\LCD_hardware_functions.obj",
 ".\LCD_routines.obj",
@@ -15,6 +14,7 @@
 ".\I2C.obj",
 ".\STA013_config.obj",
 ".\config.obj",
-".\Long_Serial_In.obj" 
+".\Long_Serial_In.obj",
+".\exp_6_main.obj" 
 TO "exp6_prj" 
 RAMSIZE(256) 

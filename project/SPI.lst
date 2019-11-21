@@ -1,9 +1,9 @@
-C51 COMPILER V6.02  SPI                                                                    11/21/2019 13:27:15 PAGE 1   
+C51 COMPILER V6.02  SPI                                                                    11/21/2019 16:18:46 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE SPI
 OBJECT MODULE PLACED IN .\SPI.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\SPI.c DEBUG OBJECTEXTEND PRINT(.\SPI.lst) OBJECT(.\SPI.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\SPI.c PRINT(.\SPI.lst) OBJECT(.\SPI.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   53   1      }
   54          
   55          /***********************************************************************
-C51 COMPILER V6.02  SPI                                                                    11/21/2019 13:27:15 PAGE 2   
+C51 COMPILER V6.02  SPI                                                                    11/21/2019 16:18:46 PAGE 2   
 
   56          DESC:    Sends one byte using the SPI port and returns the received byte
   57                    
@@ -126,7 +126,7 @@ stmt level    source
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    200    ----
-C51 COMPILER V6.02  SPI                                                                    11/21/2019 13:27:15 PAGE 3   
+C51 COMPILER V6.02  SPI                                                                    11/21/2019 16:18:46 PAGE 3   
 
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
