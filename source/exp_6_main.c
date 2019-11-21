@@ -20,17 +20,11 @@ xdata uint8_t buf1[512];
 xdata uint8_t buf2[512];
 uint8_t code LCD_str_start[]="Starting...";
 
-void timer0_ISR (void) interrupt 1
-{
-  player_state_machine_runner();
-}
-
-
 main()
 {
-   uint8_t idata error_flag;
-   uint32_t idata entry_num, cwd_entries;
-   uint32_t idata cwd, clus;
+   uint8_t  error_flag;
+   uint32_t entry_num, cwd_entries;
+   uint32_t cwd, clus;
 
    AUXR=0x0c;   // make all of XRAM available, ALE always on
    if(OSC_PER_INST==6)
@@ -120,7 +114,7 @@ main()
        else
        {
          init_player(clus);
-         //while(player_state_machine_runner() == PLAYER_RUNNING);
+         while(player_state_machine_runner() == PLAYER_RUNNING);
        }
      }
      else

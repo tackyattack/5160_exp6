@@ -153,9 +153,9 @@ uint32_t first_sector(uint32_t cluster_num)
 
 uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
 {
-  uint8_t idata *data_array;
-  uint16_t idata FAToffset;
-  uint32_t idata sector, next_clus;
+  uint8_t    *data_array;
+  uint16_t    FAToffset;
+  uint32_t    sector, next_clus;
   FS_values_t *drive_values = Export_Drive_values();
 
   data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata

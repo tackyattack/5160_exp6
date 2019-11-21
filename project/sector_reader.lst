@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 16:18:46 PAGE 1   
+C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 16:42:11 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE SECTOR_READER
@@ -62,7 +62,7 @@ stmt level    source
   52   1        return ret_val;
   53   1      }
 
-C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 16:18:46 PAGE 2   
+C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 16:42:11 PAGE 2   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

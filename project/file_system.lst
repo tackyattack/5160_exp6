@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:18:46 PAGE 1   
+C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:42:11 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE FILE_SYSTEM
@@ -62,7 +62,7 @@ stmt level    source
   53   1        {
   54   2          printf("error: could not locate BPB\n");
   55   2          return MOUNT_FAIL;
-C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:18:46 PAGE 2   
+C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:42:11 PAGE 2   
 
   56   2        }
   57   1      
@@ -126,7 +126,7 @@ stmt level    source
  114   1        ClusterCount = DataSec / drive_values->SecPerClus;
  115   1        if(ClusterCount < 4085)
  116   1        {
-C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:18:46 PAGE 3   
+C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:42:11 PAGE 3   
 
  117   2          // FAT12
  118   2          printf("error: FAT12 unsupported\n");
@@ -167,9 +167,9 @@ stmt level    source
  153          
  154          uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
  155          {
- 156   1        uint8_t idata *data_array;
- 157   1        uint16_t idata FAToffset;
- 158   1        uint32_t idata sector, next_clus;
+ 156   1        uint8_t    *data_array;
+ 157   1        uint16_t    FAToffset;
+ 158   1        uint32_t    sector, next_clus;
  159   1        FS_values_t *drive_values = Export_Drive_values();
  160   1      
  161   1        data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata
@@ -190,7 +190,7 @@ stmt level    source
  176   1        {
  177   2          next_clus = (uint32_t)(read16(FAToffset, data_array)&0xFFFF);
  178   2      
-C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:18:46 PAGE 4   
+C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:42:11 PAGE 4   
 
  179   2          // modify EOF to match for FAT32
  180   2          if(next_clus == 0xFFFF)
@@ -254,19 +254,19 @@ stmt level    source
  238          //         temp8 = getchar();
  239          //       }while((temp8!='e') && (temp8!='n'));
  240          //
-C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:18:46 PAGE 5   
+C51 COMPILER V6.02  FILE_SYSTEM                                                            11/21/2019 16:42:11 PAGE 5   
 
  241          //    }while(temp8 != 'e');
  242          // }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1508    ----
+   CODE SIZE        =   1498    ----
    CONSTANT SIZE    =    181    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      57
-   IDATA SIZE       =   ----      10
+   DATA SIZE        =   ----      65
+   IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
