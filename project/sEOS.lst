@@ -1,9 +1,10 @@
-C51 COMPILER V6.02  SEOS                                                                   11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE SEOS
 OBJECT MODULE PLACED IN .\sEOS.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\sEOS.c DEBUG OBJECTEXTEND PRINT(.\sEOS.lst) OBJECT(.\sEOS.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\sEOS.c LARGE DEBUG OBJECTEXTEND PRINT(.\sEOS.lst) OBJECT(.\sEOS.o
+                    -bj) 
 
 stmt level    source
 
@@ -31,175 +32,380 @@ stmt level    source
   22          bit print_dir_task_running = 0;
   23          bit read_dir_entry_task_running = 0;
   24          
-  25          void os_loop()
-  26          {
-  27   1        switch(seos_state)
-  28   1        {
-  29   2          case os_init:
-  30   2            cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
-  31   2            print_directory_init(cwd);
-  32   2            print_dir_task_running=1;
-  33   2            entry_num = 0;
-  34   2            seos_state = os_idle;
-  35   2            break;
-  36   2          case os_idle:
-  37   2            LED_number(1);
-  38   2            temp8 = UART_Receive_Non_Blocking();
-  39   2            if(temp8 != 0)
-  40   2            {
-  41   3              seos_state = recv_input;
-  42   3            }
-  43   2            if(print_dir_task_running) seos_state = run_print_dir_task;
-  44   2            if(read_dir_entry_task_running) seos_state = run_read_dir_entry_task;
-  45   2            if(get_directory_print_buffer_pos() > 0)
-  46   2            {
-  47   3              seos_state = print_buffer;
-  48   3            }
-  49   2            break;
-  50   2          case recv_input:
-  51   2            LED_number(2);
-  52   2            if(temp8 == '\r')
-  53   2            {
-  54   3              if(entry_num <= cwd_entries)
-  55   3              {
-C51 COMPILER V6.02  SEOS                                                                   11/21/2019 07:15:58 PAGE 2   
+  25          
+  26          uint32_t idata data_pool32[4];
+  27          uint16_t idata data_pool16[3];
+  28          uint8_t  idata data_pool8[4];
+  29          
+  30          
+  31          // void os_loop()
+  32          // {
+  33          //   switch(seos_state)
+  34          //   {
+  35          //     case os_init:
+  36          //       cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
+  37          //       print_directory_init(cwd);
+  38          //       set_data_pool_dir(data_pool32, data_pool16, data_pool8);
+  39          //       set_data_pool_player(data_pool32, data_pool16, data_pool8);
+  40          //       print_dir_task_running=1;
+  41          //       entry_num = 0;
+  42          //       seos_state = os_idle;
+  43          //       break;
+  44          //     case os_idle:
+  45          //       LED_number(1);
+  46          //       temp8 = UART_Receive_Non_Blocking();
+  47          //       if(temp8 != 0)
+  48          //       {
+  49          //         seos_state = recv_input;
+  50          //       }
+  51          //       if(print_dir_task_running) seos_state = run_print_dir_task;
+  52          //       if(read_dir_entry_task_running) seos_state = run_read_dir_entry_task;
+  53          //       if(get_directory_print_buffer_pos() > 0)
+  54          //       {
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 2   
 
-  56   4              read_dir_entry_init(entry_num, cwd);
-  57   4              read_dir_entry_task_running = 1;
-  58   4              }
-  59   3              else
-  60   3              {
-  61   4                set_directory_print_buffer_pos
-  62   4                (
-  63   4                  get_directory_print_buffer_pos()
-  64   4                  + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nError: invalid ent
-             -ry choice. Try again:\n")
-  65   4                );
-  66   4              }
-  67   3              tens = 0;
-  68   3              seos_state = os_idle;
-  69   3              entry_num = 0;
-  70   3            }
-  71   2            else if((temp8 >= '0') && (temp8 <= '9'))
-  72   2            {
-  73   3              putchar(temp8);
-  74   3              entry_num = temp8-'0' + entry_num*10;
-  75   3              seos_state = os_idle;
-  76   3            }
-  77   2            else
-  78   2            {
-  79   3              seos_state = os_idle;
-  80   3            }
-  81   2            break;
-  82   2          case print_buffer:
-  83   2            LED_number(3);
-  84   2            putchar(get_directory_print_buffer()[temp16]);
-  85   2            temp16++;
-  86   2            if(temp16 > get_directory_print_buffer_pos())
-  87   2            {
-  88   3              set_directory_print_buffer_pos(0);
-  89   3              temp16=0;
-  90   3            }
-  91   2            seos_state = os_idle;
-  92   2            break;
-  93   2          case run_print_dir_task:
-  94   2            LED_number(4);
-  95   2            if(print_directory_task(&cwd_entries) == TASK_RUNNING)
-  96   2            {
-  97   3              temp16 = 0;
-  98   3              seos_state = print_buffer;
-  99   3            }
- 100   2            else
- 101   2            {
- 102   3              print_dir_task_running = 0;
- 103   3              seos_state = print_buffer;
- 104   3              set_directory_print_buffer_pos
- 105   3              (
- 106   3                get_directory_print_buffer_pos()
- 107   3                + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nEnter an entry numbe
-             -r:\n")
- 108   3              );
- 109   3            }
- 110   2            break;
- 111   2          case run_read_dir_entry_task:
- 112   2            LED_number(5);
- 113   2            if(read_dir_entry_task(&clus) == TASK_RUNNING)
- 114   2            {
- 115   3              // go back to idle since we're still going
-C51 COMPILER V6.02  SEOS                                                                   11/21/2019 07:15:58 PAGE 3   
+  55          //         seos_state = print_buffer;
+  56          //       }
+  57          //       break;
+  58          //     case recv_input:
+  59          //       LED_number(2);
+  60          //       if(temp8 == '\r')
+  61          //       {
+  62          //         if(entry_num <= cwd_entries)
+  63          //         {
+  64          //         read_dir_entry_init(entry_num, cwd);
+  65          //         read_dir_entry_task_running = 1;
+  66          //         }
+  67          //         else
+  68          //         {
+  69          //           // set_directory_print_buffer_pos
+  70          //           // (
+  71          //           //   get_directory_print_buffer_pos()
+  72          //           //   + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nError: inval
+             -id entry choice. Try again:\n")
+  73          //           // );
+  74          //         }
+  75          //         tens = 0;
+  76          //         seos_state = os_idle;
+  77          //         entry_num = 0;
+  78          //       }
+  79          //       else if((temp8 >= '0') && (temp8 <= '9'))
+  80          //       {
+  81          //         UART_Transmit(temp8);
+  82          //         entry_num = temp8-'0' + entry_num*10;
+  83          //         seos_state = os_idle;
+  84          //       }
+  85          //       else
+  86          //       {
+  87          //         seos_state = os_idle;
+  88          //       }
+  89          //       break;
+  90          //     case print_buffer:
+  91          //       LED_number(3);
+  92          //       UART_Transmit(get_directory_print_buffer()[temp16]);
+  93          //       temp16++;
+  94          //       if(temp16 > get_directory_print_buffer_pos())
+  95          //       {
+  96          //         set_directory_print_buffer_pos(0);
+  97          //         temp16=0;
+  98          //       }
+  99          //       seos_state = os_idle;
+ 100          //       break;
+ 101          //     case run_print_dir_task:
+ 102          //       LED_number(4);
+ 103          //       if(print_directory_task(&cwd_entries) == TASK_RUNNING)
+ 104          //       {
+ 105          //         temp16 = 0;
+ 106          //         seos_state = print_buffer;
+ 107          //       }
+ 108          //       else
+ 109          //       {
+ 110          //         print_dir_task_running = 0;
+ 111          //         seos_state = print_buffer;
+ 112          //         // set_directory_print_buffer_pos
+ 113          //         // (
+ 114          //         //   get_directory_print_buffer_pos()
+ 115          //         //   + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nEnter an entry
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 3   
 
- 116   3              seos_state = os_idle;
- 117   3            }
- 118   2            else
- 119   2            {
- 120   3              read_dir_entry_task_running = 0;
- 121   3              if(clus & directory_bit)
- 122   3              {
- 123   4                seos_state = os_idle;
- 124   4                clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
- 125   4                cwd = first_sector(clus);
- 126   4                print_directory_init(cwd);
- 127   4                print_dir_task_running=1;
- 128   4              }
- 129   3              else
- 130   3              {
- 131   4                seos_state = start_song;
- 132   4              }
- 133   3            }
- 134   2            break;
- 135   2          case start_song:
- 136   2            LED_number(6);
- 137   2            init_player(clus);
- 138   2            seos_state = play_song_task;
- 139   2            break;
- 140   2          case play_song_task:
- 141   2            LED_number(7);
- 142   2            if(player_state_machine_runner() == PLAYER_RUNNING)
- 143   2            {
- 144   3              seos_state = play_song_task;
- 145   3            }
- 146   2            else
- 147   2            {
- 148   3              print_directory_init(cwd);
- 149   3              print_dir_task_running=1;
- 150   3              seos_state = os_idle;
- 151   3            }
- 152   2            break;
- 153   2        }
- 154   1      }
- 155          
- 156          void sEOS_ISR(void) interrupt 5 using 1
- 157          {
- 158   1        TF2 = 0; // clear timer flag that caused this interrupt
- 159   1        os_loop();
- 160   1      }
- 161          
- 162          void sEOS_init(uint8_t interval_ms)
- 163          {
- 164   1        uint16_t preload;
- 165   1        seos_state = os_init;
- 166   1        //while(1) os_loop();
- 167   1      
- 168   1        T2CON=0;
- 169   1        preload=(65536-((OSC_FREQ*interval_ms)/(OSC_PER_INST*1000UL)));
- 170   1        RCAP2H=(uint8_t)preload/256;
- 171   1        RCAP2L=(uint8_t)preload%256;
- 172   1        TF2=0; // Clear overflow
- 173   1        ET2=1; // Enable Timer 2 interrupt
- 174   1        EA=1;  // Set Global Interrupt Enable
- 175   1        TR2=1; // Start Timer Running
- 176   1      }
+             - number:\n")
+ 116          //         // );
+ 117          //       }
+ 118          //       break;
+ 119          //     case run_read_dir_entry_task:
+ 120          //       LED_number(5);
+ 121          //       if(read_dir_entry_task(&clus) == TASK_RUNNING)
+ 122          //       {
+ 123          //         // go back to idle since we're still going
+ 124          //         seos_state = os_idle;
+ 125          //       }
+ 126          //       else
+ 127          //       {
+ 128          //         read_dir_entry_task_running = 0;
+ 129          //         if(clus & directory_bit)
+ 130          //         {
+ 131          //           seos_state = os_idle;
+ 132          //           clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
+ 133          //           cwd = first_sector(clus);
+ 134          //           print_directory_init(cwd);
+ 135          //           print_dir_task_running=1;
+ 136          //         }
+ 137          //         else
+ 138          //         {
+ 139          //           seos_state = start_song;
+ 140          //         }
+ 141          //       }
+ 142          //       break;
+ 143          //     case start_song:
+ 144          //       LED_number(6);
+ 145          //       init_player(clus);
+ 146          //       seos_state = play_song_task;
+ 147          //       break;
+ 148          //     case play_song_task:
+ 149          //       LED_number(7);
+ 150          //       if(player_state_machine_runner() == PLAYER_RUNNING)
+ 151          //       {
+ 152          //         seos_state = play_song_task;
+ 153          //       }
+ 154          //       else
+ 155          //       {
+ 156          //         print_directory_init(cwd);
+ 157          //         print_dir_task_running=1;
+ 158          //         seos_state = os_idle;
+ 159          //       }
+ 160          //       break;
+ 161          //   }
+ 162          // }
+ 163          
+ 164          void init_task()
+ 165          {
+ 166   1        cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
+ 167   1        print_directory_init(cwd);
+ 168   1        set_data_pool_dir(data_pool32, data_pool16, data_pool8);
+ 169   1        set_data_pool_player(data_pool32, data_pool16, data_pool8);
+ 170   1        print_dir_task_running=1;
+ 171   1        entry_num = 0;
+ 172   1        seos_state = os_idle;
+ 173   1      }
+ 174          
+ 175          void idle_task()
+ 176          {
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 4   
 
-C51 COMPILER V6.02  SEOS                                                                   11/21/2019 07:15:58 PAGE 4   
+ 177   1        LED_number(1);
+ 178   1        temp8 = UART_Receive_Non_Blocking();
+ 179   1        if(temp8 != 0)
+ 180   1        {
+ 181   2          seos_state = recv_input;
+ 182   2        }
+ 183   1        if(print_dir_task_running) seos_state = run_print_dir_task;
+ 184   1        if(read_dir_entry_task_running) seos_state = run_read_dir_entry_task;
+ 185   1        if(get_directory_print_buffer_pos() > 0)
+ 186   1        {
+ 187   2          seos_state = print_buffer;
+ 188   2        }
+ 189   1      }
+ 190          
+ 191          void recv_input_task()
+ 192          {
+ 193   1        LED_number(2);
+ 194   1        if(temp8 == '\r')
+ 195   1        {
+ 196   2          if(entry_num <= cwd_entries)
+ 197   2          {
+ 198   3          read_dir_entry_init(entry_num, cwd);
+ 199   3          read_dir_entry_task_running = 1;
+ 200   3          }
+ 201   2          else
+ 202   2          {
+ 203   3            // set_directory_print_buffer_pos
+ 204   3            // (
+ 205   3            //   get_directory_print_buffer_pos()
+ 206   3            //   + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nError: invalid entr
+             -y choice. Try again:\n")
+ 207   3            // );
+ 208   3          }
+ 209   2          tens = 0;
+ 210   2          seos_state = os_idle;
+ 211   2          entry_num = 0;
+ 212   2        }
+ 213   1        else if((temp8 >= '0') && (temp8 <= '9'))
+ 214   1        {
+ 215   2          UART_Transmit(temp8);
+ 216   2          entry_num = temp8-'0' + entry_num*10;
+ 217   2          seos_state = os_idle;
+ 218   2        }
+ 219   1        else
+ 220   1        {
+ 221   2          seos_state = os_idle;
+ 222   2        }
+ 223   1      }
+ 224          
+ 225          
+ 226          void print_buffer_task()
+ 227          {
+ 228   1        LED_number(3);
+ 229   1        UART_Transmit(get_directory_print_buffer()[temp16]);
+ 230   1        temp16++;
+ 231   1        if(temp16 > get_directory_print_buffer_pos())
+ 232   1        {
+ 233   2          set_directory_print_buffer_pos(0);
+ 234   2          temp16=0;
+ 235   2        }
+ 236   1        seos_state = os_idle;
+ 237   1      }
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 5   
+
+ 238          
+ 239          void print_dir_task()
+ 240          {
+ 241   1          LED_number(4);
+ 242   1          if(print_directory_task(&cwd_entries) == TASK_RUNNING)
+ 243   1          {
+ 244   2            temp16 = 0;
+ 245   2            seos_state = print_buffer;
+ 246   2          }
+ 247   1          else
+ 248   1          {
+ 249   2            print_dir_task_running = 0;
+ 250   2            seos_state = print_buffer;
+ 251   2            // set_directory_print_buffer_pos
+ 252   2            // (
+ 253   2            //   get_directory_print_buffer_pos()
+ 254   2            //   + sprintf(get_directory_print_buffer()+get_directory_print_buffer_pos(), "\nEnter an entry numb
+             -er:\n")
+ 255   2            // );
+ 256   2          }
+ 257   1      }
+ 258          
+ 259          void run_read_dir_entry_task_task()
+ 260          {
+ 261   1        LED_number(5);
+ 262   1        if(read_dir_entry_task(&clus) == TASK_RUNNING)
+ 263   1        {
+ 264   2          // go back to idle since we're still going
+ 265   2          seos_state = os_idle;
+ 266   2        }
+ 267   1        else
+ 268   1        {
+ 269   2          read_dir_entry_task_running = 0;
+ 270   2          if(clus & directory_bit)
+ 271   2          {
+ 272   3            seos_state = os_idle;
+ 273   3            clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
+ 274   3            cwd = first_sector(clus);
+ 275   3            print_directory_init(cwd);
+ 276   3            print_dir_task_running=1;
+ 277   3          }
+ 278   2          else
+ 279   2          {
+ 280   3            seos_state = start_song;
+ 281   3          }
+ 282   2        }
+ 283   1      }
+ 284          
+ 285          void start_song_task()
+ 286          {
+ 287   1        LED_number(6);
+ 288   1        init_player(clus);
+ 289   1        seos_state = play_song_task;
+ 290   1      }
+ 291          
+ 292          void play_song_task_task()
+ 293          {
+ 294   1        LED_number(7);
+ 295   1        if(player_state_machine_runner() == PLAYER_RUNNING)
+ 296   1        {
+ 297   2          seos_state = play_song_task;
+ 298   2        }
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 6   
+
+ 299   1        else
+ 300   1        {
+ 301   2          //print_directory_init(cwd);
+ 302   2          print_dir_task_running=1;
+ 303   2          seos_state = os_idle;
+ 304   2        }
+ 305   1      }
+ 306          
+ 307          void sEOS_ISR(void) interrupt 2 using 1
+ 308          {
+ 309   1        TF2 = 0; // clear timer flag that caused this interrupt
+ 310   1        //os_loop();
+ 311   1        // switch(seos_state)
+ 312   1        // {
+ 313   1        //   case os_init:
+ 314   1        //     init_task();
+ 315   1        //     break;
+ 316   1        //   case os_idle:
+ 317   1        //     idle_task();
+ 318   1        //     break;
+ 319   1        //   case recv_input:
+ 320   1        //     recv_input_task();
+ 321   1        //     break;
+ 322   1        //   case print_buffer:
+ 323   1        //     print_buffer_task();
+ 324   1        //     break;
+ 325   1        //   case run_print_dir_task:
+ 326   1        //     print_dir_task();
+ 327   1        //     break;
+ 328   1        //   case run_read_dir_entry_task:
+ 329   1        //     run_read_dir_entry_task_task();
+ 330   1        //     break;
+ 331   1        //   case start_song:
+ 332   1        //     start_song_task();
+ 333   1        //     break;
+ 334   1        //   case play_song_task:
+ 335   1        //     play_song_task_task();
+ 336   1        //     break;
+ 337   1        //   }
+ 338   1      
+ 339   1        init_task();
+ 340   1         idle_task();
+ 341   1        recv_input_task();
+ 342   1         print_buffer_task();
+ 343   1        print_dir_task();
+ 344   1        run_read_dir_entry_task_task();
+ 345   1         start_song_task();
+ 346   1         play_song_task_task();
+ 347   1      }
+ 348          
+ 349          void sEOS_init(uint8_t interval_ms)
+ 350          {
+ 351   1        uint16_t preload;
+ 352   1        seos_state = os_init;
+ 353   1        //while(1) os_loop();
+ 354   1      
+ 355   1          // init_task();
+ 356   1          // idle_task();
+ 357   1          // recv_input_task();
+ 358   1          // print_buffer_task();
+ 359   1          // print_dir_task();
+ 360   1          // run_read_dir_entry_task_task();
+C51 COMPILER V6.02  SEOS                                                                   11/21/2019 13:16:07 PAGE 7   
+
+ 361   1          // start_song_task();
+ 362   1          // play_song_task_task();
+ 363   1      
+ 364   1      
+ 365   1        T2CON=0;
+ 366   1        preload=(65536-((OSC_FREQ*interval_ms)/(OSC_PER_INST*1000UL)));
+ 367   1        RCAP2H=(uint8_t)preload/256;
+ 368   1        RCAP2L=(uint8_t)preload%256;
+ 369   1        TF2=0; // Clear overflow
+ 370   1        ET2=1; // Enable Timer 2 interrupt
+ 371   1        EA=1;  // Set Global Interrupt Enable
+ 372   1        TR2=1; // Start Timer Running
+ 373   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    688    ----
-   CONSTANT SIZE    =     67    ----
-   XDATA SIZE       =   ----    ----
+   CODE SIZE        =    785    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     19    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     19    ----
-   IDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =     26    ----
    BIT SIZE         =      2    ----
 END OF MODULE INFORMATION.
 

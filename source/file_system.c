@@ -20,6 +20,7 @@
 #define BPB_TotSec32_offset             (0x0020)
 #define BPB_RootClus_offset             (0x002C)
 
+FS_values_t *drive_values_m;
 
 uint8_t mount_drive(uint8_t xdata *xram_data_array)
 {
@@ -27,10 +28,10 @@ uint8_t mount_drive(uint8_t xdata *xram_data_array)
   uint16_t temp16, RootEntCnt, RsvdSecCnt, FATSz16, TotSec16;
   uint32_t ClusterCount, FATSz, TotSec, DataSec, MBR_RelSec, RootClus;
   uint8_t *data_array;
-  FS_values_t *drive_values;
+  FS_values_t *drive_values_m;
   data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata
 
-  drive_values = Export_Drive_values();
+  drive_values_m = Export_Drive_values();
 
 
   // Find the BIOS parameter block (BPB)
@@ -57,20 +58,20 @@ uint8_t mount_drive(uint8_t xdata *xram_data_array)
 
 
   // ------- Read in BIOS parameter block -------
-  drive_values->BytesPerSec = read16(BPB_BytesPerSector_offset, data_array);
+  drive_values_m->BytesPerSec = read16(BPB_BytesPerSector_offset, data_array);
 
   // set shift value (used by print directory function)
-  drive_values->BytesPerSecShift = 0;
+  drive_values_m->BytesPerSecShift = 0;
 
-  temp16 = drive_values->BytesPerSec;
+  temp16 = drive_values_m->BytesPerSec;
   // shift right by one bit position until we've moved it all the way out
   while(temp16 != 0x01)
   {
-     drive_values->BytesPerSecShift++;
+     drive_values_m->BytesPerSecShift++;
      temp16 = temp16>>1;
   }
 
-  drive_values->SecPerClus  = read8(BPB_SectorsPerCluster_offset, data_array);
+  drive_values_m->SecPerClus  = read8(BPB_SectorsPerCluster_offset, data_array);
 
   RsvdSecCnt  = read16(BPB_RsvdSectorCount_offset, data_array);
   NumFAT      = read8(BPB_NumberFATs_offset, data_array);
@@ -99,19 +100,19 @@ uint8_t mount_drive(uint8_t xdata *xram_data_array)
   }
 
   // Determine how many sectors are in the root directory
-  drive_values->RootDirSecs = ((RootEntCnt * 32) + (drive_values->BytesPerSec - 1)) / (drive_values->BytesPerSec);
+  drive_values_m->RootDirSecs = ((RootEntCnt * 32) + (drive_values_m->BytesPerSec - 1)) / (drive_values_m->BytesPerSec);
 
   // Determine how many sectors are data sectors
-  DataSec = TotSec - (RsvdSecCnt + (NumFAT*FATSz) + drive_values->RootDirSecs);
+  DataSec = TotSec - (RsvdSecCnt + (NumFAT*FATSz) + drive_values_m->RootDirSecs);
 
   // Determine first sector of FAT
-  drive_values->StartofFAT = RsvdSecCnt + MBR_RelSec;
+  drive_values_m->StartofFAT = RsvdSecCnt + MBR_RelSec;
 
   // Determine the first sector of the data area
-  drive_values->FirstDataSec = drive_values->StartofFAT + (NumFAT*FATSz) + drive_values->RootDirSecs;
+  drive_values_m->FirstDataSec = drive_values_m->StartofFAT + (NumFAT*FATSz) + drive_values_m->RootDirSecs;
 
   // Determine count of clusters and FAT type
-  ClusterCount = DataSec / drive_values->SecPerClus;
+  ClusterCount = DataSec / drive_values_m->SecPerClus;
   if(ClusterCount < 4085)
   {
     // FAT12
@@ -121,16 +122,16 @@ uint8_t mount_drive(uint8_t xdata *xram_data_array)
   else if(ClusterCount < 65525)
   {
     // FAT16
-    drive_values->FATtype = FAT16;
+    drive_values_m->FATtype = FAT16;
     printf("FAT16 detected\n");
-    drive_values->FirstRootDirSec = drive_values->StartofFAT + (NumFAT*FATSz);
+    drive_values_m->FirstRootDirSec = drive_values_m->StartofFAT + (NumFAT*FATSz);
   }
   else
   {
     // FAT32
-    drive_values->FATtype = FAT32;
+    drive_values_m->FATtype = FAT32;
     printf("FAT32 detected\n");
-    drive_values->FirstRootDirSec = ((RootClus-2)*drive_values->SecPerClus) + drive_values->FirstDataSec;
+    drive_values_m->FirstRootDirSec = ((RootClus-2)*drive_values_m->SecPerClus) + drive_values_m->FirstDataSec;
   }
 
   return MOUNT_SUCCESS;
@@ -138,43 +139,99 @@ uint8_t mount_drive(uint8_t xdata *xram_data_array)
 
 uint32_t first_sector(uint32_t cluster_num)
 {
-  FS_values_t *drive_values = Export_Drive_values();
-
   // Calculate starting sector of cluster
   if(cluster_num == 0)
   {
-    return drive_values->FirstRootDirSec;
+    return drive_values_m->FirstRootDirSec;
   }
   else
   {
-    return ((cluster_num - 2)*drive_values->SecPerClus) + drive_values->FirstDataSec;
+    return ((cluster_num - 2)*drive_values_m->SecPerClus) + drive_values_m->FirstDataSec;
   }
 }
 
-uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
+
+uint32_t first_sector_i(uint32_t cluster_num)
+{
+  // Calculate starting sector of cluster
+  if(cluster_num == 0)
+  {
+    return drive_values_m->FirstRootDirSec;
+  }
+  else
+  {
+    return ((cluster_num - 2)*drive_values_m->SecPerClus) + drive_values_m->FirstDataSec;
+  }
+}
+
+// uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
+// {
+//   uint8_t *data_array;
+//   uint16_t FAToffset;
+//   uint32_t sector, next_clus;
+//   FS_values_t *drive_values_m = Export_Drive_values();
+//
+//   data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata
+//
+//   // FATtype will be either 2 (FAT16) or 4 (FAT32)
+//   sector = ((cluster_num*drive_values_m->FATtype)/drive_values_m->BytesPerSec) + drive_values_m->StartofFAT;
+//   Read_Sector(sector, drive_values_m->BytesPerSec, data_array);
+//
+//   // Determine the offset of the cluster within this sector
+//   FAToffset = (uint16_t)((cluster_num*drive_values_m->FATtype)%(drive_values_m->BytesPerSec));
+//
+//   // Read the cluster entry from the FAT sector
+//   if(drive_values_m->FATtype == FAT32)
+//   {
+//     return (read32(FAToffset, data_array)&0x0FFFFFFF);
+//   }
+//   else if(drive_values_m->FATtype == FAT16)
+//   {
+//     next_clus = (uint32_t)(read16(FAToffset, data_array)&0xFFFF);
+//
+//     // modify EOF to match for FAT32
+//     if(next_clus == 0xFFFF)
+//     {
+//       return 0x0FFFFFFF;
+//     }
+//     else
+//     {
+//       return next_clus;
+//     }
+//   }
+//   else
+//   {
+//     printf("Error: FAT type unsupported\n");
+//     return 0;
+//   }
+//
+//   printf("Error: couldn't find next cluster\n");
+//   return 0;
+// }
+
+
+uint32_t find_next_clus_i(uint32_t cluster_num, uint8_t xdata *xram_data_array)
 {
   uint8_t *data_array;
-  uint16_t FAToffset;
+   uint16_t FAToffset;
   uint32_t sector, next_clus;
-  FS_values_t *drive_values = Export_Drive_values();
-
   data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata
-
-  // FATtype will be either 2 (FAT16) or 4 (FAT32)
-  sector = ((cluster_num*drive_values->FATtype)/drive_values->BytesPerSec) + drive_values->StartofFAT;
-  Read_Sector(sector, drive_values->BytesPerSec, data_array);
+  //
+  // //FATtype will be either 2 (FAT16) or 4 (FAT32)
+  sector = ((cluster_num*drive_values_m->FATtype)/drive_values_m->BytesPerSec) + drive_values_m->StartofFAT;
+  Read_Sector_i(sector, drive_values_m->BytesPerSec, data_array);
 
   // Determine the offset of the cluster within this sector
-  FAToffset = (uint16_t)((cluster_num*drive_values->FATtype)%(drive_values->BytesPerSec));
+  FAToffset = (uint16_t)((cluster_num*drive_values_m->FATtype)%(drive_values_m->BytesPerSec));
 
   // Read the cluster entry from the FAT sector
-  if(drive_values->FATtype == FAT32)
+  if(drive_values_m->FATtype == FAT32)
   {
-    return (read32(FAToffset, data_array)&0x0FFFFFFF);
+    return (read32_i(FAToffset, data_array)&0x0FFFFFFF);
   }
-  else if(drive_values->FATtype == FAT16)
+  else if(drive_values_m->FATtype == FAT16)
   {
-    next_clus = (uint32_t)(read16(FAToffset, data_array)&0xFFFF);
+    next_clus = (uint32_t)(read16_i(FAToffset, data_array)&0xFFFF);
 
     // modify EOF to match for FAT32
     if(next_clus == 0xFFFF)
@@ -188,11 +245,8 @@ uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
   }
   else
   {
-    printf("Error: FAT type unsupported\n");
     return 0;
   }
-
-  printf("Error: couldn't find next cluster\n");
   return 0;
 }
 
@@ -202,7 +256,7 @@ uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
 //    uint32_t base_sector, sector_offset;
 //    uint8_t temp8;
 //    uint8_t *data_array;
-//    FS_values_t *drive_values = Export_Drive_values();
+//    FS_values_t *drive_values_m = Export_Drive_values();
 //    data_array = xram_data_array; // cast xdata to uint8_t since all other functions don't use xdata
 //
 //    sector_offset = 0; // start at first sector
@@ -217,16 +271,16 @@ uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array)
 //       if(sector_offset == 0) base_sector = first_sector(cluster_num);
 //
 //       // read the sector in
-//       Read_Sector((base_sector+sector_offset), drive_values->BytesPerSec, data_array);
+//       Read_Sector((base_sector+sector_offset), drive_values_m->BytesPerSec, data_array);
 //
 //
 //       printf(" **** cluster: %lu   sector: %lu ****\n", cluster_num, base_sector+sector_offset);
-//       print_memory(data_array, drive_values->BytesPerSec);
+//       print_memory(data_array, drive_values_m->BytesPerSec);
 //
 //       sector_offset++; // go forward one sector
 //
 //       // check if we need to go to the next cluster
-//       if(sector_offset == drive_values->SecPerClus)
+//       if(sector_offset == drive_values_m->SecPerClus)
 //       {
 //         cluster_num = find_next_clus(cluster_num, data_array);
 //         sector_offset = 0;

@@ -50,6 +50,8 @@ void set_directory_print_buffer_pos(uint16_t pos);
 uint8_t read_dir_entry_task(uint32_t *cluster);
 void read_dir_entry_init(uint16_t entry_in, uint32_t sector_number_in);
 
+void set_data_pool_dir(uint32_t *p32, uint16_t *p16, uint8_t *p8);
+
 // ------ Function prototypes needed (These can be defined in a seperate file) -------------
 
 //uint8_t read8(uint16_t offset, uint8_t * array_name);

@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  OUTPUTS                                                                11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  OUTPUTS                                                                11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE OUTPUTS
 OBJECT MODULE PLACED IN .\Outputs.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Outputs.c DEBUG OBJECTEXTEND PRINT(.\Outputs.lst) OBJECT(.\Output
-                    -s.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Outputs.c LARGE DEBUG OBJECTEXTEND PRINT(.\Outputs.lst) OBJECT(.\
+                    -Outputs.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   52   1        P1&=(~Bit_Data);
   53   1      }
   54          
-C51 COMPILER V6.02  OUTPUTS                                                                11/21/2019 07:15:58 PAGE 2   
+C51 COMPILER V6.02  OUTPUTS                                                                11/21/2019 13:16:06 PAGE 2   
 
   55          /* void P2_clear_bit(uint8_t Bit_Data)
   56          {

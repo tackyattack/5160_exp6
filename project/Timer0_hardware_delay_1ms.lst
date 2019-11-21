@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  TIMER0_HARDWARE_DELAY_1MS                                              11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  TIMER0_HARDWARE_DELAY_1MS                                              11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE TIMER0_HARDWARE_DELAY_1MS
 OBJECT MODULE PLACED IN .\Timer0_hardware_delay_1ms.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Timer0_hardware_delay_1ms.c DEBUG OBJECTEXTEND PRINT(.\Timer0_har
-                    -dware_delay_1ms.lst) OBJECT(.\Timer0_hardware_delay_1ms.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\Timer0_hardware_delay_1ms.c LARGE DEBUG OBJECTEXTEND PRINT(.\Time
+                    -r0_hardware_delay_1ms.lst) OBJECT(.\Timer0_hardware_delay_1ms.obj) 
 
 stmt level    source
 

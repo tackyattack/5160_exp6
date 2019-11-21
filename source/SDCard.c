@@ -88,6 +88,78 @@ uint8_t SEND_COMMAND(uint8_t cmnd, uint32_t argum)
  }
  return return_val;
 }
+
+
+uint8_t SEND_COMMAND_i(uint8_t cmnd, uint32_t argum)
+{
+ uint8_t SPI_send, return_val, SPI_return, error_flag;
+
+ return_val=no_errors;
+ if(cmnd<64)
+ {
+   SPI_send=cmnd | 0x40;
+   error_flag=SPI_Transfer(SPI_send,&SPI_return);
+   if((error_flag)==no_errors)
+   {
+     SPI_send=argum>>24;   // MSB
+     error_flag=SPI_Transfer(SPI_send,&SPI_return);
+   }
+   else
+   {
+     return_val=SPI_error;
+   }
+   if((return_val==no_errors)&&(error_flag==no_errors))
+   {
+     argum=argum & 0x00ffffff;
+     SPI_send=argum>>16;  // BYTE2
+     error_flag=SPI_Transfer(SPI_send,&SPI_return);
+   }
+   else
+   {
+     return_val=SPI_error;
+   }
+   if((return_val==no_errors)&&(error_flag==no_errors))
+   {
+     argum=argum & 0x0000ffff;
+     SPI_send=argum>>8;   // BYTE1
+     error_flag=SPI_Transfer(SPI_send,&SPI_return);
+   }
+   else
+   {
+     return_val=SPI_error;
+   }
+   if((return_val==no_errors)&&(error_flag==no_errors))
+   {
+     SPI_send=argum & 0x000000ff;  // LSB
+     error_flag=SPI_Transfer(SPI_send,&SPI_return);
+   }
+   else
+   {
+     return_val=SPI_error;
+   }
+   if((return_val==no_errors)&&(error_flag==no_errors))
+   {
+      if (cmnd == 0)
+      {
+         SPI_send=0x95;  // CRC7 and end bit for CMD0
+      }
+      else if (cmnd == 8)
+      {
+         SPI_send=0x87;   // CRC7 and end bit for CMD8
+      }
+      else
+      {
+         SPI_send=0x01;  // end bit only for other commands
+      }
+      error_flag=SPI_Transfer(SPI_send,&SPI_return);
+    }
+ }
+ else
+ {
+   return_val=illegal_cmnd;
+ }
+ return return_val;
+}
 /***********************************************************************
 DESC:    Read values from SPI port, 0xff sent for each byte read
 		 num_bytes=number of bytes to read
@@ -207,6 +279,66 @@ uint8_t read_block(uint16_t num_bytes, uint8_t * array_out_p)
 return return_val;
 }
 
+uint8_t read_block_i(uint16_t num_bytes, uint8_t * array_out_p)
+{
+   uint8_t error_flag,return_val,SPI_return;
+   uint16_t index;
+   index=0;
+   return_val=no_errors;
+   do
+   {
+      error_flag=SPI_Transfer(0xFF,&SPI_return);
+      index++;
+   }while(((SPI_return&0x80)==0x80)&&(index!=0)&&(error_flag==no_errors));
+   if(error_flag!=no_errors)
+   {
+      return_val=SPI_error;
+   }
+   else if(index==0)
+   {
+      return_val=sd_timeout_error;
+   }
+   else
+   {
+     if (SPI_return==0x00)
+     {
+        index=0;
+	    do
+        {
+           error_flag=SPI_Transfer(0xFF,&SPI_return);
+           index++;
+        }while((SPI_return==0xFF)&&(index!=0)&&(error_flag==no_errors));          // wait for data token response
+        if(error_flag!=no_errors)
+        {
+           return_val=SPI_error;
+        }
+        else if(index==0)
+        {
+          return_val=sd_timeout_error;
+        }
+        else if(SPI_return==0xfe)
+        {
+          for(index=0;index<num_bytes;index++)
+          {
+             error_flag=SPI_Transfer(0xFF,&SPI_return);
+             *(array_out_p + index)=SPI_return;
+          }
+          error_flag=SPI_Transfer(0xFF,&SPI_return); // discard byte 1 of CRC16
+          error_flag=SPI_Transfer(0xFF,&SPI_return); // discard byte 2 of CRC16
+        }
+	    else
+	    {
+	      return_val=data_error;
+	    }
+     }
+     else
+     {
+        return_val=response_error;
+     }
+   }
+ error_flag=SPI_Transfer(0xFF,&SPI_return);// send 8 more clock cycles to complete read
+return return_val;
+}
 
 /**********************************************************************
 DESC:    Sends the commands needed to initialize the SD card

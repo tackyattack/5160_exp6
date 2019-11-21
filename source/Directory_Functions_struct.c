@@ -1,5 +1,5 @@
 #include "AT89C51RC2.h"
-#include <stdio.h>
+//#include <stdio.h>
 #include "main.h"
 #include "PORT.H"
 #include "UART.h"
@@ -24,9 +24,16 @@ uint16_t idata print_buffer_pos = 0;
 
 // --------- data pool ---------
 // Note: since we're using a pool, only one task can be running at a time
-uint32_t idata pool32[4];
-uint16_t idata pool16[3];
-uint8_t  idata pool8[4];
+uint32_t idata *pool32;
+uint16_t idata *pool16;
+uint8_t  idata *pool8;
+
+void set_data_pool_dir(uint32_t *p32, uint16_t *p16, uint8_t *p8)
+{
+  pool32 = p32;
+  pool16 = p16;
+  pool8  = p8;
+}
 
 typedef struct
 {
@@ -121,7 +128,7 @@ void print_directory_init(uint32_t sector_number_in)
   }
   *context.Sector=sector_number_in;
   *context.Sector_num=sector_number_in;
-  *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
+  *context.error_flag=Read_Sector_i(*context.Sector,Drive_values.BytesPerSec,buf1);
 }
 
 void read_dir_entry_init(uint16_t entry_in, uint32_t sector_number_in)
@@ -143,7 +150,7 @@ void read_dir_entry_init(uint16_t entry_in, uint32_t sector_number_in)
   *context.Sector=sector_number_in;
   *context.Sector_num=sector_number_in;
   *context.entry=entry_in;
-  *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
+  *context.error_flag=Read_Sector_i(*context.Sector,Drive_values.BytesPerSec,buf1);
 }
 
 
@@ -154,37 +161,37 @@ uint8_t print_directory_task(uint16_t *entries_in)
   uint8_t *values = buf1;
   get_print_directory_task_context(&context);
 
-  temp8=read8(0 + (*context.i),values);  // read first byte to see if empty
+  temp8=read8_i(0 + (*context.i),values);  // read first byte to see if empty
   if((temp8!=0xE5)&&(temp8!=0x00))
   {
-    *context.attr=read8(0x0b+ (*context.i),values);
+    *context.attr=read8_i(0x0b+ (*context.i),values);
     if(((*context.attr) & 0x0E)==0)   // if hidden, system or Vol_ID bit is set do not print
     {
       (*context.entries)++;
-      print_buffer_pos += sprintf(buf2+print_buffer_pos, "%5d. ", *context.entries);  // print entry number with a fixed width specifier
+      //print_buffer_pos += sprintf(buf2+print_buffer_pos, "%5d. ", *context.entries);  // print entry number with a fixed width specifier
       for(*context.j=0;*context.j<8;(*context.j)++)
       {
-        *context.out_val=read8((*context.i)+(*context.j),values);   // print the 8 byte name
-        print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
+        *context.out_val=read8_i((*context.i)+(*context.j),values);   // print the 8 byte name
+        //print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
       }
       if(((*context.attr)&0x10)==0x10)  // indicates directory
       {
         for(*context.j=8;*context.j<11;(*context.j)++)
         {
-          *context.out_val=read8((*context.i)+(*context.j),values);
-          print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
+          *context.out_val=read8_i((*context.i)+(*context.j),values);
+          //print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
         }
-        print_buffer_pos += sprintf(buf2+print_buffer_pos, "[DIR]\n");
+        //print_buffer_pos += sprintf(buf2+print_buffer_pos, "[DIR]\n");
       }
       else       // print a period and the three byte extension for a file
       {
-        print_buffer_pos += sprintf(buf2+print_buffer_pos, ".", *context.out_val);
+        //print_buffer_pos += sprintf(buf2+print_buffer_pos, ".", *context.out_val);
         for(*context.j=8;*context.j<11;(*context.j)++)
         {
-          *context.out_val=read8((*context.i) + (*context.j),values);
-          print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
+          *context.out_val=read8_i((*context.i) + (*context.j),values);
+          //print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
         }
-        print_buffer_pos += sprintf(buf2+print_buffer_pos, "\r\n", *context.out_val);
+        //print_buffer_pos += sprintf(buf2+print_buffer_pos, "\r\n", *context.out_val);
       }
     }
   }
@@ -194,7 +201,7 @@ uint8_t print_directory_task(uint16_t *entries_in)
     (*context.Sector)++;
     if(((*context.Sector)-(*context.Sector_num))<*context.max_sectors)
     {
-      *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,buf1);
+      *context.error_flag=Read_Sector_i(*context.Sector,Drive_values.BytesPerSec,buf1);
       if(*context.error_flag!=no_errors)
       {
         *context.entries=0;   // no entries found indicates disk read error
@@ -223,10 +230,10 @@ uint8_t read_dir_entry_task(uint32_t *cluster)
   uint8_t *values = buf1;
   get_read_dir_entry_task_context(&context);
 
-  temp8=read8(0 + (*context.i),values);  // read first byte to see if empty
+  temp8=read8_i(0 + (*context.i),values);  // read first byte to see if empty
   if((temp8!=0xE5)&&(temp8!=0x00))
   {
-    *context.attr=read8(0x0b + (*context.i), values);
+    *context.attr=read8_i(0x0b + (*context.i), values);
     if(((*context.attr)&0x0E)==0)    // if hidden do not print
     {
       (*context.entries)++;
@@ -234,15 +241,15 @@ uint8_t read_dir_entry_task(uint32_t *cluster)
       {
         if(Drive_values.FATtype==FAT32)
         {
-          *context.return_clus=read8(21 + (*context.i),values);
+          *context.return_clus=read8_i(21 + (*context.i),values);
           *context.return_clus=(*context.return_clus)<<8;
-          *context.return_clus|=read8(20 + (*context.i),values);
+          *context.return_clus|=read8_i(20 + (*context.i),values);
           *context.return_clus=(*context.return_clus)<<8;
         }
-        *context.return_clus|=read8(27+ (*context.i),values);
+        *context.return_clus|=read8_i(27+ (*context.i),values);
         *context.return_clus=(*context.return_clus)<<8;
-        *context.return_clus|=read8(26 + (*context.i),values);
-        *context.attr=read8(0x0b + (*context.i),values);
+        *context.return_clus|=read8_i(26 + (*context.i),values);
+        *context.attr=read8_i(0x0b + (*context.i),values);
         if((*context.attr)&0x10) (*context.return_clus)= (*context.return_clus) | directory_bit;
         temp8=0;    // forces a function exit
       }
@@ -255,7 +262,7 @@ uint8_t read_dir_entry_task(uint32_t *cluster)
     (*context.Sector)++;
     if(((*context.Sector)-(*context.Sector_num))<(*context.max_sectors))
     {
-      *context.error_flag=Read_Sector(*context.Sector,Drive_values.BytesPerSec,values);
+      *context.error_flag=Read_Sector_i(*context.Sector,Drive_values.BytesPerSec,values);
       if(*context.error_flag!=no_errors)
       {
         *context.return_clus=no_entry_found;
@@ -335,24 +342,24 @@ CAUTION: Supports FAT16, SD_shift must be set before using this function
 //    {
 //      do
 //      {
-//         temp8=read8(0+i,values);  // read first byte to see if empty
+//         temp8=read8_i(0+i,values);  // read first byte to see if empty
 //         if((temp8!=0xE5)&&(temp8!=0x00))
 // 	    {
-// 	       attr=read8(0x0b+i,values);
+// 	       attr=read8_i(0x0b+i,values);
 // 		   if((attr&0x0E)==0)   // if hidden, system or Vol_ID bit is set do not print
 // 		   {
 // 		      entries++;
 // 			  printf("%5d. ",entries);  // print entry number with a fixed width specifier
 // 		      for(j=0;j<8;j++)
 // 			  {
-// 			     out_val=read8(i+j,values);   // print the 8 byte name
+// 			     out_val=read8_i(i+j,values);   // print the 8 byte name
 // 			     putchar(out_val);
 // 			  }
 //               if((attr&0x10)==0x10)  // indicates directory
 // 			  {
 // 			     for(j=8;j<11;j++)
 // 			     {
-// 			        out_val=read8(i+j,values);
+// 			        out_val=read8_i(i+j,values);
 // 			        putchar(out_val);
 // 			     }
 // 			     printf("[DIR]\n");
@@ -362,7 +369,7 @@ CAUTION: Supports FAT16, SD_shift must be set before using this function
 // 			     putchar(0x2E);
 // 			     for(j=8;j<11;j++)
 // 			     {
-// 			        out_val=read8(i+j,values);
+// 			        out_val=read8_i(i+j,values);
 // 			        putchar(out_val);
 // 			     }
 // 			     putchar(0x0d);
@@ -436,10 +443,10 @@ CAUTION: Supports FAT16, SD_shift must be set before using this function
 //    {
 //      do
 //      {
-//         temp8=read8(0+i,values);  // read first byte to see if empty
+//         temp8=read8_i(0+i,values);  // read first byte to see if empty
 //         if((temp8!=0xE5)&&(temp8!=0x00))
 // 	    {
-// 	       attr=read8(0x0b+i,values);
+// 	       attr=read8_i(0x0b+i,values);
 // 		   if((attr&0x0E)==0)    // if hidden do not print
 // 		   {
 // 		      entries++;
@@ -447,15 +454,15 @@ CAUTION: Supports FAT16, SD_shift must be set before using this function
 //               {
 // 			    if(Drive_values.FATtype==FAT32)
 //                 {
-//                    return_clus=read8(21+i,values);
+//                    return_clus=read8_i(21+i,values);
 // 				   return_clus=return_clus<<8;
-//                    return_clus|=read8(20+i,values);
+//                    return_clus|=read8_i(20+i,values);
 //                    return_clus=return_clus<<8;
 //                 }
-//                 return_clus|=read8(27+i,values);
+//                 return_clus|=read8_i(27+i,values);
 // 			    return_clus=return_clus<<8;
-//                 return_clus|=read8(26+i,values);
-// 			    attr=read8(0x0b+i,values);
+//                 return_clus|=read8_i(26+i,values);
+// 			    attr=read8_i(0x0b+i,values);
 // 			    if(attr&0x10) return_clus|=directory_bit;
 //                 temp8=0;    // forces a function exit
 //               }

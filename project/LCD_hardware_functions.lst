@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  LCD_HARDWARE_FUNCTIONS                                                 11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  LCD_HARDWARE_FUNCTIONS                                                 11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LCD_HARDWARE_FUNCTIONS
 OBJECT MODULE PLACED IN .\LCD_hardware_functions.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_hardware_functions.c DEBUG OBJECTEXTEND PRINT(.\LCD_hardware_
-                    -functions.lst) OBJECT(.\LCD_hardware_functions.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_hardware_functions.c LARGE DEBUG OBJECTEXTEND PRINT(.\LCD_har
+                    -dware_functions.lst) OBJECT(.\LCD_hardware_functions.obj) 
 
 stmt level    source
 
@@ -43,11 +43,11 @@ stmt level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     42    ----
+   CODE SIZE        =     48    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----       1
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       1
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

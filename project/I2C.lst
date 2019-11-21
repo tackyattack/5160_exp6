@@ -1,9 +1,10 @@
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  I2C                                                                    11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE I2C
 OBJECT MODULE PLACED IN .\I2C.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\I2C.c DEBUG OBJECTEXTEND PRINT(.\I2C.lst) OBJECT(.\I2C.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\I2C.c LARGE DEBUG OBJECTEXTEND PRINT(.\I2C.lst) OBJECT(.\I2C.obj)
+                    - 
 
 stmt level    source
 
@@ -61,9 +62,9 @@ stmt level    source
   51   3      	    num_bits=8;
   52   3              do
   53   3      		{
-  54   4      		   I2C_clock_delay(Continue);
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 07:15:58 PAGE 2   
+C51 COMPILER V6.02  I2C                                                                    11/21/2019 13:16:06 PAGE 2   
 
+  54   4      		   I2C_clock_delay(Continue);
   55   4      		   SCL=0;
   56   4      		   num_bits--;
   57   4                 send_bit=((send_val>>num_bits)&0x01);
@@ -125,9 +126,9 @@ stmt level    source
  113          
  114          ************************************************************************/
  115          
- 116          
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 07:15:58 PAGE 3   
+C51 COMPILER V6.02  I2C                                                                    11/21/2019 13:16:06 PAGE 3   
 
+ 116          
  117          uint8_t I2C_Read(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uint8_t num_bytes,uint8_t * r
              -ec_array)
  118          {
@@ -189,9 +190,9 @@ stmt level    source
  173   5      		   rcv_val=rcv_val<<1;  // shift value to prepare for next rcvd bit
  174   5      		   I2C_clock_delay(Continue);
  175   5      		   SCL=1;
- 176   5      		   while(SCL!=1);
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 07:15:58 PAGE 4   
+C51 COMPILER V6.02  I2C                                                                    11/21/2019 13:16:06 PAGE 4   
 
+ 176   5      		   while(SCL!=1);
  177   5                 sent_bit=SDA;
  178   5      		   rcv_val|=sent_bit;
  179   5      		 }while(num_bits>0);
@@ -253,9 +254,9 @@ stmt level    source
  235   1         TH0=I2C_RELOAD_H;
  236   1         TL0=I2C_RELOAD_L;
  237   1      
- 238   1         TF0=0;   // Clear overflow
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 07:15:58 PAGE 5   
+C51 COMPILER V6.02  I2C                                                                    11/21/2019 13:16:06 PAGE 5   
 
+ 238   1         TF0=0;   // Clear overflow
  239   1         TR0=1;   // Start Timer Running
  240   1      }
  241          
@@ -289,11 +290,11 @@ stmt level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    611    ----
+   CODE SIZE        =    833    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----      31
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      31
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

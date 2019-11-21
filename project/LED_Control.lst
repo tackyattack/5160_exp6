@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  LED_CONTROL                                                            11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  LED_CONTROL                                                            11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LED_CONTROL
 OBJECT MODULE PLACED IN .\LED_Control.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LED_Control.c DEBUG OBJECTEXTEND PRINT(.\LED_Control.lst) OBJECT(
-                    -.\LED_Control.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LED_Control.c LARGE DEBUG OBJECTEXTEND PRINT(.\LED_Control.lst) O
+                    -BJECT(.\LED_Control.obj) 
 
 stmt level    source
 

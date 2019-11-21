@@ -17,4 +17,8 @@ uint32_t first_sector(uint32_t cluster_num);
 uint32_t find_next_clus(uint32_t cluster_num, uint8_t xdata *xram_data_array);
 uint32_t first_sector(uint32_t cluster_num);
 
+// reentrant functions
+uint32_t find_next_clus_i(uint32_t cluster_num, uint8_t xdata *xram_data_array);
+uint32_t first_sector_i(uint32_t cluster_num);
+
 #endif

@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE SECTOR_READER
 OBJECT MODULE PLACED IN .\sector_reader.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\sector_reader.c DEBUG OBJECTEXTEND PRINT(.\sector_reader.lst) OBJ
-                    -ECT(.\sector_reader.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\sector_reader.c LARGE DEBUG OBJECTEXTEND PRINT(.\sector_reader.ls
+                    -t) OBJECT(.\sector_reader.obj) 
 
 stmt level    source
 
@@ -20,7 +20,7 @@ stmt level    source
   10   1        SD_type = Return_SD_Card_Type();
   11   1        SPI_Select_Clear(SD_Card_Select);
   12   1        error_flag = SEND_COMMAND(17, (sector_number<<SD_type));
-  13   1        if(error_flag == no_errors) read_block(sector_size, data_array);
+  13   1        if(error_flag == no_errors) read_block_i(sector_size, data_array);
   14   1        SPI_Select_Set(SD_Card_Select);
   15   1      
   16   1        if(error_flag != no_errors) return SECTOR_READ_FAIL;
@@ -61,16 +61,66 @@ stmt level    source
   51   2        }
   52   1        return ret_val;
   53   1      }
+  54          
+C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 13:16:06 PAGE 2   
 
-C51 COMPILER V6.02  SECTOR_READER                                                          11/21/2019 07:15:58 PAGE 2   
+  55          
+  56          
+  57          uint8_t Read_Sector_i(uint32_t sector_number, uint16_t sector_size, uint8_t *data_array)
+  58          {
+  59   1        uint8_t SD_type, error_flag;
+  60   1        SD_type = Return_SD_Card_Type();
+  61   1        SPI_Select_Clear(SD_Card_Select);
+  62   1        error_flag = SEND_COMMAND_i(17, (sector_number<<SD_type));
+  63   1        if(error_flag == no_errors) read_block(sector_size, data_array);
+  64   1        SPI_Select_Set(SD_Card_Select);
+  65   1      
+  66   1        if(error_flag != no_errors) return SECTOR_READ_FAIL;
+  67   1        return SECTOR_READ_SUCCESS;
+  68   1      }
+  69          
+  70          // Reads single byte
+  71          uint8_t read8_i(uint16_t offset, uint8_t *data_array)
+  72          {
+  73   1        offset = offset & 0x1FF; // mask off for safety
+  74   1        return data_array[offset];
+  75   1      }
+  76          
+  77          // Reads little endian 16b value
+  78          uint16_t read16_i(uint16_t offset, uint8_t *data_array)
+  79          {
+  80   1        uint16_t ret_val;
+  81   1        offset = offset & 0x1FF; // mask off for safety
+  82   1        ret_val = 0;
+  83   1        ret_val = data_array[offset + 1];              // MSB
+  84   1        ret_val = ret_val << 8;                     // shift to correct spot
+  85   1        ret_val = ret_val | data_array[offset];        // LSB
+  86   1        return ret_val;
+  87   1      }
+  88          
+  89          // Reads little endian 32b value
+  90          uint32_t read32_i(uint16_t offset, uint8_t *data_array)
+  91          {
+  92   1        uint32_t ret_val;
+  93   1        uint8_t temp, i;
+  94   1        offset = offset & 0x1FF; // mask off for safety
+  95   1        ret_val = 0;
+  96   1        for(i=0; i<4; i++)
+  97   1        {
+  98   2          temp = data_array[offset + (3-i)];
+  99   2          ret_val = ret_val<<8;
+ 100   2          ret_val |= temp;
+ 101   2        }
+ 102   1        return ret_val;
+ 103   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    243    ----
+   CODE SIZE        =    716    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----      54
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      24
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

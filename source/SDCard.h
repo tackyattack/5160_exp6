@@ -21,7 +21,7 @@
 #define Standard_Capacity (9)  // used to shift address for block to byte address conversion
 #define High_Capacity (0)      // no shift when no conversion is required
 
-// SD Card Commands 
+// SD Card Commands
 #define CMD0 (0)
 #define CMD8 (8)
 #define CMD16 (16)
@@ -35,10 +35,12 @@
 
 // ------ Public function prototypes -------------------------------
 uint8_t SEND_COMMAND(uint8_t cmnd, uint32_t argum);
+uint8_t SEND_COMMAND_i(uint8_t cmnd, uint32_t argum);
 
 uint8_t response(uint8_t num, uint8_t * valout_p);
 
 uint8_t read_block(uint16_t num, uint8_t * array_out_p);
+uint8_t read_block_i(uint16_t num, uint8_t * array_out_p);
 
 uint8_t SD_card_init(void);
 

@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  EXP_4_MAIN                                                             11/21/2019 07:15:57 PAGE 1   
+C51 COMPILER V6.02  EXP_4_MAIN                                                             11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE EXP_4_MAIN
 OBJECT MODULE PLACED IN .\exp_4_main.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\exp_4_main.c DEBUG OBJECTEXTEND PRINT(.\exp_4_main.lst) OBJECT(.\
-                    -exp_4_main.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\exp_4_main.c LARGE DEBUG OBJECTEXTEND PRINT(.\exp_4_main.lst) OBJ
+                    -ECT(.\exp_4_main.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   52   1         if(error_flag!=no_errors)
   53   1         {
   54   2            LEDS_ON(Red_LED);  // An error causes the program to stop
-C51 COMPILER V6.02  EXP_4_MAIN                                                             11/21/2019 07:15:57 PAGE 2   
+C51 COMPILER V6.02  EXP_4_MAIN                                                             11/21/2019 13:16:06 PAGE 2   
 
   55   2      	    UART_Transmit('S');
   56   2            while(1);
@@ -104,11 +104,11 @@ stmt level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    210    ----
+   CODE SIZE        =    213    ----
    CONSTANT SIZE    =     93    ----
-   XDATA SIZE       =   1024    ----
+   XDATA SIZE       =   1024       1
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       1
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

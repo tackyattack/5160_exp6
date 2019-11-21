@@ -1,10 +1,10 @@
-C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 07:15:58 PAGE 1   
+C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 13:16:06 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LCD_ROUTINES
 OBJECT MODULE PLACED IN .\LCD_routines.obj
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_routines.c DEBUG OBJECTEXTEND PRINT(.\LCD_routines.lst) OBJEC
-                    -T(.\LCD_routines.obj) 
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\LCD_routines.c LARGE DEBUG OBJECTEXTEND PRINT(.\LCD_routines.lst)
+                    - OBJECT(.\LCD_routines.obj) 
 
 stmt level    source
 
@@ -62,7 +62,7 @@ stmt level    source
   51   2             {
   52   3                character=*(array_name_p+index);
   53   3                LCD_Write(DDRAM,character);
-C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 07:15:58 PAGE 2   
+C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 13:16:06 PAGE 2   
 
   54   3                Timer0_DELAY_1ms(1);
   55   3             }
@@ -72,11 +72,11 @@ stmt level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    189    ----
+   CODE SIZE        =    242    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----       6
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       6
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
