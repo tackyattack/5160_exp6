@@ -9,23 +9,30 @@
 extern uint8_t xdata buf1[512];
 extern uint8_t xdata buf2[512];
 
-typedef enum {os_idle, print_buffer, recv_input, run_print_dir_task, run_read_dir_entry_task,
+typedef enum {os_init, os_idle, print_buffer, recv_input, run_print_dir_task, run_read_dir_entry_task,
               start_song, play_song_task} seos_state_t;
 seos_state_t seos_state;
 
-uint16_t temp16, cwd_entries;
-uint8_t temp8;
-uint32_t entry_num;
-uint32_t cwd, clus;
-uint8_t tens = 0;
+uint16_t  temp16, cwd_entries;
+uint8_t   temp8;
+uint32_t  entry_num;
+uint32_t  cwd, clus;
+uint8_t   tens = 0;
 
 bit print_dir_task_running = 0;
 bit read_dir_entry_task_running = 0;
 
-void loop_tester()
+void os_loop()
 {
   switch(seos_state)
   {
+    case os_init:
+      cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
+      print_directory_init(cwd);
+      print_dir_task_running=1;
+      entry_num = 0;
+      seos_state = os_idle;
+      break;
     case os_idle:
       LED_number(1);
       temp8 = UART_Receive_Non_Blocking();
@@ -144,28 +151,26 @@ void loop_tester()
       }
       break;
   }
-
 }
 
-// void sEOS_ISR(void) interrupt Timer_2_overflow using 1
-// {
-//   TF2 = 0; // clear timer flag that caused this interrupt
-// }
-//
+void sEOS_ISR(void) interrupt 5 using 1
+{
+  TF2 = 0; // clear timer flag that caused this interrupt
+  os_loop();
+}
+
 void sEOS_init(uint8_t interval_ms)
 {
-     cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
-     print_directory_init(cwd);
-     print_dir_task_running=1;
-     entry_num = 0;
-     seos_state = os_idle;
+  uint16_t preload;
+  seos_state = os_init;
+  //while(1) os_loop();
 
-//   T2CON=0;
-//   uint16_t PRELOAD=(65536–((OSC_FREQ*interval_ms)/(OSC_PER_INST*1000UL))));
-//   RCAP2H=(uint8_t)PRELOAD/256;
-//   RCAP2L=(uint8_t)PRELOAD%256;
-//   TF2=0; // Clear overflow
-//   ET2=1; // Enable Timer 2 interrupt
-//   EA=1;  // Set Global Interrupt Enable
-//   TR2=1; // Start Timer Running
+  T2CON=0;
+  preload=(65536-((OSC_FREQ*interval_ms)/(OSC_PER_INST*1000UL)));
+  RCAP2H=(uint8_t)preload/256;
+  RCAP2L=(uint8_t)preload%256;
+  TF2=0; // Clear overflow
+  ET2=1; // Enable Timer 2 interrupt
+  EA=1;  // Set Global Interrupt Enable
+  TR2=1; // Start Timer Running
 }

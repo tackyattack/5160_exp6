@@ -24,9 +24,6 @@ uint8_t code LCD_str_start[]="Starting...";
 main()
 {
    uint8_t error_flag;
-   // uint16_t temp16;
-   // uint32_t entry_num, cwd_entries;
-   // uint32_t cwd, clus;
 
    AUXR=0x0c;   // make all of XRAM available, ALE always on
    if(OSC_PER_INST==6)
@@ -90,35 +87,5 @@ main()
    }
 
    sEOS_init(12);
-   while(1)loop_tester();
-
-   // printf("Root directory:\n\n");
-   // cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
-   //
-   // while(1)
-   // {
-   //   cwd_entries = Print_Directory(cwd, buf1);
-   //   printf("Enter an entry number: \n");
-   //   entry_num = long_serial_input();
-   //   printf("%lu  ", entry_num);
-   //   printf("%lu  \n", cwd);
-   //   // check to make sure entry is within the cwd
-   //   if(entry_num <= cwd_entries)
-   //   {
-   //     clus = Read_Dir_Entry(cwd, entry_num, buf1);
-   //     if(clus & directory_bit)
-   //     {
-   //       clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
-   //       cwd = first_sector(clus);
-   //     }
-   //     else
-   //     {
-   //       init_player(clus, buf1);
-   //     }
-   //   }
-   //   else
-   //   {
-   //     printf("Error: invalid entry choice\n");
-   //   }
-   // }
+   while(1);
 }

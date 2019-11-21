@@ -11,7 +11,6 @@ File 1,1,<..\source\file_system.c><file_system.c>
 File 1,1,<..\source\LCD_hardware_functions.c><LCD_hardware_functions.c>
 File 1,1,<..\source\LCD_routines.c><LCD_routines.c>
 File 1,1,<..\source\LED_Control.c><LED_Control.c>
-File 1,1,<..\source\Long_Serial_In.c><Long_Serial_In.c>
 File 1,1,<..\source\Outputs.c><Outputs.c>
 File 1,1,<..\source\print_bytes.c><print_bytes.c>
 File 1,1,<..\source\SDCard.c><SDCard.c>
@@ -23,13 +22,14 @@ File 1,1,<..\source\player.c><player.c>
 File 1,1,<..\source\I2C.c><I2C.c>
 File 1,1,<..\source\STA013_config.c><STA013_config.c>
 File 1,2,<..\source\config.asm><config.asm>
+File 1,1,<..\source\sEOS.c><sEOS.c>
 
 
 Options 1,0,0  // Target 'Target 1'
- Device (89C52)
+ Device (87F51RC)
  Vendor (Atmel)
- Cpu (IRAM(0 - 0xFF) IROM(0 - 0x1FFF) CLOCK(24000000))
- Rgf (AT89X52.H)
+ Cpu (IRAM(0 - 0xFF) IROM(0 - 0xFFF) CLOCK(24000000))
+ Rgf (AT87F51RC.H)
  Mem ()
  C ()
  A ()
@@ -41,7 +41,7 @@ Options 1,0,0  // Target 'Target 1'
  EnvLib ()
  EnvReg (ÿAtmel\)
  OrgReg (ÿAtmel\)
- TgStat=0
+ TgStat=11
  OutDir (.\)
  OutName (exp6_prj)
  GenApp=1
@@ -64,7 +64,7 @@ Options 1,0,0  // Target 'Target 1'
  RXB51 { 0,0,0,0,0,0,0,0,0 }
  OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
  OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
- IRO51 { 1,0,0,0,0,0,32,0,0 }
+ IRO51 { 1,0,0,0,0,0,16,0,0 }
  IRA51 { 0,0,0,0,0,0,1,0,0 }
  XRA51 { 0,0,0,0,0,0,0,0,0 }
  C51FL=21630224
@@ -111,7 +111,7 @@ Options 1,0,0  // Target 'Target 1'
  LX51BIS ()
  LX51DAS ()
  LX51IDS ()
-  OPTDL (S8051.DLL)()(DP51.DLL)(-p52)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p51R)(S8051.DLL)()(TP51.DLL)(-p51R)
   OPTDBG 509,0,()()()()()()()()()() ()()()()
 EndOpt
 

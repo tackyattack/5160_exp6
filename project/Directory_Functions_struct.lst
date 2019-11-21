@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 1   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE DIRECTORY_FUNCTIONS_STRUCT
@@ -62,7 +62,7 @@ stmt level    source
   52            uint16_t *entry;
   53            uint8_t *j;
   54            uint8_t *attr;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 2   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 2   
 
   55            uint8_t *out_val;
   56            uint8_t *error_flag;
@@ -126,7 +126,7 @@ stmt level    source
  114   1        if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
  115   1        {
  116   2          *context.max_sectors=Drive_values.RootDirSecs;   // maximum sectors in a FAT16 root directory
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 3   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 3   
 
  117   2        }
  118   1        else
@@ -190,7 +190,7 @@ stmt level    source
  175   5                print_buffer_pos += sprintf(buf2+print_buffer_pos, "%c", *context.out_val);
  176   5              }
  177   4              print_buffer_pos += sprintf(buf2+print_buffer_pos, "[DIR]\n");
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 4   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 4   
 
  178   4            }
  179   3            else       // print a period and the three byte extension for a file
@@ -254,7 +254,7 @@ stmt level    source
  236   4              {
  237   5                *context.return_clus=read8(21 + (*context.i),values);
  238   5                *context.return_clus=(*context.return_clus)<<8;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 5   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 5   
 
  239   5                *context.return_clus|=read8(20 + (*context.i),values);
  240   5                *context.return_clus=(*context.return_clus)<<8;
@@ -318,7 +318,7 @@ stmt level    source
  298          {
  299   1         return &Drive_values;
  300   1      }
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 6   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 6   
 
  301          
  302          
@@ -382,7 +382,7 @@ stmt level    source
  360          // 			  else       // print a period and the three byte extension for a file
  361          // 			  {
  362          // 			     putchar(0x2E);
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 7   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 7   
 
  363          // 			     for(j=8;j<11;j++)
  364          // 			     {
@@ -446,7 +446,7 @@ stmt level    source
  422          //    entries=0;
  423          //    i=0;
  424          //    return_clus=0;
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 8   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 8   
 
  425          //    if (Drive_values.FATtype==FAT16)  // included for FAT16 compatibility
  426          //    {
@@ -510,7 +510,7 @@ stmt level    source
  484          //
  485          // 	  }while(temp8!=0);
  486          // 	}
-C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 06:07:40 PAGE 9   
+C51 COMPILER V6.02  DIRECTORY_FUNCTIONS_STRUCT                                             11/21/2019 07:15:57 PAGE 9   
 
  487          // 	else
  488          // 	{

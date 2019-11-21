@@ -27,6 +27,9 @@ OPTFFF 1,12,1,0,0,0,0,0,<..\source\SPI.c><SPI.c>
 OPTFFF 1,13,1,0,0,0,0,0,<..\source\Timer0_hardware_delay_1ms.c><Timer0_hardware_delay_1ms.c> 
 OPTFFF 1,14,1,0,0,0,0,0,<..\source\UART.c><UART.c> 
 OPTFFF 1,15,1,0,0,0,0,0,<..\source\player.c><player.c> 
+OPTFFF 1,16,1,0,0,0,0,0,<..\source\I2C.c><I2C.c> 
+OPTFFF 1,17,1,0,0,0,0,0,<..\source\STA013_config.c><STA013_config.c> 
+OPTFFF 1,18,2,0,0,0,0,0,<..\source\config.asm><config.asm> 
 
 
 TARGOPT 1, (Target 1)

@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 06:07:40 PAGE 1   
+C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 07:15:58 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LCD_ROUTINES
@@ -62,7 +62,7 @@ stmt level    source
   51   2             {
   52   3                character=*(array_name_p+index);
   53   3                LCD_Write(DDRAM,character);
-C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 06:07:40 PAGE 2   
+C51 COMPILER V6.02  LCD_ROUTINES                                                           11/21/2019 07:15:58 PAGE 2   
 
   54   3                Timer0_DELAY_1ms(1);
   55   3             }

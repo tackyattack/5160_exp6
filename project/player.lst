@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 06:07:41 PAGE 1   
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 07:15:58 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE PLAYER
@@ -62,7 +62,7 @@ stmt level    source
   52   1        player_state    = data_send_1;
   53   1        buffer1_flag    = BUFFER_FULL;
   54   1        buffer2_flag    = BUFFER_EMPTY;
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 06:07:41 PAGE 2   
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 07:15:58 PAGE 2   
 
   55   1        index1          = 0;
   56   1        index2          = 0;
@@ -126,7 +126,7 @@ stmt level    source
  114   2            else
  115   2            {
  116   3              load_sector(buf1);
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 06:07:41 PAGE 3   
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 07:15:58 PAGE 3   
 
  117   3              buffer1_flag = BUFFER_FULL;
  118   3              player_state = data_idle_2;
@@ -190,7 +190,7 @@ stmt level    source
  176   3              buffer2_flag = BUFFER_FULL;
  177   3              player_state = data_idle_1;
  178   3            }
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 06:07:41 PAGE 4   
+C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 07:15:58 PAGE 4   
 
  179   2            break;
  180   2          case data_send_2:
