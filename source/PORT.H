@@ -4,11 +4,11 @@
 
   ------------------------------------------------------------------
 
-   Port Header - Exp#4 - File system
+   Port Header - Exp#6 - MP3 player
 
    Programmer(s): Henry Bergin
 
-   Date: 9/8/16
+   Date: 10/21/19
 
    Description: Defines the port pins for the basic 8051 circuit
 -*------------------------------------------------------------------*/

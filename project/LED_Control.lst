@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  LED_CONTROL                                                            11/20/2019 23:40:29 PAGE 1   
+C51 COMPILER V6.02  LED_CONTROL                                                            11/21/2019 06:07:40 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LED_CONTROL
@@ -37,10 +37,22 @@ stmt level    source
   27          {
   28   1        P2|=(LED_mask);
   29   1      }
+  30          
+  31          void LED_number(uint8_t num)
+  32          {
+  33   1        LEDS_OFF(Green_LED);
+  34   1        LEDS_OFF(Amber_LED);
+  35   1        LEDS_OFF(Yellow_LED);
+  36   1        LEDS_OFF(Red_LED);
+  37   1        if((num&(1<<0)) != 0) LEDS_ON(Green_LED);
+  38   1        if((num&(1<<1)) != 0) LEDS_ON(Amber_LED);
+  39   1        if((num&(1<<2)) != 0) LEDS_ON(Yellow_LED);
+  40   1        if((num&(1<<3)) != 0) LEDS_ON(Red_LED);
+  41   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =      9    ----
+   CODE SIZE        =     68    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -12,14 +12,14 @@ CAUTION: Uses Baudrate Generator instead of a standard timer
 ************************************************************************/
 void uart_init(uint16_t BAUD_RATE)
 {
-  
+
   // configure UART
   // set or clear SMOD1 and clear SMOD0
   PCON &= 0x3F;  // Clears both SMOD0 and SMOD1
   PCON |= (SMOD1 << 7); // Sets SMOD1 to the defined value
-   
+
   // serial interrupt is disabled
-  ES=0;  
+  ES=0;
 
   SCON = UART_MODE1|RECEIVE_ENABLE|TRANSMIT_FLAG_SET;
 
@@ -29,7 +29,7 @@ void uart_init(uint16_t BAUD_RATE)
   BRL= (uint8_t)(256-((1+(5*SPD))*(1+(1*SMOD1))*OSC_FREQ)/(32UL*OSC_PER_INST*BAUD_RATE));
   BDRCON= (0x1C | (SPD << 1));  // Enables Baud Rate Gen. for RxD and TxD
 
-  
+
 
   // initially not busy
   TI=1;
@@ -66,30 +66,36 @@ uint8_t UART_Transmit(uint8_t send_value)
    }
    return return_value;
 }
-   
+
 
 
 
 
 
 /***********************************************************************
-DESC:    Waits for a value to be received through the UART and returns 
+DESC:    Waits for a value to be received through the UART and returns
          the value.
 INPUT: Nothing
 RETURNS: Received value
 CAUTION: Will stop program execution until a character is received
 ************************************************************************/
 
-uint8_t UART_Receive(void)
+// uint8_t UART_Receive(void)
+// {
+//     uint8_t return_value;
+//     while(RI==0);
+//     return_value=SBUF;
+//     RI=0;
+//     return return_value;
+// }
+
+
+
+uint8_t UART_Receive_Non_Blocking(void)
 {
-    uint8_t return_value;
-    while(RI==0);
-    return_value=SBUF;
-    RI=0;
-    return return_value;
+  uint8_t ret_val;
+  if(RI==0) return 0;
+  ret_val = SBUF;
+  RI=0;
+  return ret_val;
 }
-
-
-
-
-

@@ -4,7 +4,6 @@
 ".\LCD_hardware_functions.obj",
 ".\LCD_routines.obj",
 ".\LED_Control.obj",
-".\Long_Serial_In.obj",
 ".\Outputs.obj",
 ".\print_bytes.obj",
 ".\SDCard.obj",
@@ -15,6 +14,7 @@
 ".\player.obj",
 ".\I2C.obj",
 ".\STA013_config.obj",
-".\config.obj" 
+".\config.obj",
+".\sEOS.obj" 
 TO "exp6_prj" 
 RAMSIZE(256) 

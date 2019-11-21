@@ -27,3 +27,15 @@ void LEDS_OFF (uint8_t LED_mask)
 {
   P2|=(LED_mask);
 }
+
+void LED_number(uint8_t num)
+{
+  LEDS_OFF(Green_LED);
+  LEDS_OFF(Amber_LED);
+  LEDS_OFF(Yellow_LED);
+  LEDS_OFF(Red_LED);
+  if((num&(1<<0)) != 0) LEDS_ON(Green_LED);
+  if((num&(1<<1)) != 0) LEDS_ON(Amber_LED);
+  if((num&(1<<2)) != 0) LEDS_ON(Yellow_LED);
+  if((num&(1<<3)) != 0) LEDS_ON(Red_LED);
+}

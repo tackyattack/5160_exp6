@@ -7,6 +7,7 @@
 
 // ------ Public function prototypes -------------------------------
 void sEOS_init(uint8_t interval_ms);
-void sEOS_ISR(void) interrupt Timer_2_overflow using 1;
+// void sEOS_ISR(void) interrupt Timer_2_overflow using 1;
+void loop_tester();
 
 #endif

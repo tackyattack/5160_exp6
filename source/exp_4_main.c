@@ -10,11 +10,12 @@
 #include "Timer0_hardware_delay_1ms.h"
 #include "UART.h"
 #include "LCD_Routines.h"
-#include "Long_Serial_In.h"
+//#include "Long_Serial_In.h"
 #include "Outputs.h"
 #include "player.h"
 #include "STA013_config.h"
 #include "I2C.h"
+#include "sEOS.h"
 
 xdata uint8_t buf1[512];
 xdata uint8_t buf2[512];
@@ -23,9 +24,9 @@ uint8_t code LCD_str_start[]="Starting...";
 main()
 {
    uint8_t error_flag;
-   uint16_t temp16;
-   uint32_t entry_num, cwd_entries;
-   uint32_t cwd, clus;
+   // uint16_t temp16;
+   // uint32_t entry_num, cwd_entries;
+   // uint32_t cwd, clus;
 
    AUXR=0x0c;   // make all of XRAM available, ALE always on
    if(OSC_PER_INST==6)
@@ -88,45 +89,36 @@ main()
      while(1);
    }
 
-   //sEOS_init(12);
+   sEOS_init(12);
+   while(1)loop_tester();
 
-   printf("Root directory:\n\n");
-   cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
-
-   print_directory_init(cwd);
-
-   while(1)
-   {
-     print_directory_task(&temp16);
-     clus = get_directory_print_buffer_pos();
-     for(temp16=0; temp16<clus; temp16++) putchar(buf2[temp16]);
-     set_directory_print_buffer_pos(0);
-   }
-
-   while(1)
-   {
-     cwd_entries = Print_Directory(cwd, buf1);
-     printf("Enter an entry number: \n");
-     entry_num = long_serial_input();
-     printf("%lu  ", entry_num);
-     printf("%lu  \n", cwd);
-     // check to make sure entry is within the cwd
-     if(entry_num <= cwd_entries)
-     {
-       clus = Read_Dir_Entry(cwd, entry_num, buf1);
-       if(clus & directory_bit)
-       {
-         clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
-         cwd = first_sector(clus);
-       }
-       else
-       {
-         init_player(clus, buf1);
-       }
-     }
-     else
-     {
-       printf("Error: invalid entry choice\n");
-     }
-   }
+   // printf("Root directory:\n\n");
+   // cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
+   //
+   // while(1)
+   // {
+   //   cwd_entries = Print_Directory(cwd, buf1);
+   //   printf("Enter an entry number: \n");
+   //   entry_num = long_serial_input();
+   //   printf("%lu  ", entry_num);
+   //   printf("%lu  \n", cwd);
+   //   // check to make sure entry is within the cwd
+   //   if(entry_num <= cwd_entries)
+   //   {
+   //     clus = Read_Dir_Entry(cwd, entry_num, buf1);
+   //     if(clus & directory_bit)
+   //     {
+   //       clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
+   //       cwd = first_sector(clus);
+   //     }
+   //     else
+   //     {
+   //       init_player(clus, buf1);
+   //     }
+   //   }
+   //   else
+   //   {
+   //     printf("Error: invalid entry choice\n");
+   //   }
+   // }
 }

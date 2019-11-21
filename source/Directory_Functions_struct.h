@@ -45,7 +45,10 @@ FS_values_t * Export_Drive_values(void);
 uint8_t print_directory_task(uint16_t *entries_in);
 void print_directory_init(uint32_t sector_number);
 uint16_t get_directory_print_buffer_pos(void);
+uint8_t *get_directory_print_buffer(void);
 void set_directory_print_buffer_pos(uint16_t pos);
+uint8_t read_dir_entry_task(uint32_t *cluster);
+void read_dir_entry_init(uint16_t entry_in, uint32_t sector_number_in);
 
 // ------ Function prototypes needed (These can be defined in a seperate file) -------------
 

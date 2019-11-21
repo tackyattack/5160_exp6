@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/20/2019 23:40:29 PAGE 1   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 01:11:27 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE LONG_SERIAL_IN
@@ -62,7 +62,7 @@ stmt level    source
   52   3               }
   53   2               if(index==10)
   54   2               {
-C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/20/2019 23:40:29 PAGE 2   
+C51 COMPILER V6.02  LONG_SERIAL_IN                                                         11/21/2019 01:11:27 PAGE 2   
 
   55   3                  output_value=atol(input_values);
   56   3                  UART_Transmit(CR);
