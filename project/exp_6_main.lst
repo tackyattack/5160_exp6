@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  EXP_6_MAIN                                                             11/21/2019 16:42:11 PAGE 1   
+C51 COMPILER V6.02  EXP_6_MAIN                                                             11/23/2019 21:32:18 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE EXP_6_MAIN
@@ -62,7 +62,7 @@ stmt level    source
   53   1         if(error_flag!=no_errors)
   54   1         {
   55   2            LEDS_ON(Red_LED);  // An error causes the program to stop
-C51 COMPILER V6.02  EXP_6_MAIN                                                             11/21/2019 16:42:11 PAGE 2   
+C51 COMPILER V6.02  EXP_6_MAIN                                                             11/23/2019 21:32:18 PAGE 2   
 
   56   2      	    UART_Transmit('S');
   57   2            while(1);
@@ -101,45 +101,40 @@ stmt level    source
   90   1         printf("Root directory:\n\n");
   91   1         cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
   92   1      
-  93   1         TMOD = (TMOD & 0xF0) | 0x01;  /* Set T/C0 Mode */
-  94   1         ET0 = 1;                      /* Enable Timer 0 Interrupts */
-  95   1         TR0 = 1;                      /* Start Timer 0 Running */
-  96   1         EA = 1;                       /* Global Interrupt Enable */
-  97   1      
-  98   1         while(1)
-  99   1         {
- 100   2           cwd_entries = Print_Directory(cwd, buf1);
- 101   2           printf("Enter an entry number: \n");
- 102   2           entry_num = long_serial_input();
- 103   2           printf("%lu  ", entry_num);
- 104   2           printf("%lu  \n", cwd);
- 105   2           // check to make sure entry is within the cwd
- 106   2           if(entry_num <= cwd_entries)
- 107   2           {
- 108   3             clus = Read_Dir_Entry(cwd, entry_num, buf1);
- 109   3             if(clus & directory_bit)
+  93   1         while(1)
+  94   1         {
+  95   2           cwd_entries = Print_Directory(cwd, buf1);
+  96   2           printf("Enter an entry number: \n");
+  97   2           entry_num = long_serial_input();
+  98   2           printf("%lu  ", entry_num);
+  99   2           printf("%lu  \n", cwd);
+ 100   2           // check to make sure entry is within the cwd
+ 101   2           if(entry_num <= cwd_entries)
+ 102   2           {
+ 103   3             clus = Read_Dir_Entry(cwd, entry_num, buf1);
+ 104   3             if(clus & directory_bit)
+ 105   3             {
+ 106   4               clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
+ 107   4               cwd = first_sector(clus);
+ 108   4             }
+ 109   3             else
  110   3             {
- 111   4               clus &= 0x0FFFFFFF; // mask off upper four bits to print another directory
- 112   4               cwd = first_sector(clus);
+ 111   4               init_player(clus);
+ 112   4               while(player_state_machine_runner() == PLAYER_RUNNING);
  113   4             }
- 114   3             else
- 115   3             {
- 116   4               init_player(clus);
- 117   4               while(player_state_machine_runner() == PLAYER_RUNNING);
-C51 COMPILER V6.02  EXP_6_MAIN                                                             11/21/2019 16:42:11 PAGE 3   
+ 114   3           }
+ 115   2           else
+ 116   2           {
+ 117   3             printf("Error: invalid entry choice\n");
+C51 COMPILER V6.02  EXP_6_MAIN                                                             11/23/2019 21:32:18 PAGE 3   
 
- 118   4             }
- 119   3           }
- 120   2           else
- 121   2           {
- 122   3             printf("Error: invalid entry choice\n");
- 123   3           }
- 124   2         }
- 125   1      }
+ 118   3           }
+ 119   2         }
+ 120   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    462    ----
+   CODE SIZE        =    448    ----
    CONSTANT SIZE    =    178    ----
    XDATA SIZE       =   1024    ----
    PDATA SIZE       =   ----    ----

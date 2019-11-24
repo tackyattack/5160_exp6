@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:42:11 PAGE 1   
+C51 COMPILER V6.02  PLAYER                                                                 11/23/2019 21:32:18 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE PLAYER
@@ -62,7 +62,7 @@ stmt level    source
   53   1        buffer2_flag    = BUFFER_EMPTY;
   54   1        index1          = 0;
   55   1        index2          = 0;
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:42:11 PAGE 2   
+C51 COMPILER V6.02  PLAYER                                                                 11/23/2019 21:32:18 PAGE 2   
 
   56   1        //drive_values    = Export_Drive_values();
   57   1        base_sector     = first_sector(start_cluster);
@@ -126,7 +126,7 @@ stmt level    source
  115   3              buffer1_flag = BUFFER_FULL;
  116   3              player_state = data_idle_2;
  117   3            }
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:42:11 PAGE 3   
+C51 COMPILER V6.02  PLAYER                                                                 11/23/2019 21:32:18 PAGE 3   
 
  118   2            break;
  119   2          case data_send_1:
@@ -190,7 +190,7 @@ stmt level    source
  177   2            break;
  178   2          case data_send_2:
  179   2            LED_number(8);
-C51 COMPILER V6.02  PLAYER                                                                 11/21/2019 16:42:11 PAGE 4   
+C51 COMPILER V6.02  PLAYER                                                                 11/23/2019 21:32:18 PAGE 4   
 
  180   2            if(DATA_REQ_ACTIVE)
  181   2            {

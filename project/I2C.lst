@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 16:42:11 PAGE 1   
+C51 COMPILER V6.02  I2C                                                                    11/23/2019 21:32:18 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE I2C
@@ -62,7 +62,7 @@ stmt level    source
   52   3              do
   53   3      		{
   54   4      		   I2C_clock_delay(Continue);
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 16:42:11 PAGE 2   
+C51 COMPILER V6.02  I2C                                                                    11/23/2019 21:32:18 PAGE 2   
 
   55   4      		   SCL=0;
   56   4      		   num_bits--;
@@ -126,7 +126,7 @@ stmt level    source
  114          ************************************************************************/
  115          
  116          
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 16:42:11 PAGE 3   
+C51 COMPILER V6.02  I2C                                                                    11/23/2019 21:32:18 PAGE 3   
 
  117          uint8_t I2C_Read(uint8_t device_addr,uint32_t int_addr, uint8_t int_addr_sz, uint8_t num_bytes,uint8_t * r
              -ec_array)
@@ -190,7 +190,7 @@ stmt level    source
  174   5      		   I2C_clock_delay(Continue);
  175   5      		   SCL=1;
  176   5      		   while(SCL!=1);
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 16:42:11 PAGE 4   
+C51 COMPILER V6.02  I2C                                                                    11/23/2019 21:32:18 PAGE 4   
 
  177   5                 sent_bit=SDA;
  178   5      		   rcv_val|=sent_bit;
@@ -254,7 +254,7 @@ stmt level    source
  236   1         TL0=I2C_RELOAD_L;
  237   1      
  238   1         TF0=0;   // Clear overflow
-C51 COMPILER V6.02  I2C                                                                    11/21/2019 16:42:11 PAGE 5   
+C51 COMPILER V6.02  I2C                                                                    11/23/2019 21:32:18 PAGE 5   
 
  239   1         TR0=1;   // Start Timer Running
  240   1      }

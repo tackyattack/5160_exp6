@@ -90,11 +90,6 @@ main()
    printf("Root directory:\n\n");
    cwd = Export_Drive_values()->FirstRootDirSec; // start out at root directory
 
-   TMOD = (TMOD & 0xF0) | 0x01;  /* Set T/C0 Mode */
-   ET0 = 1;                      /* Enable Timer 0 Interrupts */
-   TR0 = 1;                      /* Start Timer 0 Running */
-   EA = 1;                       /* Global Interrupt Enable */
-
    while(1)
    {
      cwd_entries = Print_Directory(cwd, buf1);
