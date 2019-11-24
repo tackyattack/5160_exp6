@@ -15,6 +15,7 @@
 ".\STA013_config.obj",
 ".\config.obj",
 ".\exp_6_main.obj",
-".\Long_Serial_In.obj" 
+".\song_navigator.obj",
+".\switch.obj" 
 TO "exp6_prj" 
 RAMSIZE(256) 

@@ -15,10 +15,15 @@
 #define no_entry_found (0x80000000)  // msb set to indicate error
 #define directory_bit  (0x10000000)  // lsb of first nibble (bit28)
 
+#define READ_ONLY_BIT       (1<<0)
+#define HIDDEN_BIT          (1<<1)
+#define SYSTEM_BIT          (1<<2)
+#define VOLUME_ID_BIT       (1<<3)
+#define DIRECTORY_BIT       (1<<4)
+#define ARCHIVE_BIT         (1<<5)
 
-#define TASK_WAIT       (0)
-#define TASK_COMPLETE   (1)
-#define TASK_RUNNING    (2)
+#define MORE_ENTRIES    (1)
+#define NO_MORE_ENTRIES (2)
 
 //----------------- Typedefs ----------------------------------------
 typedef struct
@@ -34,6 +39,15 @@ typedef struct
   uint32_t RootDirSecs;
 } FS_values_t;
 
+
+typedef struct
+{
+  uint8_t entry_attr;
+  uint8_t entry_number;
+  uint8_t name[12];
+  uint32_t cluster;
+} entry_t;
+
 // ------ Public function prototypes -------------------------------
 
 uint16_t Print_Directory(uint32_t Sector_num, uint8_t xdata * array_in);
@@ -42,6 +56,7 @@ uint32_t Read_Dir_Entry(uint32_t Sector_num, uint16_t Entry, uint8_t xdata * arr
 
 FS_values_t * Export_Drive_values(void);
 
+uint16_t get_entry(uint32_t Sector_num, uint16_t entry_num, entry_t *entry ,uint8_t xdata * array_in);
 
 // ------ Function prototypes needed (These can be defined in a seperate file) -------------
 

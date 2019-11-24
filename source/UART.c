@@ -76,11 +76,11 @@ RETURNS: Received value
 CAUTION: Will stop program execution until a character is received
 ************************************************************************/
 
-uint8_t UART_Receive(void)
-{
-    uint8_t return_value;
-    while(RI==0);
-    return_value=SBUF;
-    RI=0;
-    return return_value;
-}
+// uint8_t UART_Receive(void)
+// {
+//     uint8_t return_value;
+//     while(RI==0);
+//     return_value=SBUF;
+//     RI=0;
+//     return return_value;
+// }
