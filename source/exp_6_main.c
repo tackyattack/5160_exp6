@@ -17,7 +17,7 @@
 #include "I2C.h"
 
 xdata uint8_t buf1[512];
-xdata uint8_t buf2[512];
+xdata uint8_t buf2[510];
 uint8_t code LCD_str_start[]="Starting...";
 
 main()

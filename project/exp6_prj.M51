@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V4.02                                                        11/23/2019  21:32:18  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.02                                                        11/23/2019  21:35:44  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
@@ -59,7 +59,7 @@ INPUT MODULES INCLUDED:
   C:\KEIL\C51\LIB\C51S.LIB (ATOL)
   C:\KEIL\C51\LIB\C51S.LIB (?C?IILDX)
   C:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 2
 
 
   C:\KEIL\C51\LIB\C51S.LIB (?C?LLDXDATA)
@@ -95,7 +95,7 @@ LINK MAP OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
             IDATA   0088H     0001H     UNIT         ?STACK
 
             * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
-            XDATA   0000H     0400H     UNIT         ?XD?EXP_6_MAIN
+            XDATA   0000H     03FEH     UNIT         ?XD?EXP_6_MAIN
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
             CODE    33ACH     00DEH     UNIT         ?PR?_ATOL?ATOL
             CODE    348AH     00D1H     UNIT         ?PR?LONG_SERIAL_INPUT?LONG_SERIAL_IN
             CODE    355BH     00B5H     UNIT         ?CO?FILE_SYSTEM
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 3
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 3
 
 
             CODE    3610H     00B2H     UNIT         ?CO?EXP_6_MAIN
@@ -179,7 +179,7 @@ SEGMENT                                                       BIT_GROUP         
 ?PR?MAIN?EXP_6_MAIN                                        -----    -----      0022H    0011H      -----    -----
   +--> ?PR?_LEDS_ON?LED_CONTROL
   +--> ?PR?_P2_SET_BIT?OUTPUTS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 4
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 4
 
 
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
@@ -239,7 +239,7 @@ SEGMENT                                                       BIT_GROUP         
 
 ?PR?SD_CARD_INIT?SDCARD                                    -----    -----      0033H    0014H      -----    -----
   +--> ?PR?_SPI_SELECT_SET?SPI
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 5
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 5
 
 
   +--> ?CO?SDCARD
@@ -299,7 +299,7 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?_UART_TRANSMIT?UART
   +--> ?PR?_ATOL?ATOL
 
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 6
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 6
 
 
 ?PR?_ATOL?ATOL                                             0020H.0  0000H.1    0044H    0007H      -----    -----
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
 
   -------         MODULE        ?C?CLDOPTR
   C:0FECH         PUBLIC        ?C?CLDOPTR
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 7
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 7
 
 
   -------         ENDMOD        ?C?CLDOPTR
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   -------         MODULE        ?C?LSHL
   C:12FDH         PUBLIC        ?C?LSHL
   -------         ENDMOD        ?C?LSHL
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 8
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 8
 
 
 
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   -------         ENDMOD        ?C?LNEG
 
   -------         MODULE        ?C?LLDXDATA
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:32:18  PAGE 9
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/23/2019  21:35:44  PAGE 9
 
 
   C:13F6H         PUBLIC        ?C?LLDXDATA
