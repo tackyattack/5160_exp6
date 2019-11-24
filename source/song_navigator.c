@@ -178,21 +178,20 @@ void song_navigator_runner(void)
       {
         entry.cluster &= 0x0FFFFFFF; // mask off upper four bits to print another directory
         cwd = first_sector(entry.cluster);
+        cur_entry = 0;
+        temp8 = get_next_valid_entry(cwd, &cur_entry, &entry);
+        for(i = 0; i < 12; i++) printf("%c", entry.name[i]);
+        LCD_Print(line1, 12, entry.name);
       }
       else
       {
         init_player(entry.cluster);
         printf("playing\n");
         LCD_Print(line2, 16, LCD_str_play_instructions);
-        if(SW3_val.SW_state == pressed) SW3_val.SW_state = not_pressed;
         while((player_state_machine_runner() == PLAYER_RUNNING) && (SW3_val.SW_state != pressed));
-        if(SW3_val.SW_state == pressed) SW3_val.SW_state = not_pressed;
+        if(SW3_val.SW_state == pressed) SW3_val.SW_state = held;
         LCD_Print(line2, 16, LCD_str_instructions);
       }
-      cur_entry = 0;
-      temp8 = get_next_valid_entry(cwd, &cur_entry, &entry);
-      for(i = 0; i < 12; i++) printf("%c", entry.name[i]);
-      LCD_Print(line1, 12, entry.name);
     }
   }
 }

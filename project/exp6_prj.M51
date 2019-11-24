@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V4.02                                                        11/24/2019  02:15:30  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.02                                                        11/24/2019  02:33:11  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
@@ -59,7 +59,7 @@ INPUT MODULES INCLUDED:
   C:\KEIL\C51\LIB\C51S.LIB (?C?LSTKIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
   C:\KEIL\C51\LIB\C51S.LIB (PRINTF)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 2
 
 
   C:\KEIL\C51\LIB\C51S.LIB (?C?IILDX)
@@ -111,63 +111,63 @@ LINK MAP OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
             CODE    2392H     02D9H     UNIT         ?PR?STA013_INIT?STA013_CONFIG
             CODE    266BH     020EH     UNIT         ?CO?SDCARD
             CODE    2879H     01ECH     UNIT         ?PR?PLAYER_STATE_MACHINE_RUNNER?PLAYER
-            CODE    2A65H     01C3H     UNIT         ?PR?SONG_NAVIGATOR_RUNNER?SONG_NAVIGATOR
-            CODE    2C28H     0168H     UNIT         ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
-            CODE    2D90H     0144H     UNIT         ?PR?_I2C_READ?I2C
-            CODE    2ED4H     0137H     UNIT         ?CO?STA013_CONFIG
-            CODE    300BH     0110H     UNIT         ?PR?_GET_NEXT_VALID_ENTRY?SONG_NAVIGATOR
-            CODE    311BH     010BH     UNIT         ?PR?_SEND_COMMAND?SDCARD
-            CODE    3226H     00FFH     UNIT         ?PR?_READ_BLOCK?SDCARD
-            CODE    3325H     00F0H     UNIT         ?PR?_I2C_WRITE?I2C
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 3
+            CODE    2A65H     01BCH     UNIT         ?PR?SONG_NAVIGATOR_RUNNER?SONG_NAVIGATOR
+            CODE    2C21H     0168H     UNIT         ?PR?_FIND_NEXT_CLUS?FILE_SYSTEM
+            CODE    2D89H     0144H     UNIT         ?PR?_I2C_READ?I2C
+            CODE    2ECDH     0137H     UNIT         ?CO?STA013_CONFIG
+            CODE    3004H     0110H     UNIT         ?PR?_GET_NEXT_VALID_ENTRY?SONG_NAVIGATOR
+            CODE    3114H     010BH     UNIT         ?PR?_SEND_COMMAND?SDCARD
+            CODE    321FH     00FFH     UNIT         ?PR?_READ_BLOCK?SDCARD
+            CODE    331EH     00F0H     UNIT         ?PR?_I2C_WRITE?I2C
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 3
 
 
-            CODE    3415H     00EDH     UNIT         ?PR?_GET_PREV_VALID_ENTRY?SONG_NAVIGATOR
-            CODE    3502H     00E5H     UNIT         ?PR?MAIN?EXP_6_MAIN
-            CODE    35E7H     00B5H     UNIT         ?CO?FILE_SYSTEM
-            CODE    369CH     0099H     UNIT         ?PR?_RESPONSE?SDCARD
-            CODE    3735H     008CH     UNIT         ?PR?_SPI_MASTER_INIT?SPI
-            CODE    37C1H     008CH     UNIT         ?PR?_READ_SWITCH?SWITCH
-            CODE    384DH     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
-            CODE    38D2H     007CH     UNIT         ?PR?_FIRST_SECTOR?FILE_SYSTEM
-            CODE    394EH     007AH     UNIT         ?CO?EXP_6_MAIN
-            CODE    39C8H     0072H     UNIT         ?PR?_SEND_BUFFER?PLAYER
-            CODE    3A3AH     0070H     UNIT         ?PR?_LOAD_SECTOR?PLAYER
-            CODE    3AAAH     006EH     UNIT         ?PR?_PRINT_ERROR?SDCARD
-            CODE    3B18H     0064H     UNIT         ?PR?_READ32?SECTOR_READER
-            CODE    3B7CH     0064H     UNIT         ?PR?_SETUP_SWITCHES?SONG_NAVIGATOR
-            CODE    3BE0H     005EH     UNIT         ?PR?SWITCH_ISR?SONG_NAVIGATOR
-            CODE    3C3EH     0050H     UNIT         ?PR?_READ_SECTOR?SECTOR_READER
-            CODE    3C8EH     004AH     UNIT         ?CO?SONG_NAVIGATOR
-            CODE    3CD8H     0043H     UNIT         ?PR?_INIT_PLAYER?PLAYER
-            CODE    3D1BH     003BH     UNIT         ?PR?_LED_NUMBER?LED_CONTROL
-            CODE    3D56H     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
-            CODE    3D8EH     0035H     UNIT         ?PR?_UART_INIT?UART
-            CODE    3DC3H     0033H     UNIT         ?PR?_READ16?SECTOR_READER
-            CODE    3DF6H     0033H     UNIT         ?PR?_SPI_TRANSFER?SPI
-            CODE    3E29H     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-            CODE    3E53H     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-            CODE    3E79H     0020H     UNIT         ?PR?_UART_TRANSMIT?UART
-            CODE    3E99H     001CH     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
-            CODE    3EB5H     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
-            CODE    3EC8H     0012H     UNIT         ?PR?_SWITCH_INIT?SWITCH
-            CODE    3EDAH     000CH     UNIT         ?PR?_READ8?SECTOR_READER
-            CODE    3EE6H     000CH     UNIT         ?PR?_SONG_NAVIGATOR_INIT?SONG_NAVIGATOR
-            CODE    3EF2H     000CH     UNIT         ?C_C51STARTUP
-            CODE    3EFEH     0007H     UNIT         ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
-            CODE    3F05H     0005H     UNIT         ?PR?_LEDS_ON?LED_CONTROL
-            CODE    3F0AH     0005H     UNIT         ?PR?_P1_CLEAR_BIT?OUTPUTS
-            CODE    3F0FH     0005H     UNIT         ?PR?_P3_CLEAR_BIT?OUTPUTS
-            CODE    3F14H     0005H     UNIT         ?PR?RETURN_SD_CARD_TYPE?SDCARD
-            CODE    3F19H     0005H     UNIT         ?PR?_SPI_SELECT_CLEAR?SPI
-            CODE    3F1EH     0005H     UNIT         ?PR?_CLEAR_P3_BIT?STA013_CONFIG
-            CODE    3F23H     0004H     UNIT         ?PR?_LEDS_OFF?LED_CONTROL
-            CODE    3F27H     0004H     UNIT         ?PR?_P1_SET_BIT?OUTPUTS
-            CODE    3F2BH     0004H     UNIT         ?PR?_P2_SET_BIT?OUTPUTS
-            CODE    3F2FH     0004H     UNIT         ?PR?_P3_SET_BIT?OUTPUTS
-            CODE    3F33H     0004H     UNIT         ?PR?_SPI_SELECT_SET?SPI
-            CODE    3F37H     0004H     UNIT         ?PR?_SET_P3_BIT?STA013_CONFIG
-            CODE    3F3BH     0003H     UNIT         ?PR?_P0_OUTPUT_BITS?OUTPUTS
+            CODE    340EH     00EDH     UNIT         ?PR?_GET_PREV_VALID_ENTRY?SONG_NAVIGATOR
+            CODE    34FBH     00E5H     UNIT         ?PR?MAIN?EXP_6_MAIN
+            CODE    35E0H     00B5H     UNIT         ?CO?FILE_SYSTEM
+            CODE    3695H     0099H     UNIT         ?PR?_RESPONSE?SDCARD
+            CODE    372EH     008CH     UNIT         ?PR?_SPI_MASTER_INIT?SPI
+            CODE    37BAH     008CH     UNIT         ?PR?_READ_SWITCH?SWITCH
+            CODE    3846H     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
+            CODE    38CBH     007CH     UNIT         ?PR?_FIRST_SECTOR?FILE_SYSTEM
+            CODE    3947H     007AH     UNIT         ?CO?EXP_6_MAIN
+            CODE    39C1H     0072H     UNIT         ?PR?_SEND_BUFFER?PLAYER
+            CODE    3A33H     0070H     UNIT         ?PR?_LOAD_SECTOR?PLAYER
+            CODE    3AA3H     006EH     UNIT         ?PR?_PRINT_ERROR?SDCARD
+            CODE    3B11H     0064H     UNIT         ?PR?_READ32?SECTOR_READER
+            CODE    3B75H     0064H     UNIT         ?PR?_SETUP_SWITCHES?SONG_NAVIGATOR
+            CODE    3BD9H     005EH     UNIT         ?PR?SWITCH_ISR?SONG_NAVIGATOR
+            CODE    3C37H     0050H     UNIT         ?PR?_READ_SECTOR?SECTOR_READER
+            CODE    3C87H     004AH     UNIT         ?CO?SONG_NAVIGATOR
+            CODE    3CD1H     0043H     UNIT         ?PR?_INIT_PLAYER?PLAYER
+            CODE    3D14H     003BH     UNIT         ?PR?_LED_NUMBER?LED_CONTROL
+            CODE    3D4FH     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
+            CODE    3D87H     0035H     UNIT         ?PR?_UART_INIT?UART
+            CODE    3DBCH     0033H     UNIT         ?PR?_READ16?SECTOR_READER
+            CODE    3DEFH     0033H     UNIT         ?PR?_SPI_TRANSFER?SPI
+            CODE    3E22H     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
+            CODE    3E4CH     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+            CODE    3E72H     0020H     UNIT         ?PR?_UART_TRANSMIT?UART
+            CODE    3E92H     001CH     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
+            CODE    3EAEH     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
+            CODE    3EC1H     0012H     UNIT         ?PR?_SWITCH_INIT?SWITCH
+            CODE    3ED3H     000CH     UNIT         ?PR?_READ8?SECTOR_READER
+            CODE    3EDFH     000CH     UNIT         ?PR?_SONG_NAVIGATOR_INIT?SONG_NAVIGATOR
+            CODE    3EEBH     000CH     UNIT         ?C_C51STARTUP
+            CODE    3EF7H     0007H     UNIT         ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
+            CODE    3EFEH     0005H     UNIT         ?PR?_LEDS_ON?LED_CONTROL
+            CODE    3F03H     0005H     UNIT         ?PR?_P1_CLEAR_BIT?OUTPUTS
+            CODE    3F08H     0005H     UNIT         ?PR?_P3_CLEAR_BIT?OUTPUTS
+            CODE    3F0DH     0005H     UNIT         ?PR?RETURN_SD_CARD_TYPE?SDCARD
+            CODE    3F12H     0005H     UNIT         ?PR?_SPI_SELECT_CLEAR?SPI
+            CODE    3F17H     0005H     UNIT         ?PR?_CLEAR_P3_BIT?STA013_CONFIG
+            CODE    3F1CH     0004H     UNIT         ?PR?_LEDS_OFF?LED_CONTROL
+            CODE    3F20H     0004H     UNIT         ?PR?_P1_SET_BIT?OUTPUTS
+            CODE    3F24H     0004H     UNIT         ?PR?_P2_SET_BIT?OUTPUTS
+            CODE    3F28H     0004H     UNIT         ?PR?_P3_SET_BIT?OUTPUTS
+            CODE    3F2CH     0004H     UNIT         ?PR?_SPI_SELECT_SET?SPI
+            CODE    3F30H     0004H     UNIT         ?PR?_SET_P3_BIT?STA013_CONFIG
+            CODE    3F34H     0003H     UNIT         ?PR?_P0_OUTPUT_BITS?OUTPUTS
 
 
 
@@ -179,7 +179,7 @@ SEGMENT                                                       BIT_GROUP         
 ------------------------------------------------------------------------------------------------------------------
 ?PR?SWITCH_ISR?SONG_NAVIGATOR                              -----    -----      -----    -----      -----    -----
   +--> ?PR?_READ_SWITCH?SWITCH
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 4
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 4
 
 
 
@@ -239,7 +239,7 @@ SEGMENT                                                       BIT_GROUP         
 ?PR?_LCD_PRINT?LCD_ROUTINES                                -----    -----      0027H    0006H      -----    -----
   +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 5
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 5
 
 
 
@@ -299,7 +299,7 @@ SEGMENT                                                       BIT_GROUP         
 
 ?PR?SONG_NAVIGATOR_RUNNER?SONG_NAVIGATOR                   -----    -----      0022H    0005H      0075H    0012H
   +--> ?PR?_GET_NEXT_VALID_ENTRY?SONG_NAVIGATOR
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 6
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 6
 
 
   +--> ?CO?SONG_NAVIGATOR
@@ -359,7 +359,7 @@ SEGMENT                                                       BIT_GROUP         
 
 
 SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 7
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 7
 
 
 
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   -------         ENDMOD        ?C?ULDIV
 
   -------         MODULE        ?C?ULCMP
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 8
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 8
 
 
   C:1304H         PUBLIC        ?C?ULCMP
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   D:004AH         PUBLIC        ?_SPRINTF517?BYTE
   D:004AH         PUBLIC        ?_SPRINTF?BYTE
   C:2098H         PUBLIC        _PRINTF
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:15:30  PAGE 9
+BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 9
 
 
   C:2098H         PUBLIC        _PRINTF517

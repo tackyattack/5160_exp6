@@ -20,6 +20,9 @@ File 1,1,<..\source\SPI.c><SPI.c>
 File 1,1,<..\source\Timer0_hardware_delay_1ms.c><Timer0_hardware_delay_1ms.c>
 File 1,1,<..\source\UART.c><UART.c>
 File 1,1,<..\source\player.c><player.c>
+File 1,1,<..\source\I2C.c><I2C.c>
+File 1,1,<..\source\STA013_config.c><STA013_config.c>
+File 1,2,<..\source\config.asm><config.asm>
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -43,7 +46,7 @@ Options 1,0,0  // Target 'Target 1'
  OutName (exp6_prj)
  GenApp=1
  GenLib=0
- GenHex=0
+ GenHex=1
  Debug=1
  Browse=0
  LstDir (.\)
