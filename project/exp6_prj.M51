@@ -1,11 +1,11 @@
-BL51 BANKED LINKER/LOCATER V4.02                                                        11/24/2019  02:33:11  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.02                                                        12/02/2019  18:32:47  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE .\Directory_Functions_struct.obj, .\file_system.obj, .\LCD_hardware_functions.obj, .\LCD_routin
->> es.obj, .\LED_Control.obj, .\Outputs.obj, .\print_bytes.obj, .\SDCard.obj, .\sector_reader.obj, .\SPI.obj, .\Timer0_h
->> ardware_delay_1ms.obj, .\UART.obj, .\player.obj, .\I2C.obj, .\STA013_config.obj, .\config.obj, .\exp_6_main.obj, .\so
->> ng_navigator.obj, .\switch.obj TO exp6_prj RAMSIZE (256)
+C:\KEIL\C51\BIN\BL51.EXE .\Directory_Functions_struct.obj, .\exp_6_main.obj, .\file_system.obj, .\I2C.obj, .\LCD_hardwar
+>> e_functions.obj, .\LCD_routines.obj, .\LED_Control.obj, .\Outputs.obj, .\player.obj, .\print_bytes.obj, .\SDCard.obj,
+>>  .\sector_reader.obj, .\song_navigator.obj, .\SPI.obj, .\STA013_config.obj, .\switch.obj, .\Timer0_hardware_delay_1ms
+>> .obj, .\UART.obj, .\config.obj TO exp6_prj RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,24 +13,24 @@ MEMORY MODEL: SMALL
 
 INPUT MODULES INCLUDED:
   .\Directory_Functions_struct.obj (DIRECTORY_FUNCTIONS_STRUCT)
+  .\exp_6_main.obj (EXP_6_MAIN)
   .\file_system.obj (FILE_SYSTEM)
+  .\I2C.obj (I2C)
   .\LCD_hardware_functions.obj (LCD_HARDWARE_FUNCTIONS)
   .\LCD_routines.obj (LCD_ROUTINES)
   .\LED_Control.obj (LED_CONTROL)
   .\Outputs.obj (OUTPUTS)
+  .\player.obj (PLAYER)
   .\print_bytes.obj (PRINT_BYTES)
   .\SDCard.obj (SDCARD)
   .\sector_reader.obj (SECTOR_READER)
+  .\song_navigator.obj (SONG_NAVIGATOR)
   .\SPI.obj (SPI)
+  .\STA013_config.obj (STA013_CONFIG)
+  .\switch.obj (SWITCH)
   .\Timer0_hardware_delay_1ms.obj (TIMER0_HARDWARE_DELAY_1MS)
   .\UART.obj (UART)
-  .\player.obj (PLAYER)
-  .\I2C.obj (I2C)
-  .\STA013_config.obj (STA013_CONFIG)
   .\config.obj (CONFIG)
-  .\exp_6_main.obj (EXP_6_MAIN)
-  .\song_navigator.obj (SONG_NAVIGATOR)
-  .\switch.obj (SWITCH)
   C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
@@ -59,7 +59,7 @@ INPUT MODULES INCLUDED:
   C:\KEIL\C51\LIB\C51S.LIB (?C?LSTKIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
   C:\KEIL\C51\LIB\C51S.LIB (PRINTF)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 2
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 2
 
 
   C:\KEIL\C51\LIB\C51S.LIB (?C?IILDX)
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
             CODE    3114H     010BH     UNIT         ?PR?_SEND_COMMAND?SDCARD
             CODE    321FH     00FFH     UNIT         ?PR?_READ_BLOCK?SDCARD
             CODE    331EH     00F0H     UNIT         ?PR?_I2C_WRITE?I2C
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 3
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 3
 
 
             CODE    340EH     00EDH     UNIT         ?PR?_GET_PREV_VALID_ENTRY?SONG_NAVIGATOR
@@ -179,7 +179,7 @@ SEGMENT                                                       BIT_GROUP         
 ------------------------------------------------------------------------------------------------------------------
 ?PR?SWITCH_ISR?SONG_NAVIGATOR                              -----    -----      -----    -----      -----    -----
   +--> ?PR?_READ_SWITCH?SWITCH
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 4
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 4
 
 
 
@@ -192,12 +192,12 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?_LEDS_ON?LED_CONTROL
   +--> ?PR?_P2_SET_BIT?OUTPUTS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-  +--> ?PR?_UART_INIT?UART
-  +--> ?PR?STA013_INIT?STA013_CONFIG
   +--> ?PR?LCD_INIT?LCD_ROUTINES
   +--> ?CO?EXP_6_MAIN
   +--> ?PR?_LCD_PRINT?LCD_ROUTINES
+  +--> ?PR?_UART_INIT?UART
   +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?STA013_INIT?STA013_CONFIG
   +--> ?PR?_SPI_MASTER_INIT?SPI
   +--> ?PR?_UART_TRANSMIT?UART
   +--> ?PR?SD_CARD_INIT?SDCARD
@@ -206,6 +206,22 @@ SEGMENT                                                       BIT_GROUP         
   +--> ?PR?EXPORT_DRIVE_VALUES?DIRECTORY_FUNCTIONS_STRUCT
   +--> ?PR?_SONG_NAVIGATOR_INIT?SONG_NAVIGATOR
   +--> ?PR?SONG_NAVIGATOR_RUNNER?SONG_NAVIGATOR
+
+?PR?LCD_INIT?LCD_ROUTINES                                  -----    -----      -----    -----      -----    -----
+  +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
+  +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+
+?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS                      -----    -----      002DH    0001H      -----    -----
+  +--> ?PR?_P3_CLEAR_BIT?OUTPUTS
+  +--> ?PR?_P3_SET_BIT?OUTPUTS
+  +--> ?PR?_P0_OUTPUT_BITS?OUTPUTS
+
+?PR?_LCD_PRINT?LCD_ROUTINES                                -----    -----      0027H    0006H      -----    -----
+  +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
+  +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+
+?PR?PRINTF?PRINTF                                          0020H.0  0001H.1    004AH    0014H      -----    -----
+  +--> ?PR?PUTCHAR?PUTCHAR
 
 ?PR?STA013_INIT?STA013_CONFIG                              -----    -----      0022H    0008H      0075H    0006H
   +--> ?PR?_CLEAR_P3_BIT?STA013_CONFIG
@@ -223,23 +239,7 @@ SEGMENT                                                       BIT_GROUP         
 ?PR?_I2C_WRITE?I2C                                         -----    -----      003AH    000FH      -----    -----
   +--> ?PR?I2C_CLOCK_START?I2C
   +--> ?PR?_I2C_CLOCK_DELAY?I2C
-
-?PR?PRINTF?PRINTF                                          0020H.0  0001H.1    004AH    0014H      -----    -----
-  +--> ?PR?PUTCHAR?PUTCHAR
-
-?PR?LCD_INIT?LCD_ROUTINES                                  -----    -----      -----    -----      -----    -----
-  +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-  +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-
-?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS                      -----    -----      002DH    0001H      -----    -----
-  +--> ?PR?_P3_CLEAR_BIT?OUTPUTS
-  +--> ?PR?_P3_SET_BIT?OUTPUTS
-  +--> ?PR?_P0_OUTPUT_BITS?OUTPUTS
-
-?PR?_LCD_PRINT?LCD_ROUTINES                                -----    -----      0027H    0006H      -----    -----
-  +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-  +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 5
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 5
 
 
 
@@ -299,7 +299,7 @@ SEGMENT                                                       BIT_GROUP         
 
 ?PR?SONG_NAVIGATOR_RUNNER?SONG_NAVIGATOR                   -----    -----      0022H    0005H      0075H    0012H
   +--> ?PR?_GET_NEXT_VALID_ENTRY?SONG_NAVIGATOR
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 6
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 6
 
 
   +--> ?CO?SONG_NAVIGATOR
@@ -359,7 +359,7 @@ SEGMENT                                                       BIT_GROUP         
 
 
 SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 7
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 7
 
 
 
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   -------         ENDMOD        ?C?ULDIV
 
   -------         MODULE        ?C?ULCMP
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 8
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 8
 
 
   C:1304H         PUBLIC        ?C?ULCMP
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  exp6_prj (DIRECTORY_FUNCTIONS_STRUCT)
   D:004AH         PUBLIC        ?_SPRINTF517?BYTE
   D:004AH         PUBLIC        ?_SPRINTF?BYTE
   C:2098H         PUBLIC        _PRINTF
-BL51 BANKED LINKER/LOCATER V4.02                                                      11/24/2019  02:33:11  PAGE 9
+BL51 BANKED LINKER/LOCATER V4.02                                                      12/02/2019  18:32:47  PAGE 9
 
 
   C:2098H         PUBLIC        _PRINTF517
